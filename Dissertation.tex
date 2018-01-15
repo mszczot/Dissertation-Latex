@@ -6,6 +6,7 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage{titlesec} %these are how we import packages, one helps set up footers and title layout
 \usepackage{fancyhdr}
+\usepackage{subfiles}
 
 % !TEX TS-program = pdflatex
 % !TEX encoding = UTF-8 Unicode
@@ -30,8 +31,8 @@
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0.5pt}
 \setlength{\headheight}{15pt}
-\fancyhead[L]{Joe Bloggs - 2201882}
-\fancyhead[R]{ SOC10101 Honers Project}
+\fancyhead[L]{Marcin Szczot - 40180425}
+\fancyhead[R]{ SOC10101 Honours Project}
 \fancyfoot[L]{}
 \fancyfoot[C]{\thepage}
 
@@ -55,10 +56,10 @@
 
 %you can import other documents into your main one, these layout the Title and Declarations on its own page.
 %you might need to change these to \ if your on Microsoft Windows.
-\input{./Dissertation-Title.tex}
-\input{./Dissertation-Dec.tex}
+\input{./Original/Dissertation-Title.tex}
+\input{./Original/Dissertation-Dec.tex}
 \pagebreak
-\input{./Dissertation-DP.tex}
+\input{./Original/Dissertation-DP.tex}
 \pagebreak
 
 %LaTeX let you define the abstract separately so it wont get sucked into the main document.
@@ -80,52 +81,22 @@
 \newpage
 
 \section*{Acknowledgements}
-Insert acknowledgements here
-\subsection*{}
-	I would like to thank my cat, dog and family.
-\newpage
-
-
-\section{Title of section would go here}
-You can fill out sections as you please. \\ %adds a line brake
-
-Most of the formatting is taken care for you but you can add this yourself as you please.
-
-\subsection{Title of subsection would go here}
-Or have sections that are relevant to your main body of work above but warrant there own section. Both - with numbering would be entered into the Table of contents.
-
-
- \subsubsection{Overview Of Project Content and Milestones}
-
-This is a sub sub section with a list of bullet points.
-\begin{itemize}\itemsep0pt
-	\item A working X, that will be used for this investigation.
-	\item Investigation of current tools and their potential use during an investigation of X .
-	\item Programming of X with related frameworks Y and Z.
-	\item That is all.
-\end{itemize}
-
-
-\section{Chapter 2}
-And so on for each of the chapters.  The template automatically starts new chapters on a new page.  The associated guidelines tell you what the available styles do and also how to structure a report.
-There is a section break on this page that you should be careful NOT to delete otherwise the references and appendices will be numbered continuously with the rest of the document.
-
-% another example section
-\section{Additional Information / Knowledge Required}
-Experience with Linux and managing Virtual machines, networking.
-So on and so forth...
 
 \newpage
-\begin{thebibliography}{9}
 
-\bibitem{lamport94}
-  Leslie Lamport,
-  \emph{\LaTeX: A Document Preparation System}.
-  Addison Wesley, Massachusetts,
-  2nd Edition,
-  1994.
+%------------------------------------------------------------------------------
+%----------------------Main Text-----------------------------------------------
+%------------------------------------------------------------------------------
+\section{Section 1}
+\subfile{Sections/section1}
 
-\end{thebibliography}
+%------------------------------------------------------------------------------
+
+\newpage
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
 %example of References. See https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management
 %might be good to use a separate document for these so your main work is not one really long text file. 
 
@@ -140,14 +111,6 @@ So on and so forth...
 ...
 \end{subappendices}
 
-\section{Second Formal Review Output}
-Insert a copy of the project review form you were given at the end of the review by the second marker
-
-\section{Diary Sheets (or other project management evidence)}
-Insert diary sheets here together with any project management plan you have
-
-\section{Appendix 4 and following}
-insert content here and for each of the other appendices, the title may be just on a page by itself, the pages of the appendices are not numbered, unless an included document such as a user manual or design document is itself pager numbered.
 \end{appendices}
 
 \end{document}
