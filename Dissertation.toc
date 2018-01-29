@@ -1,8 +1,0 @@
-\contentsline {section}{\numberline {1}Introduction}{8}
-\contentsline {section}{\numberline {2}Literature Review}{8}
-\contentsline {subsection}{\numberline {2.1}Abstract Argumentation Semantics}{8}
-\contentsline {subsection}{\numberline {2.2}Existing solutions}{8}
-\contentsline {subsubsection}{\numberline {2.2.1}pyglaf}{8}
-\contentsline {section}{Appendices}{10}
-\contentsline {section}{\numberline {A}Project Overview}{10}
-\contentsline {subsection}{\numberline {A.A}Example sub appendices}{10}
