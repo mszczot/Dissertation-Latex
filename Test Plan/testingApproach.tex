@@ -1,0 +1,40 @@
+\subsection{Unit Tests}
+During the development of the software Test Cases will be created based on the requirements. Unit tests will be executed as a part of the build of the system. 
+
+\subsection{Benchmark Tests}
+Benchmark tests will be performed after each developement cycle and will be used to evaluate the performance of the software based on the results from the best solvers submitted for the second edition of International Competition on Computational Models of Argumentation (http://argumentationcompetition.org/). 
+The benchamrk tests will include computing semantics from provided argumentation frameworks. It will be split into 7 tracks. Each track will represent different semantic. Following semantics will be used for benchmark testing:
+\begin{enumerate}
+	\item{Complete Semantics - CO}
+	\item{Preferred Semantics - PR}
+	\item{Stable Semantics - ST}
+	\item{Semi-Stable Semantics - SST}
+	\item{Stage Semantics - STG}
+	\item{Grounded Semantics - GR}
+	\item{Ideal Semantics - ID}
+\end{enumerate}
+
+For each track the system will need to solve following reasoning problems, with the exception for Grounded and Ideal semantics where only A and C are applicable:
+\begin{enumerate}[label=\Alph*]
+	\item{Given an abstract argumentation framework, determine some extension\\SE-$\sigma$: Given F=(A,R) return some set E ⊆ A that is a $\sigma$-extension}
+	\item{Given an abstract argumentation framweork, determine all extensions\\EE-$\sigma$: Given F=(A,R) enumerate all sets E ⊆ A that are $\sigma$-extensions}
+	\item{Given an abstract argumentation framework and some argument, decide whether the given argument is credulously inferred\\DC-$\sigma$ : Given F=(A,R), a ∈ A decide whether a is credulously accepted under $\sigma$}
+	\item{Given an abstract argumentation framework and some argument, decide whether the given argument is skeptically inferred\\DS-$\sigma$: Given F=(A,R), a ∈ A decide whether a is skeptically accepted under $\sigma$}
+\end{enumerate}
+
+There are 4 different benchmarks that will be used \todo{Expand the benchmark testing information. Need to figure out how many of them will be used} (all of them were used for testing solvers submitted to ICCMA 2017). Specific tasks will be allocated to specific benchmarks:
+\begin{itemize}
+	\item{Benchmark A - DS-PR, EE-PR, EE-CO, DS-SST, DC-SST, SE-SST, EE-SST, DS-STG, DC-STG, SE-STG, EE-STG}
+	\item{Benchmark B - DS-ST, DC-ST, SE-ST, EE-ST, DC-PR, SE-PR, DC-CO}
+	\item{Benchmark C - DS-CO, SE-CO, DC-GR, SE-GR}
+	\item{Benchmark D - DC-ID, SE-ID}
+\end{itemize}
+
+Prior to running the benchmarking tests following solvers will need to be tested with the available benchmarks to evaluate their performance in the given environment.
+\begin{enumerate}
+	\item{pyglaf - CO, ST, ID tracks}
+	\item{ArgSemSAT - PR track}
+	\item{argmat-sat - SST, STG tracks}
+	\item{CoQuiAAS v2.0 - GR track}
+\end{enumerate}
+Those are the winning solvers in the specified tracks. Once the baseline for benchmark testing will be created, the software testing can commence.

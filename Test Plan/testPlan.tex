@@ -1,0 +1,58 @@
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[a4paper,outer=1.5cm,inner=1.5cm,top=1.75cm,bottom=1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{todonotes} %pass [disable] to package to remove the todo notes
+\onecolumn
+%set better section layout
+\makeatletter
+\renewcommand\subsection{\@startsection {subsection}{1}{2mm} % name, level, indent
+                               {3pt plus 2pt minus 1pt} % before skip
+                               {3pt plus 0pt} % after skip
+                               {\normalfont\bfseries}}
+\renewcommand\subsubsection{\@startsection {subsubsection}{2}{4mm} % name, level, indent
+                               {3pt plus 2pt minus 1pt} % before skip
+                               {3pt plus 0pt} % after skip
+                               {\normalfont\bfseries}}
+\makeatother
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{0mm} % name, level, indent
+                               {4pt plus 2pt minus 1pt} % before skip
+                               {4pt plus 0pt} % after skip
+                               {\bfseries}}
+\makeatother
+
+\begin{document}
+
+	\title{Test Plan for [Software Title]}
+	\author{Marcin Szczot}
+	\maketitle
+
+	\newpage
+	\listoftodos
+	\newpage
+	
+	\tableofcontents
+	
+	\newpage
+	
+	\section{Introduction}
+	
+	\section{Objectives and Scope}
+	\input{./objectivesAndScope.tex}
+	
+	\section{Test Items}
+	\input{./testItems.tex}	
+	
+	\section{Testing Approach}
+	\input{./testingApproach.tex}
+	
+	\section{Test Deliverables}
+	\input{./testDeliverables.tex}	
+	
+	\section{Test Environment}
+	\input{./testEnvironment.tex}	
+	
+	\section{Estimate}
+	    
+\end{document}
