@@ -1,0 +1,16 @@
+Argumentation framework is central to the theory of abstract argumentation \cite{baroni2011introduction}. The argumentation framework is defined as a pair of a set of arguments, and a binary relation representing the attack relationship between arguments \cite{dung1995}. 
+
+\theoremstyle{definition}
+\begin{definition}{Argumentation Framework}\\
+An argumentation framework is a pair \textit{AF} = $<$\textit{AR, attacks}$>$ in which \textit{AR} is a set of finite arguments, and \textit{attacks} is a binary relation on \textit{AR}, hence \textit{attacks} $\subseteq$ \textit{AR} $\times$ \textit{AR}
+\end{definition}
+
+The argumentation framework can be represented as directed graph where the nodes represent abstract arguments and edges the attack relation. This can be seen in figure \ref{fig:argumentationFrameworkFigure}, where argument a attacks argument b, which in turn attacks argument c. C is also attacked by argument d.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth,keepaspectratio=true]{argumentationFramework.png}
+	\caption{Representation fo argumentation framework, from \cite{argumentationFrameworkExample}}
+	\label{fig:argumentationFrameworkFigure}
+\end{figure}
+
