@@ -1,7 +1,7 @@
 \subsection{Unit Tests}
-During the development of the software Test Cases will be created based on the requirements. Unit tests will be executed as a part of the build of the system. 
+During the development of the software Test Cases will be created based on the requirements. Unit tests will be executed as a part of the build of the system. Each requirement from the requirement analysis must be converted into the test. The acceptance criteria of each requirement specifies the steps to be taken and expected results of the test. This is to ensure that any changes made to the systme will not affect the existing functionality. 
 
-\subsection{Benchmark Tests}
+\subsection{Benchmark Tests}\label{benchamrkTesting}
 Benchmark tests will be performed after each developement cycle and will be used to evaluate the performance of the software based on the results from the best solvers submitted for the second edition of International Competition on Computational Models of Argumentation (http://argumentationcompetition.org/). 
 The benchamrk tests will include computing semantics from provided argumentation frameworks. It will be split into 7 tracks. Each track will represent different semantic. Following semantics will be used for benchmark testing:
 \begin{enumerate}
@@ -22,7 +22,7 @@ For each track the system will need to solve following reasoning problems, with 
 	\item{Given an abstract argumentation framework and some argument, decide whether the given argument is skeptically inferred\\DS-$\sigma$: Given F=(A,R), a ∈ A decide whether a is skeptically accepted under $\sigma$}
 \end{enumerate}
 
-There are 4 different benchmarks that will be used \todo{Expand the benchmark testing information. Need to figure out how many of them will be used} (all of them were used for testing solvers submitted to ICCMA 2017). Specific tasks will be allocated to specific benchmarks:
+There are 4 different benchmarks that will be used \todo{Expand the benchmark testing information. Need to figure out how many of them will be used} (all of them were used for testing solvers submitted to ICCMA 2017). Each benchmark group consist of a number of abstract argumentation frameworks in formats \textit{apx} and \textit{tgf}. Furthermore, each group of argumentation frameworks are used for a specific tasks. The list of relations between benchmarks and the tasks is below:
 \begin{itemize}
 	\item{Benchmark A - DS-PR, EE-PR, EE-CO, DS-SST, DC-SST, SE-SST, EE-SST, DS-STG, DC-STG, SE-STG, EE-STG}
 	\item{Benchmark B - DS-ST, DC-ST, SE-ST, EE-ST, DC-PR, SE-PR, DC-CO}

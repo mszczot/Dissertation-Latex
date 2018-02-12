@@ -1,0 +1,46 @@
+
+-------------------------------------------------------------------------------\\
+\textbf{Points to discuss}
+\begin{enumerate}
+	\item{Define clear way of evaluating the project}
+	\item{Describe benchmark testing}
+	\item{Define analysis of benchmark testing results}
+\end{enumerate}
+-------------------------------------------------------------------------------\\
+
+The project will be evaluated based on the benchmark testing. Benchmark tests will be performed after each developement cycle and will be used to evaluate the performance and correctness of the software based on the results from the solvers submitted for the second edition of International Competition on Computational Models of Argumentation (http://argumentationcompetition.org/). 
+The benchamrk tests will include computing semantics from provided argumentation frameworks. It will be split into 7 tracks. Each track will represent different semantic. Following semantics will be used for benchmark testing:
+\begin{enumerate}
+	\item{Complete Semantics - CO}
+	\item{Preferred Semantics - PR}
+	\item{Stable Semantics - ST}
+	\item{Semi-Stable Semantics - SST}
+	\item{Stage Semantics - STG}
+	\item{Grounded Semantics - GR}
+	\item{Ideal Semantics - ID}
+\end{enumerate}
+
+For each track the system will need to solve following reasoning problems, with the exception for Grounded and Ideal semantics where only A and C are applicable:
+\begin{enumerate}
+	\item{Given an abstract argumentation framework, determine some extension\\SE-$\sigma$: Given F=(A,R) return some set E $\subseteq$ A that is a $\sigma$-extension}
+	\item{Given an abstract argumentation framweork, determine all extensions\\EE-$\sigma$: Given F=(A,R) enumerate all sets E $\subseteq$ A that are $\sigma$-extensions}
+	\item{Given an abstract argumentation framework and some argument, decide whether the given argument is credulously inferred\\DC-$\sigma$ : Given F=(A,R), a $\in$ A decide whether a is credulously accepted under $\sigma$}
+	\item{Given an abstract argumentation framework and some argument, decide whether the given argument is skeptically inferred\\DS-$\sigma$: Given F=(A,R), a $\in$ A decide whether a is skeptically accepted under $\sigma$}
+\end{enumerate}
+
+There are 4 different benchmarks that will be used (all of them were used for testing solvers submitted to ICCMA 2017). Each benchmark group consist of a number of abstract argumentation frameworks in formats \textit{apx} and \textit{tgf}. Furthermore, each group of argumentation frameworks are used for a specific tasks. The list of relations between benchmarks and the tasks is below:
+\begin{itemize}
+	\item{Benchmark A - DS-PR, EE-PR, EE-CO, DS-SST, DC-SST, SE-SST, EE-SST, DS-STG, DC-STG, SE-STG, EE-STG}
+	\item{Benchmark B - DS-ST, DC-ST, SE-ST, EE-ST, DC-PR, SE-PR, DC-CO}
+	\item{Benchmark C - DS-CO, SE-CO, DC-GR, SE-GR}
+	\item{Benchmark D - DC-ID, SE-ID}
+\end{itemize}
+
+Prior to running the benchmarking tests following solvers will need to be tested with the available benchmarks to evaluate their performance in the given environment.
+\begin{enumerate}
+	\item{pyglaf - CO, ST, ID tracks}
+	\item{ArgSemSAT - PR track}
+	\item{argmat-sat - SST, STG tracks}
+	\item{CoQuiAAS v2.0 - GR track}
+\end{enumerate}
+Those are the winning solvers in the specified tracks. Once the baseline for benchmark testing will be created, the software testing can commence.
