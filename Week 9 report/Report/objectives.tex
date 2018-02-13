@@ -28,6 +28,23 @@ Once enough research will be performed, the project can proceed to next stages. 
 	\item{Test the solution to verify implemented requirements}
 	\item{Perform benchmark testing to evaluate the performance and correctness of the solution}
 \end{enumerate}
-As mentioned above, 3 iterations of those stages have been initially scheduled. Additionaly, during any of those stages further research might be required. 
+As mentioned above, 3 iterations of those stages have been initially scheduled. Additionaly, during any of those stages further research might be required, hence it might be needed to go back to research stage.
 \newline
-The outcome of the project will be the developed library for computing abstract argumentation framework. Furthermore, depending on the evaluation process, the library will be used to develop a solver for abstract argumentation framework to be submitted to International Competition on Computational Models of Argumentation \cite{ICCMA}. Hence there are number of requirements that will have to be included in the implementation.
+The outcome of the project will be the developed library for computing abstract argumentation framework. Furthermore, depending on the evaluation process, the library will be used to develop a solver for abstract argumentation framework to be submitted to International Competition on Computational Models of Argumentation \cite{ICCMA}. Hence, there are number of requirements that will have to be included in the implementation. Below is the list of the main requirements, but this list is not extensive and will be expanded during the course of a project:
+\begin{enumerate}
+	\item{Should be able to read argumentation from provided file in format apx or tgf}
+	\item{Should be able to compute the following semantics from the given argumentation framework and return all or some of the extensions computed:}
+		\begin{enumerate}
+			\item{Complete Semantics}
+			\item{Preferred Semantics}
+			\item{Stable Semantics}
+			\item{Semi-Stable Semantics}
+			\item{Stage Semantics}
+			\item{Grounded Semantics}
+			\item{Ideal Semantics}
+		\end{enumerate}
+	\item{Should take the type of task to be computed as an argument}
+\end{enumerate}
+The above list shows only the basic requirements for the software. The extended list can be found in Appendix \ref{appendix:requirementAnalysis}. Although this list is more comprehensive, during the course of the project, new requirements might be identified or existing one removed if no longer needed. Hence, this list will be a subject to regular updates, based on the progress of the project. Before each development stage, a set of requirements will be selected from the list. \\
+\newline
+The above requirements are functional requirements of the software. Additionaly, there are a number of non-functional requirements that will have to be included in the design and implementation software. Those requirements are needed if the software will be submitted to the ICCMA competition. 

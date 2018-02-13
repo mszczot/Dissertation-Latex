@@ -37,16 +37,27 @@ Dung in his paper \cite{dung1995} has also defined notions of \textit{acceptable
 An argument \textit{a} $\in$ \textit{AR} is said to be \textit{acceptable} with respect to set \textit{S} $\subseteq$ \textit{AR} if and only if for each argument \textit{b} $\in$ \textit{AR} such that (\textit{b}, \textit{a}) $\in$ \textit{attacks}, there are some arguments \textit{c} $\in$ \textit{S} such that (\textit{c}, \textit{b}) $\in$ \textit{attacks}
 \end{definition}
 
-Based on the definition \ref{AcceptableArgDef}, definition of \textit{admissible} set can be concluded:
+Hence it can be said that the argument from the argumentation framework is acceptable with respect to the set only if it is either conflict free, or there exists an argument from the same set that defends given argument. Based on the definition \ref{AcceptableArgDef}, definition of \textit{admissible} set can be concluded:
 
 \begin{definition}{Admissible argument}
 \label{AdmissibleArgDef}\\
-A set of arguments \textit{S} is \textit{admissible} if and only if each argument in \textit{S} is acceptable with respect to \textit{S}.
+A conflict-free set of arguments \textit{S} is \textit{admissible} if and only if each argument in \textit{S} is acceptable with respect to \textit{S}.
 \end{definition}
 
-That means that the set of arguments can be described as admissible only if it is conflict-free. Which in turn means that no argument in S attack another argument in S.
+That means that the set of arguments can be described as admissible only if it is conflict-free. Which in turn means that no argument in S attacks another argument in S. Those definitions have important role in defining the semantics of abstract argumentation.
 
-Furthermore, Dung in his paper \textit{On the acceptability of arguments and its fundamental role in nonmonotonic reasoning, logic programming and n-person games} introduced the concept of semantics of abstract argumentation. The original concept included complete, stable, preferred and grounded semantics \cite{dung1995}, which was extended by ideal \cite{dung2007computing}, and semi-stable \cite{caminada2006semi} semantics.
+Furthermore, Dung in his paper \textit{On the acceptability of arguments and its fundamental role in nonmonotonic reasoning, logic programming and n-person games} introduced the concept of semantics of abstract argumentation. The original concept included complete, stable, preferred and grounded semantics \cite{dung1995}, which was extended by ideal \cite{dung2007computing}, and semi-stable \cite{caminada2006semi} semantics. All the sematics are based around the definitions of acceptable and admissible arguments.
 
-%\paragraph{Preferred Semantics}\\
+\section{Complete Semantics}
+
+
+\section{Grounded Semantics}
+
+\section{Preferred Semantics} 
+As mentioned above the definitions of acceptable and admissible arguments have important role in defeining the extensions. Specifically to preferred semantics, the notion of admissibility is central \cite{caminada2008gentle}. The preferred extension can be defined as a maximal admissible set of argumentation framework. Based on the fact that empty set is always admissible it can be concluded that every argumentation framework has at least one preferred extension \cite{dung1995}.
+
+\section{Stable Semantics} 
+Stable semantics although similar, they have a different approach than preferred extension. The stable extension includes the set of arguments that is conflict free and it attacks every argument that is not part of the set. It can be concluded that each stable extension is in fact a preferred extension. However, not every preferred extension is stable extension.
+
+
 

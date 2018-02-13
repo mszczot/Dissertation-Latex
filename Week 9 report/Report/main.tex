@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,a4paper]{report}
 \usepackage{titlesec} %these are how we import packages, one helps set up footers and title layout
 \usepackage{fancyhdr}
 
@@ -11,12 +11,14 @@
 \usepackage{booktabs} % for much better looking tables
 \usepackage{array} % for better arrays (eg matrices) in maths
 \usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
-
+\usepackage{booktabs}
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{longtable}
 \usepackage[toc,page]{appendix}
 % These packages are all incorporated in the memoir class to one degree or another...
-
+\usepackage{supertabular}
+\usepackage{pdfpages}
 \usepackage{amsthm}
 \newtheorem{definition}{Definition}[section]
 
@@ -78,19 +80,16 @@
 %-------------------------------------------------------------------------------
 % Main content 
 %-------------------------------------------------------------------------------
-\section{Introduction}
-\input{./introduction.tex}
-
-\section{Project Background}
-\input{./abstractArgumentationSemantics.tex} 
-
-\section{Aims and Objectives}
+\chapter{Introduction}
 \input{./objectives.tex}
 
-\section{Plan of Work}
+\chapter{Background}
+\input{./abstractArgumentationSemantics.tex} 
+
+\chapter{Plan of Work}
 \input{./planOfWork.tex}
 
-\section{Project Evaluation}
+\chapter{Project Evaluation}
 \input{./evaluation.tex}
 
 
@@ -108,22 +107,33 @@
 %you can crate this on a extra tex document just like the title or any other part of the document.
 \newpage
 \begin{appendices}
-\section{Project Overview}
-%insert IPO
+\chapter{Initial Project Overview}
+\label{appendix:IPO}
+\input{./IPO.tex}
 
+\chapter{Requirement Analysis} 
+\label{appendix:requirementAnalysis}
+\input{./requirementAnalysis.tex}
+
+\chapter{Project Schedule}
+\label{appendix:projectSchedule}
+\input{./projectSchedule.tex}
+
+\chapter{Meetings diaries}
+\label{appendix:diaries}
+\input{./diaries.tex}
 
 %\begin{subappendices}
-%\subsection{Example sub appendices}
-...
+%\subchapter{Example sub appendices}
 %\end{subappendices}
 
-%\section{Second Formal Review Output}
+%\chapter{Second Formal Review Output}
 %Insert a copy of the project review form you were given at the end of the review by %the second marker
 
-%\section{Diary Sheets (or other project management evidence)}
+%\chapter{Diary Sheets (or other project management evidence)}
 %Insert diary sheets here together with any project management plan you have
 
-%\section{Appendix 4 and following}
+%\chapter{Appendix 4 and following}
 %insert content here and for each of the other appendices, the title may be just on a page by itself, the pages of the appendices are not numbered, unless an included document such as a user manual or design document is itself pager numbered.
 \end{appendices}
 
