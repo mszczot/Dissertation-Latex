@@ -1,17 +1,7 @@
+Evaluation is the critical part of the project. Hence, the developed software will need to be evaluated based on three properties: performance, scalability and correctness. 
 
--------------------------------------------------------------------------------\\
-\textbf{Points to discuss}
-\begin{enumerate}
-	\item{Define clear way of evaluating the project}
-	\item{Describe benchmark testing}
-	\item{Define analysis of benchmark testing results}
-\end{enumerate}
--------------------------------------------------------------------------------\\
-
-The developed software will need to be evaluated based on three properties: correctness, performance and scalability. 
-
-Developed software will need to be evaluated based one the performance and the correctness of the output based on provided arguments. Benchmark testing will be used to appropriately evaluate it. Benchmark tests will be performed after each developement cycle and will be used to evaluate the performance and correctness of the software based on the results from the solvers submitted for the second edition of International Competition on Computational Models of Argumentation (http://argumentationcompetition.org/). This will require for the base line of execution times and the correctness of the answers to be created based on the solvers submitted to ICCMA 2017.
-The benchamrk tests will include computing semantics from provided argumentation frameworks. It will be split into 7 tracks. Each track will represent different semantic. Following semantics will be used for benchmark testing:
+\section{Performance Evaluation}
+In order to evaluate the performance of the proposed solution benchmark tests will be performed. The performance of the software will be compared to solvers submitted for the second edition of International Competition on Computational Models of Argumentation (http://argumentationcompetition.org/). This will allow to appropriately evaluate the performance in comparison to existing solutions. In order to perform benchmark testing the base line of execution times will be created based on the solvers submitted to ICCMA 2017. This tests will include computing semantics from provided argumentation frameworks and evaluating from the given argument and argumentation framework, if the argument is credulously or sceptically inferred in any of the semantics. Seven main tracks are identified, where each track will represent different semantic. Following semantics will be used for benchmark testing:
 \begin{enumerate}
 	\item{Complete Semantics - CO}
 	\item{Preferred Semantics - PR}
@@ -30,20 +20,20 @@ For each track the system will need to solve following reasoning problems, with 
 	\item{Given an abstract argumentation framework and some argument, decide whether the given argument is skeptically inferred\\DS-$\sigma$: Given F=(A,R), a $\in$ A decide whether a is skeptically accepted under $\sigma$}
 \end{enumerate}
 
-There are 4 different benchmarks that will be used (all of them were used for testing solvers submitted to ICCMA 2017). Each benchmark group consist of a number of abstract argumentation frameworks in formats \textit{apx} and \textit{tgf}. Furthermore, each group of argumentation frameworks are used for a specific tasks. The list of relations between benchmarks and the tasks is below:
+There are 4 different sets of argumentation frameworks that will be used, where all of them were used for testing solvers submitted to ICCMA 2017. Each set consist a number of abstract argumentation frameworks in formats \textit{apx} and \textit{tgf}. Furthermore, each group of argumentation frameworks are used for a specific tasks. Graph representation mapped in yEd of one of the argumentation frameworks can be seen in appendix \ref{appendix:aficcma}. The list of relations between the sets and the tasks is as follow:
 \begin{itemize}
-	\item{Benchmark A - DS-PR, EE-PR, EE-CO, DS-SST, DC-SST, SE-SST, EE-SST, DS-STG, DC-STG, SE-STG, EE-STG}
-	\item{Benchmark B - DS-ST, DC-ST, SE-ST, EE-ST, DC-PR, SE-PR, DC-CO}
-	\item{Benchmark C - DS-CO, SE-CO, DC-GR, SE-GR}
-	\item{Benchmark D - DC-ID, SE-ID}
+	\item{Set A - DS-PR, EE-PR, EE-CO, DS-SST, DC-SST, SE-SST, EE-SST, DS-STG, DC-STG, SE-STG, EE-STG}
+	\item{Set B - DS-ST, DC-ST, SE-ST, EE-ST, DC-PR, SE-PR, DC-CO}
+	\item{Set C - DS-CO, SE-CO, DC-GR, SE-GR}
+	\item{Set D - DC-ID, SE-ID}
 \end{itemize}
 
+As mentioned above, prior to running the benchmark tests, solvers submitted to ICCMA 2017 will need to be tested with the available argumentation frameworks to evaluate their performance in the given environment. Full list of those solvers can be found in table \ref{table:ICCMA2017Submissions} with the tasks supported by them in table \ref{table:tasksSupportedBySolvers} in appendix \ref{appendix:ICCMASubmissions}.
 
-Prior to running the benchmark tests following solvers will need to be tested with the available benchmarks to evaluate their performance in the given environment.
-\begin{enumerate}
-	\item{pyglaf - CO, ST, ID tracks}
-	\item{ArgSemSAT - PR track}
-	\item{argmat-sat - SST, STG tracks}
-	\item{CoQuiAAS v2.0 - GR track}
-\end{enumerate}
-Those are the winning solvers in the specified tracks. Once the baseline for benchmark testing will be created, the software testing can commence.
+\section{Scalability Evaluation}
+Scalability is another important property that the software will be evaluated on. In order to properly test it, the software will be required to perform the same tasks as described above, but for the sets of larger argumentation frameworks. The argumentation frameworks will be prepared in advanced using one of the generators for random argumenation frameworks, such as AFBenchGen2 \citep{ceruttigenerator}. This will allow to specify the number of arguments required per framework. \\
+For the purpose of this test, set of argumentation frameworks will be produced with increasing number of arguments. This will allow to test the solution in terms of scalability of computing the semantics in larg data sets. Comparing the time taken to perform the tasks with argumentation frameworks of different sizes will allow to evaluate how the software scales.
+
+\section{Correctness Evaluation}
+Correctness of the software relates to the correctness of the output of computation. In order to evaluate it the set tasks described above will be executed, and the output of the software verified. However, since the generated argumentation frameworks only consists of arguments and attacks, the correct output will need to be verified manually. Hence, the size of the argumentation frameworks need to be of a reasonable size to evaluate them manually. \\
+Testing correctness of the software proves to be problematic with larger data sets. Hence, further research will need to be performed to optimize the this tasks. Type of evaluation of correctness of existing solvers will be explored. Furthermore, formal verification methods for software might be used. Since they comprise a set of techniques for proving the correctness of a software for a possible combination of input values \citep{murthy2009software},it will help in the evaluation. Different approaches will be explored prior to testing.

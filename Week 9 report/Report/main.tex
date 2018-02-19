@@ -14,13 +14,20 @@
 \usepackage{booktabs}
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage[square,sort]{natbib}
+\usepackage{tikz}
+\usetikzlibrary{er,positioning}
 \usepackage{longtable}
+\usepackage{rotating}
+\usepackage{pdflscape}
 \usepackage[toc,page]{appendix}
 % These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{amsmath}
 \usepackage{supertabular}
 \usepackage{pdfpages}
 \usepackage{amsthm}
-\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
 
 %header and footer settings
 \pagestyle{fancyplain}
@@ -55,6 +62,26 @@
 
 %this starts the document
 \begin{document}
+
+\begin{titlepage}
+	\centering
+	{\scshape\LARGE Edinburgh Napier University \par}
+	\vspace{1cm}
+	{\scshape\Large Week 9 Report\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Computing abstract argumentation semantics\par}
+	\vspace{2cm}
+	{\Large Marcin Szczot\par}
+	{\Large 40180425\par}
+	\vfill
+	supervised by\par
+	Dr. S. \textsc{Wells}
+
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
 
 \tableofcontents % is generated for you
 \newpage
@@ -122,6 +149,14 @@
 \chapter{Meetings diaries}
 \label{appendix:diaries}
 \input{./diaries.tex}
+
+\chapter{ICCMA 2017 Submissions}
+\label{appendix:ICCMASubmissions}
+\input{./ICCMASubmissions.tex}
+
+\chapter{Argumentation Framework Graph}
+\label{appendix:aficcma}
+\input{./aficcma.tex}
 
 %\begin{subappendices}
 %\subchapter{Example sub appendices}
