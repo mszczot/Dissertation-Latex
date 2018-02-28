@@ -7,7 +7,7 @@ Argumentation framework has been introduced by \citet{dung1995} and is central t
 An argumentation framework is a pair \textit{AF} = $<$\textit{AR, attacks}$>$ in which \textit{AR} is a set of finite arguments, and \textit{attacks} is a binary relation on \textit{AR}, hence \textit{attacks} $\subseteq$ \textit{AR} $\times$ \textit{AR}, where \textit{AR} $\times$ \textit{AR} = \{(\textit{a}, \textit{b}) $\vert$ \textit{a} $\in$ \textit{AR} and \textit{b} $\in$ \textit{AR}\}
 \end{definition}
 
-In definition \ref{AFdef}, \textit{AR} represents a set of arguments and \textit{attacks} represents set of pairs of arguments (\textit{a, b}), where (\textit{a, b}) $\in$ \textit{attacks}. Each pair of arguments in \textit{attacks} represents two arguments being in conflict. Hence, the arguments \textit{a} and \textit{b} are in conflict and the meaning of of \textit{attacks(a, b)} is that \textit{a} attacks \textit{b}. Based on this definition, we can conclude that the set of arguments \textit{AR} is conflict free if and only if there are no arguments \textit{a} and \textit{b} in \textit{AR} such that \textit{a} attack \textit{b}, or \textit{b} attacks \textit{a} \citep{dung1995}.
+In definition \ref{AFdef}, \textit{AR} represents a set of arguments and \textit{attacks} represents set of pairs of arguments (\textit{a, b}), where (\textit{a, b}) $\in$ \textit{attacks}. Each pair of arguments in \textit{attacks} represents two arguments being in conflict. Hence, the arguments \textit{a} and \textit{b} are in conflict and the meaning of \textit{attacks(a, b)} is that \textit{a} attacks \textit{b}. Based on this definition, we can conclude that the set of arguments \textit{AR} is conflict-free if and only if there are no arguments \textit{a} and \textit{b} in \textit{AR} such that \textit{a} attacks \textit{b}, or \textit{b} attacks \textit{a} \citep{dung1995}.
 
 The argumentation framework can be represented as directed graph where the nodes represent abstract arguments and edges the attack relation. This can be seen in figure \ref{fig:argumentationFrameworkFigure}, where argument a attacks argument b, which in turn attacks argument c. C is also attacked by argument d.
 \newpage
@@ -35,7 +35,7 @@ This can also be presented using the following example from \citet{konolige1988d
 \begin{quote}
 Suppose Ralph normally goes fishing on Sundays, but on the Sunday which is
 Mother’s day, he typically visits his parents. Furthermore, in the spring of each
-leap year his parents take a vacation, so that they cannot be visited.
+leap year,1` his parents take a vacation, so that they cannot be visited.
 \end{quote}
 If we assume it is Sunday, Mother's day and a leap year, then three arguments can be formulated:
 \begin{enumerate}[label=\Alph*]

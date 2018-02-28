@@ -154,11 +154,15 @@ By its definition the ideal extension satisfies I-maximality and admissibility p
 A set of extensions \textit{E} is I-maximal if and only if $\forall$\textit{$E_1$}, \textit{$E_2$} $\in$ \textit{E}, if \textit{$E_1$} $\subseteq$ \textit{$E_2$} then \textit{$E_1$} = \textit{$E_2$}.
 \end{definition}
 
+Perhaps, the ideal semantics can be best explained using the notion of a judgement aggregation context intoduced by \citet{caminada2011judgment}. Given an argumentation framework, if we assume a group of people who all try to accept as much as possible the sets of arguments they all agree on needs to be examined and checked whether this position is still defensible. However, if they are not defensible some of the arguments needs to be abstained from instead of accepting or rejecting them until it becomes defensible. The result is the ideal extension \citep{baroni2011introduction}.
+
 \begin{definition}{Stage Extension}
 \label{def:stageExtension}\\
 Let (\textit{AR}, \textit{attacks}) be an argumentation framework. A \textit{stage extension} conflict-free set \textit{Args} $\subseteq$ \textit{AR}, where \textit{Args} $\cup$ \textit{$Args^+$} is maximal with respect to set inclusion among all conflict-free sets.
 \end{definition}
 
+Stage extension introduced by \citet{verheij1996two} can also be explained in terms of labelling. It is a conflict-free extension where number of arguments labeled \textit{undec} is minimal. 
+\newline
 
 \begin{figure}[h]
 \tikzset{
