@@ -21,6 +21,23 @@
 \usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
 \usepackage[toc,page]{appendix}
+\usepackage{amsthm}
+\usepackage[square,sort]{natbib}
+\usepackage{tikz}
+\usetikzlibrary{er,positioning}
+\usepackage{amsmath}
+\usepackage{supertabular}
+\usepackage{pdfpages}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+
+\graphicspath{{./img/}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
 % These packages are all incorporated in the memoir class to one degree or another...
 
 %header and footer settings
@@ -110,9 +127,29 @@ Insert acknowledgements here
 %you can crate this on a extra tex document just like the title or any other part of the document.
 \newpage
 \begin{appendices}
-\section{Project Overview}
-%insert IPO
+\section{Initial Project Overview}
+\label{appendix:IPO}
+\input{./appendices/IPO.tex}
 
+\section{Requirement Analysis} 
+\label{appendix:requirementAnalysis}
+\input{./appendices/requirementAnalysis.tex}
+
+\section{Project Schedule}
+\label{appendix:projectSchedule}
+\input{./appendices/projectSchedule.tex}
+
+\section{Meetings diaries}
+\label{appendix:diaries}
+\input{./appendices/diaries.tex}
+
+\section{ICCMA 2017 Submissions}
+\label{appendix:ICCMASubmissions}
+\input{./appendices/ICCMASubmissions.tex}
+
+\section{Argumentation Framework Graph}
+\label{appendix:aficcma}
+\input{./appendices/aficcma.tex}
 
 %\begin{subappendices}
 %\subsection{Example sub appendices}
