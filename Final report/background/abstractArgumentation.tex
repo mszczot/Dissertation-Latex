@@ -1,0 +1,63 @@
+\section{Abstract Argumentation}
+Argumentation framework has been introduced by \citet{dung1995} and is central to the theory of abstract argumentation \citep{baroni2011introduction}. It is defined as a pair of a set of arguments, and a binary relation representing the attack relationship between arguments \citep{dung1995}. 
+
+\theoremstyle{definition}
+\begin{definition}{Argumentation Framework}
+\label{AFdef}\\
+An argumentation framework is a pair \textit{AF} = $<$\textit{AR, attacks}$>$ in which \textit{AR} is a set of finite arguments, and \textit{attacks} is a binary relation on \textit{AR}, hence \textit{attacks} $\subseteq$ \textit{AR} $\times$ \textit{AR}, where \textit{AR} $\times$ \textit{AR} = \{(\textit{a}, \textit{b}) $\vert$ \textit{a} $\in$ \textit{AR} and \textit{b} $\in$ \textit{AR}\}
+\end{definition}
+
+In definition \ref{AFdef}, \textit{AR} represents a set of arguments and \textit{attacks} represents set of pairs of arguments (\textit{a, b}), where (\textit{a, b}) $\in$ \textit{attacks}. Each pair of arguments in \textit{attacks} represents two arguments being in conflict. Hence, the arguments \textit{a} and \textit{b} are in conflict and the meaning of \textit{attacks(a, b)} is that \textit{a} attacks \textit{b}. Based on this definition, we can conclude that the set of arguments \textit{AR} is conflict-free if and only if there are no arguments \textit{a} and \textit{b} in \textit{AR} such that \textit{a} attacks \textit{b}, or \textit{b} attacks \textit{a} \citep{dung1995}.
+
+The argumentation framework can be represented as directed graph where the nodes represent abstract arguments and edges the attack relation. This can be seen in figure \ref{fig:argumentationFrameworkFigure}, where argument a attacks argument b, which in turn attacks argument c. C is also attacked by argument d.
+\newpage
+\begin{figure}[h]
+\tikzset{
+    main/.style={draw, rectangle, rounded corners, minimum height=1cm, minimum width=4.5cm},
+    arrow/.style={thick,<-,>=stealth}
+}
+\centering
+\begin{tikzpicture}[auto,node distance=1.5cm]
+	\node[draw=none,fill=none](a){a};
+	\node[draw=none,fill=none][right=of a](b){b};
+	\node[draw=none,fill=none][right=of b](c){c};
+	\node[draw=none,fill=none][right=of c](d){d};	
+  	%%% ARROWS %%%
+  	\draw[arrow](b) -- (a);
+  	\draw[arrow](c) -- (b);
+  	\draw[arrow](c) -- (d);
+\end{tikzpicture}
+\caption{Argumentation Framework \ref{fig:af1}}
+\label{fig:argumentationFrameworkFigure}
+\end{figure}
+ 
+This can also be presented using the following example from \citet{konolige1988defeasible}:
+\begin{quote}
+Suppose Ralph normally goes fishing on Sundays, but on the Sunday which is
+Mother’s day, he typically visits his parents. Furthermore, in the spring of each
+leap year,1` his parents take a vacation, so that they cannot be visited.
+\end{quote}
+If we assume it is Sunday, Mother's day and a leap year, then three arguments can be formulated:
+\begin{enumerate}[label=\Alph*]
+	\item{Ralph goes fishing because it is Sunday.}
+	\item{Ralph does not go fishing because it is Mother's day, hence he visits his parents.}
+	\item{Ralph does not go visit his parents, because it is a leap year. Hence, they are on vacation.}
+\end{enumerate}
+In this example argument B attacks argument A and argument C attacks argument B. Since argument C can be justified, as it is not attacked, then B is defeated and does no longer form a reason against A anymore. We can say that argument C reinstates argument A \citep{caminada2004sake}.
+
+
+Dung in his paper \citep{dung1995} has also defined notions of \textit{acceptable} and \textit{admissible} arguments, which are as follow:
+
+\begin{definition}{Acceptable argument}
+\label{AcceptableArgDef}\\
+An argument \textit{a} $\in$ \textit{AR} is said to be \textit{acceptable} with respect to set \textit{S} $\subseteq$ \textit{AR} if and only if for each argument \textit{b} $\in$ \textit{AR} such that (\textit{b}, \textit{a}) $\in$ \textit{attacks}, there are some arguments \textit{c} $\in$ \textit{S} such that (\textit{c}, \textit{b}) $\in$ \textit{attacks}
+\end{definition}
+
+Hence it can be said that the argument from the argumentation framework is acceptable with respect to the set only if it is either conflict free, or there exists an argument from the same set that defends given argument. Based on the definition \ref{AcceptableArgDef}, definition of \textit{admissible} set can be concluded:
+
+\begin{definition}{Admissible argument}
+\label{AdmissibleArgDef}\\
+A conflict-free set of arguments \textit{S} is \textit{admissible} if and only if each argument in \textit{S} is acceptable with respect to \textit{S}.
+\end{definition}
+
+That means that the set of arguments can be described as admissible only if it is conflict-free and all of its arguments can be defended by other arguments from that set. Both definitions have important role in defining the semantics of abstract argumentation. An argumentation semantics can be described as teh formal definition of a method (declarative or procedural) ruling the argument evaluation process \citep{baroni2009semantics}. Hence, they are used to evaluate if the arguments can be justified, by being defended by other arguments in the set, or rejected. There are two approaches for defining argumentation semantics: extension and labelling based. In the extension-based approach a semantics definition specifies how to derive from an argumentation framework a set of extensions, where an extension \textit{E} of an argumentation framework $<$\textit{AR, attacks}$>$ is simply a subset of \textit{AR}, intuitively representing a set of arguments which can “survive together” or are “collectively acceptable” \citep{baroni2009semantics}. On the other hand labelling-based approach defines how the arguments can be labelled based on the predefined set of labels. Labels define the possible states of argument and those are as follow: \textit{in}, when argument can be justified, \textit{out} when argument is rejected, and \textit{undecided} to any other argument. As shown by Modgil and Caminada, label-based approach is suitable for characterizing argumentation semantics \citep{modgil2009proof}.
