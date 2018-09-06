@@ -1,4 +1,4 @@
-%You can delete all the comments after you have finished your document
+%%You can delete all the comments after you have finished your document
 %this sets up the defaults for the documents, 12pt font and A4 size. The article type sets this up as such as opposed to letter or memo.
 
 %for the finer points LaTeX see https://en.wikibooks.org/wiki/LaTeX or http://tex.stackexchange.com/
@@ -33,6 +33,8 @@
 \usepackage{rotating}
 \usepackage{pdflscape}
 \usepackage{pdfpages}
+\usepackage{verbatim}
+\usepackage{pgfplots}
 
 \graphicspath{{./img/}}
 
@@ -68,6 +70,25 @@
                                {4pt plus 0pt} % after skip
                                {\bfseries}}
 \makeatother
+
+\pgfplotstableread[row sep=\\,col sep=&]{
+    Solver & Time & Score\\
+pyglaf & 222.2444 & 1226 \\
+cegartix & 263.6557 & 1181 \\
+argmat-sat & 245.8243 & 1167\\
+argmat-dvisat & 291.0360 & 1147\\
+CoQuiAAS & 186.4464 & 1134\\
+argmat-mpg & 316.5906 & 1125\\
+goDIAMOND & 224.2296 & 1110\\
+heureka & 	272.8588 & 1021\\
+conarg & 	184.4099 & 1017\\
+ArgTools & 553.4805 & 935\\
+ArgSemSAT & 388.0886 & 905\\
+EqArgSolver & 142.1794 & 422\\
+argmat-clpb & 1270.5737 & 40\\
+gg-sts & 	149.6766 & -1160\\
+    }\mydata
+
 
 
 %this starts the document

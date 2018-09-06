@@ -1,0 +1,15 @@
+#solver	time
+pyglaf	222.2444
+cegartix	263.6557
+argmat-sat	245.8243
+argmat-dvisat	291.0360
+CoQuiAAS	186.4464
+argmat-mpg	316.5906
+goDIAMOND	224.2296
+heureka		272.8588
+conarg		184.4099
+ArgTools	553.4805
+ArgSemSAT	388.0886
+EqArgSolver	142.1794
+argmat-clpb	1270.5737
+gg-sts		149.6766

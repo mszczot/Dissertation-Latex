@@ -1,3 +1,25 @@
 \subsection{Approaches to computing argumentation semantics}
 
-As mentioned above there are two approaches to computing abstract argumentation semantics: extension and labelling-based. In section \ref{sec:argumentationSemantics}, semantic definitions have been represented in the form of extensions. However, they could be translated into labelling-based approach.
+There are many ways of computing abstract argumentation semantics. As shown in section \ref{sec:argumentationSemantics}, semantic definitions can been represented in the form of extensions and labelling. Solvers use different algorithms for computing the extensions. In this section, different approaches for computing abstract argumentation semantics used in different solvers will be reviewed. There are two main factors that will be taken into consideration: speed - how quickly the solver can compute the answer, and correctness - if the results produced are the correct answer.
+
+\subsubsection{Alias}
+"ALIAS is a Python library for constructing, manipulating, storing, visualising, and converting argumentation structues" \citep{alias}. It allows to compute the three extensions: complete, preferred and stable, and to build the labellings for complete, grounded, preferred, stable and semi-stable semantics. Since Alias is implemented purely in Python, it can be used as a stand alone tool or a programming library. 
+
+Testing of Alias shown that it is a great tool for computing the abstract argumentation semantics on the smaller argumentation framework. In order to calculate the extensions it generates the power sets of all arguments, and checks whether each individual set is a part of the solution. This approach ensures the correct answer is produced every time, as every possible combination is examined, however, it causes problems with argument frameworks of size larger than twenty arguments. Generating the power set of all arguments and iterating through each possible combination is resource intensive and time consuming. 
+
+% test results of alias
+
+\subsubsection{Pyglaf}
+Pyglaf is one of the solvers submitted to ICCMA 2017 competition. It is one of the best performing solvers in the competition, as it won tracks for Ideal, Complete and Stable extension and had the most winnings of all submitted solvers.
+
+Pyglaf "takes advantage of circumscription", a form of non-monotonic reasoning created by \citet{circumpscription} to formalize the "common sense" assumptions, "to solve computational problems of abstract argumentation frameworks" \citep{pyglaf}. The solver itself is written in C/C++. However, it uses Python to build the encodings for each semantic and to orchestrate calls to the external solver, Circumscriptino. 
+
+\begin{tikzpicture}
+    \begin{axis}[
+            ybar,
+            symbolic x coords={pyglaf, cegartix, argmat-sat, argmat-dvisat, CoQuiAAS, argmat-mpg, goDIAMOND, heureka, conarg, ArgTools, ArgSemSAT, EqArgSolver, argmat-clpb, gg-sts},
+            xtick=data,
+        ]
+        \addplot table[x=Solver,y=Score]{\mydata};
+    \end{axis}
+\end{tikzpicture}
