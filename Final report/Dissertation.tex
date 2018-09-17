@@ -72,24 +72,74 @@
 \makeatother
 
 \pgfplotstableread[row sep=\\,col sep=&]{
-    Solver & Time & Score\\
-pyglaf & 222.2444 & 1226 \\
-cegartix & 263.6557 & 1181 \\
-argmat-sat & 245.8243 & 1167\\
-argmat-dvisat & 291.0360 & 1147\\
-CoQuiAAS & 186.4464 & 1134\\
-argmat-mpg & 316.5906 & 1125\\
-goDIAMOND & 224.2296 & 1110\\
-heureka & 	272.8588 & 1021\\
-conarg & 	184.4099 & 1017\\
-ArgTools & 553.4805 & 935\\
-ArgSemSAT & 388.0886 & 905\\
-EqArgSolver & 142.1794 & 422\\
-argmat-clpb & 1270.5737 & 40\\
-gg-sts & 	149.6766 & -1160\\
-    }\mydata
+	    Solver & Time & Score\\
+	pyglaf & 222.2444 & 1226 \\
+	cegartix & 263.6557 & 1181 \\
+	argmat-sat & 245.8243 & 1167\\
+	argmat-dvisat & 291.0360 & 1147\\
+	CoQuiAAS & 186.4464 & 1134\\
+	argmat-mpg & 316.5906 & 1125\\
+	goDIAMOND & 224.2296 & 1110\\
+	heureka & 	272.8588 & 1021\\
+	conarg & 	184.4099 & 1017\\
+	ArgTools & 553.4805 & 935\\
+	ArgSemSAT & 388.0886 & 905\\
+	EqArgSolver & 142.1794 & 422\\
+	argmat-clpb & 1270.5737 & 40\\
+	gg-sts & 	149.6766 & -1160\\
+}\completeResults
 
+\pgfplotstableread[row sep=\\,col sep=&]{
+	Solver	 & 	Time	 & 	Score	\\
+	ArgSemSAT	 & 	269.0961143	 & 	1146	 \\
+	argmat-sat	 & 	283.6564857	 & 	1139	 \\
+	pyglaf	 & 	225.2380857	 & 	1120	 \\
+	argmat-dvisat	 & 	358.0394429	 & 	1075	 \\
+	cegartix	 & 	357.13085	 & 	1075	 \\
+	goDIAMOND	 & 	360.4056786	 & 	1014	 \\
+	ArgTools	 & 	569.3684643	 & 	898	 \\
+	conarg	 & 	502.1910786	 & 	773	 \\
+	argmat-mpg	 & 	551.9100714	 & 	745	 \\
+	heureka	 & 	571.0247143	 & 	745	 \\
+	EqArgSolver	 & 	175.8627072	 & 	652	 \\
+	ASPrMin	 & 	84.42593573	 & 	285	 \\
+	ChimaerArg	 & 	41.35408573	 & 	92	 \\
+	CoQuiAAS	 & 	259.1468286	 & 	-863	 \\
+	gg-sts	 & 	323.0009643	 & 	-1107	 \\	
+}\preferredResults
 
+\pgfplotstableread[row sep=\\,col sep=&]{
+	Solver	&	Time	&	Score	\\
+	pyglaf	&	90.1213643	&	585	\\
+	argmat-dvisat	&	178.3911714	&	493	\\
+	argmat-sat	&	193.0512643	&	477	\\
+	goDIAMOND	&	244.3234	&	414	\\
+	cegartix	&	108.8148357	&	368	\\
+	ArgTools	&	348.1760357	&	268	\\
+	argmat-mpg	&	345.6741357	&	217	\\
+	conarg	&	383.2702572	&	181	\\
+	CoQuiAAS	&	84.07600715	&	-794	\\
+	gg-sts	&	183.6329357	&	-1050	\\
+}\idealResults
+
+\pgfplotstableread[row sep=\\,col sep=&]{
+	Solver	&	Time	&	Score	\\
+	pyglaf	&	228.9274429	&	1183	\\
+	goDIAMOND	&	279.1122214	&	1143	\\
+	argmat-sat	&	276.8502	&	1129	\\
+	cegartix	&	354.8398858	&	1102	\\
+	argmat-mpg	&	419.0768643	&	1073	\\
+	argmat-dvisat	&	363.1061	&	1039	\\
+	conarg	&	446.6884286	&	1002	\\
+	heureka	&	389.9640072	&	938	\\
+	ArgSemSAT	&	355.2810214	&	888	\\
+	ArgTools	&	408.3974	&	687	\\
+	EqArgSolver	&	175.2068357	&	558	\\
+	argmat-clpb	&	1362.999786	&	135	\\
+	ChimaerArg	&	28.23509285	&	-220	\\
+	CoQuiAAS	&	347.5605429	&	-299	\\
+	gg-sts	&	229.54905	&	-1193	\\
+}\stableResults
 
 %this starts the document
 \begin{document}

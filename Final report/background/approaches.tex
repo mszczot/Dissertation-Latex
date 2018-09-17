@@ -41,8 +41,8 @@ As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and idea
             x tick label style={rotate=90,anchor=east},
             legend style={at={(0.05,0.1)},anchor=west},
         ]
-        \addplot table[x=Solver,y=Score]{\mydata};
-        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\mydata};
+        \addplot table[x=Solver,y=Score]{\completeResults};
+        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\completeResults};
         \legend{Score,Time}
     \end{axis}
 \end{tikzpicture}
@@ -56,13 +56,14 @@ As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and idea
 \begin{tikzpicture}
     \begin{axis}[
             ybar,
-            symbolic x coords={pyglaf, cegartix, argmat-sat, argmat-dvisat, CoQuiAAS, argmat-mpg, goDIAMOND, heureka, conarg, ArgTools, ArgSemSAT, EqArgSolver, argmat-clpb, gg-sts},
+            symbolic x coords={pyglaf,argmat-dvisat,argmat-sat,goDIAMOND,cegartix,ArgTools,argmat-mpg,conarg,CoQuiAAS,gg-sts
+            },
             xtick=data,
             x tick label style={rotate=90,anchor=east},
             legend style={at={(0.05,0.1)},anchor=west},
         ]
-        \addplot table[x=Solver,y=Score]{\mydata};
-        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\mydata};
+        \addplot table[x=Solver,y=Score]{\idealResults};
+        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\idealResults};
         \legend{Score,Time}
     \end{axis}
 \end{tikzpicture}
@@ -76,13 +77,14 @@ As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and idea
 \begin{tikzpicture}
     \begin{axis}[
             ybar,
-            symbolic x coords={pyglaf, cegartix, argmat-sat, argmat-dvisat, CoQuiAAS, argmat-mpg, goDIAMOND, heureka, conarg, ArgTools, ArgSemSAT, EqArgSolver, argmat-clpb, gg-sts},
+            symbolic x coords={pyglaf,goDIAMOND,argmat-sat,cegartix,argmat-mpg,argmat-dvisat,conarg,heureka,ArgSemSAT,ArgTools,EqArgSolver,argmat-clpb,ChimaerArg,CoQuiAAS,gg-sts
+            },
             xtick=data,
             x tick label style={rotate=90,anchor=east},
             legend style={at={(0.05,0.1)},anchor=west},
         ]
-        \addplot table[x=Solver,y=Score]{\mydata};
-        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\mydata};
+        \addplot table[x=Solver,y=Score]{\stableResults};
+        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\stableResults};
         \legend{Score,Time}
     \end{axis}
 \end{tikzpicture}
