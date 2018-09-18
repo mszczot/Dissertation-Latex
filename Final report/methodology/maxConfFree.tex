@@ -1,0 +1,55 @@
+\subsection{Maximal Conflict Free Sets}
+According to the definitions \ref{def:preferredExtension} and \ref{def:stableExtension}, Preferred and Stable extensions are based on the maximal sets. Preferred extensions are the maximal element with respect to the set from all the admissible sets, and Stable extensions are the maximal conflict free sets that attack every argument outside those sets. Furthermore, since each admissible set is also a conflict free set, this property has been used in exploring possible solutions for computing Preferred and Stable extensions.
+
+Let \textit{args} be a collection of arguments in a given argumentation framework \textit{AF}. Then \textit{args} can be represented as $args=arg_1, arg_2,...,arg_n$ where \textit{n} is the total number of arguments in \textit{AF}. 
+Furthermore, set of arguments \textit{CF} is conflict free, if and only if there are no attacks between the arguments within the set \textit{CF}: $\forall a,b \in AF, (a, b) \notin attacks$.
+
+Hence, the maximal conflict free sets can be represented as:
+\begin{equation}
+\begin{array}{lr}
+args_1 $ = $ \text{args} $ - $ \text{a} \\
+args_2 $ = $ \text{args} $ - $ \text{b} \\
+\end{array} \bigg| \forall a, b \in AF, (a,b) \in attacks
+\end{equation}
+
+Based on the proposition above, the maximal conflict free set can be calculated by splitting the existing sets of arguments within the given argumentation framework by each pair of arguments from the \textit{attacks}. The process is shown in example in figure \ref{fig:mcfExample}. The Argumentation Framework \textit{AF} consist of four arguments: a, b, c, d, and 3 attacks: a attacks b, b attacks c, and d attacks c. This argumentation framework is presented in figure \ref{fig:af1}. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{"img/mcf "}
+	\caption{Maximal Conflict Free sets creation example}
+	\label{fig:mcf}
+\end{figure}
+
+Firstly, the attack \textit{(a,b)} is applied to the set of all arguments - \textit{\{a,b,c,d\}}, causing the set of arguments to split into two separate sets: one that does not contain argument \textit{b} - \textit{\{a,c,d\}}; and another that does not contain argument \textit{a} - \textit{\{b,c,d\}}. Then each attack from the argumentation framework is applied to the newly created sets, splitting them further into conflict free sets. Attack \textit{(b,c)} has impact only on the second set - \textit{\{b,c,d\}}, since argument \textit{b} is removed from the first set. Hence, applying the second attack to the sets, creates 3 sets: \textit{\{a,c,d\}}, \textit{\{c,d\}} and \textit{\{b,d\}}. Last attack - \textit{(c,d)}, has only impact on the first and second sets from the last step, giving the final set of Maximal Conflict Free sets of \textit{\{a,c\}}, \textit{\{a,d\}} and \textit{\{b,d\}}.
+
+\begin{algorithm}
+	\caption{Maximal Conflict Free sets calculation}\label{mcfPseudocode}
+	\nl \textit{args} $\gets$ \textit{arguments from AF}\;
+	\nl \textit{attacks} $\gets$ \textit{attacks of AF}\;
+	\nl \textit{conflictFreeSets} \;
+	\nl\ForEach{\textit{attack} $\in$ \textit{attacks}}
+	{
+		\If{\textit{conflictFreeSets} is not empty}{
+				\nl \ForEach{set $\in$ conflictFreeSets}{
+					\If{attack[0] $\in$ set AND attack[1] $\in$ set}{
+						\nl \textit{conflictFreeSets} += \textit{set} - \textit{\{attack[0]\}} \;
+						\nl \textit{conflictFreeSets} += \textit{set} - \textit{\{attack[1]\}} \;
+						\nl \textit{conflictFreeSets} -= \textit{set} \;
+					}
+				}
+			}
+		\Else{
+			\nl \textit{conflictFreeSets} += \textit{args} - \textit{\{attack[0]\}} \;
+			\nl \textit{conflictFreeSets} += \textit{args} - \textit{\{attack[1]\}} \;
+		}
+	}
+	\label{alg:mcf}
+\end{algorithm}
+
+\subsubsection{Sets}
+
+The algorithm \ref{alg:mcf} is the representation of calculation of the Maximal Conflict Free sets. Depending on the size of the Argumentation Framework and it's complexity this approach will depend on the creation of the large number of combinations of sets. Furthermore, since the size of the collection of the conflict free sets can be $2^n$, where \textit{n} is the total number of arguments within the framework, iterating through this collection for each attack can be time consuming. Hence, to reduce the cost of running the above algorithm, first implementation involved sets data structures. "Set object is an unordered collection of distinct hashable objects" \citep{python_sets}.
+
+To implement the algorithm the conflict free sets were stored as frozenset inside a set. Since the objects within the set are hashed, it provides fast access to its elements. Furthermore, testing membership within the set is performed in the constant time as it does not need to iterate through the whole set as it is the case with list data structure. Additional benefit of using set is its property of being a collection of distinct objects. This helps to ensure that the duplicate sets are not stored, reducing the time required to iterate through the frozensets.
+

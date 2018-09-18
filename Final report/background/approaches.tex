@@ -1,5 +1,7 @@
 \subsection{Approaches to computing argumentation semantics}
 
+
+
 There are many ways of computing abstract argumentation semantics. As shown in section \ref{sec:argumentationSemantics}, semantic definitions can been represented in the form of extensions and labelling. Solvers use different algorithms for computing the extensions. In this section, different approaches for computing abstract argumentation semantics used in different solvers will be reviewed. There are two main factors that will be taken into consideration: speed - how quickly the solver can compute the answer, and correctness - if the results produced are the correct answer.
 
 International Competition on Computational Models of Argumentation is held every 2 years, where different solvers compete on reasoning tasks in abstract argumentation frameworks. The 2017 competition results will be used throughout the project as a point of reference for benchmarking the proposed solution. The competition consist of 7 main tracks, where each track represent each semantics: complete, preferred, stable, semi-stable, stage, grounded and ideal. Furthermore, each track is divided into 4 reasoning problems, with exception for grounded and ideal extensions, where only tasks 1 and 3 are relevant \citep{ICCMA2017}:
@@ -25,70 +27,73 @@ Testing of Alias shown that it is a great tool for computing the abstract argume
 % test results of alias
 
 \subsubsection{Pyglaf}
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={pyglaf, cegartix, argmat-sat, argmat-dvisat, CoQuiAAS, argmat-mpg, goDIAMOND, heureka, conarg, ArgTools, ArgSemSAT, EqArgSolver, argmat-clpb, gg-sts},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\completeResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\completeResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Results of Complete Extension Track}
+	\label{fig:coTrack}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={pyglaf,argmat-dvisat,argmat-sat,goDIAMOND,cegartix,ArgTools,argmat-mpg,conarg,CoQuiAAS,gg-sts
+	},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\idealResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\idealResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Ideal Extension Track}
+	\label{fig:idTrack}
+	
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={pyglaf,goDIAMOND,argmat-sat,cegartix,argmat-mpg,argmat-dvisat,conarg,heureka,ArgSemSAT,ArgTools,EqArgSolver,argmat-clpb,ChimaerArg,CoQuiAAS,gg-sts
+	},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\stableResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\stableResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of StableExtension Track}
+	\label{fig:stTrack}
+\end{figure}
 Pyglaf is one of the solvers submitted to ICCMA 2017 competition. It is one of the best performing solvers in the competition, as it won tracks for Ideal, Complete and Stable extension and had the most winnings of all submitted solvers.
 
 Pyglaf takes advantage of circumscription, a form of non-monotonic reasoning augmenting ordinary first order logic created by \citet{circumpscription}, to formalize the "common sense" assumptions, to solve computational problems of abstract argumentation frameworks.  Circumscriptino, the main solver, is written in C/C++, and is a circumscription solver extending the SAT solver Glucose. However, it uses Python to build the encodings for each semantic and to orchestrate calls to the external solver \citep{pyglaf}. 
 
 As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and ideal extension tracks. As can be seen in figures \ref{fig:coTrack}, \ref{fig:idTrack}, \ref{fig:stTrack}, 
 
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}
-    \begin{axis}[
-            ybar,
-            symbolic x coords={pyglaf, cegartix, argmat-sat, argmat-dvisat, CoQuiAAS, argmat-mpg, goDIAMOND, heureka, conarg, ArgTools, ArgSemSAT, EqArgSolver, argmat-clpb, gg-sts},
-            xtick=data,
-            x tick label style={rotate=90,anchor=east},
-            legend style={at={(0.05,0.1)},anchor=west},
-        ]
-        \addplot table[x=Solver,y=Score]{\completeResults};
-        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\completeResults};
-        \legend{Score,Time}
-    \end{axis}
-\end{tikzpicture}
-
-\caption{Results of Complete Extension Track}
-\label{fig:coTrack}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}
-    \begin{axis}[
-            ybar,
-            symbolic x coords={pyglaf,argmat-dvisat,argmat-sat,goDIAMOND,cegartix,ArgTools,argmat-mpg,conarg,CoQuiAAS,gg-sts
-            },
-            xtick=data,
-            x tick label style={rotate=90,anchor=east},
-            legend style={at={(0.05,0.1)},anchor=west},
-        ]
-        \addplot table[x=Solver,y=Score]{\idealResults};
-        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\idealResults};
-        \legend{Score,Time}
-    \end{axis}
-\end{tikzpicture}
-
-\caption{Results of Ideal Extension Track}
-\label{fig:idTrack}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}
-    \begin{axis}[
-            ybar,
-            symbolic x coords={pyglaf,goDIAMOND,argmat-sat,cegartix,argmat-mpg,argmat-dvisat,conarg,heureka,ArgSemSAT,ArgTools,EqArgSolver,argmat-clpb,ChimaerArg,CoQuiAAS,gg-sts
-            },
-            xtick=data,
-            x tick label style={rotate=90,anchor=east},
-            legend style={at={(0.05,0.1)},anchor=west},
-        ]
-        \addplot table[x=Solver,y=Score]{\stableResults};
-        \addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\stableResults};
-        \legend{Score,Time}
-    \end{axis}
-\end{tikzpicture}
-
-\caption{Results of StableExtension Track}
-\label{fig:stTrack}
-\end{figure}
+\subsubsection{argmat-sat}
+Argmat-sat is another solver from the ICCMA 2017 competition and the winner of Semi-Stable and Stage tracks.
