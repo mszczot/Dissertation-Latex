@@ -51,5 +51,37 @@ Firstly, the attack \textit{(a,b)} is applied to the set of all arguments - \tex
 
 The algorithm \ref{alg:mcf} is the representation of calculation of the Maximal Conflict Free sets. Depending on the size of the Argumentation Framework and it's complexity this approach will depend on the creation of the large number of combinations of sets. Furthermore, since the size of the collection of the conflict free sets can be $2^n$, where \textit{n} is the total number of arguments within the framework, iterating through this collection for each attack can be time consuming. Hence, to reduce the cost of running the above algorithm, first implementation involved sets data structures. "Set object is an unordered collection of distinct hashable objects" \citep{python_sets}.
 
-To implement the algorithm the conflict free sets were stored as frozenset inside a set. Since the objects within the set are hashed, it provides fast access to its elements. Furthermore, testing membership within the set is performed in the constant time as it does not need to iterate through the whole set as it is the case with list data structure. Additional benefit of using set is its property of being a collection of distinct objects. This helps to ensure that the duplicate sets are not stored, reducing the time required to iterate through the frozensets.
+To implement the algorithm the conflict free sets were stored as frozenset inside a set. Since the objects within the set are hashed, it provides fast access to its elements. Furthermore, testing membership within the set is performed in the constant time as it does not need to iterate through the whole set as it is the case with list data structure as it can be seen in table \ref{table:timingsMembership}. Additional benefit of using set is its property of being a collection of distinct objects. This helps to ensure that the duplicate sets are not stored, reducing the time required to iterate through the frozensets.
+
+\begin{table}[h]
+	\centering
+	\caption{Timing in sec for testing membership (10,000 repetitions)}
+	\label{table:timingsMembership}
+	\begin{tabular}{lllll}
+		\hline
+		Number of members & 10    & 100   & 1000   & 10000 \\ \hline
+		Set                & 0.011 & 0.038 & 0.472  & 4.898 \\
+		List               & 0.015 & 0.558 & 54.401 & 5248.254 \\     
+	\end{tabular}
+\end{table}
+
+Although the set data structure is superior to list in terms of performance, it has a massive overhead in terms of memory usage. Since its objects are hashed it is memory intensive especially for large collections. As can be seen in table \ref{table:sizeDataStructures}, for 10000 elements, the size of the set is over five times of the list. Since the implementation used set of frozensets, the required memory was growing exponentially for bigger argumentation frameworks.
+
+\begin{table}[h]	
+	\centering
+	\caption{Size of data structures in bytes}
+	\label{table:sizeDataStructures}
+	\begin{tabular}{lllll}
+		\hline
+		Number of elements & 10  & 100  & 1000  & 10000  \\ \hline
+		Set                & 736 & 8416 & 32992 & 524512 \\
+		List               & 200 & 1008 & 9112  & 90112 
+	\end{tabular}
+\end{table}
+
+% add some results from alias
+
+\subsubsection{PyTables}
+In order to resolve the memory issue that sets introduced, 
+
 
