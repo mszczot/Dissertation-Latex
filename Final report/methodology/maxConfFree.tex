@@ -61,11 +61,11 @@ To implement the algorithm the conflict free sets were stored as frozenset insid
 		\hline
 		Number of members & 10    & 100   & 1000   & 10000 \\ \hline
 		Set                & 0.011 & 0.038 & 0.472  & 4.898 \\
-		List               & 0.015 & 0.558 & 54.401 & 5248.254 \\     
+		List               & 0.015 & 0.558 & 54.401 & 57248.254 \\     
 	\end{tabular}
 \end{table}
 
-Although the set data structure is superior to list in terms of performance, it has a massive overhead in terms of memory usage. Since its objects are hashed it is memory intensive especially for large collections. As can be seen in table \ref{table:sizeDataStructures}, for 10000 elements, the size of the set is over five times of the list. Since the implementation used set of frozensets, the required memory was growing exponentially for bigger argumentation frameworks.
+Although the set data structure is superior to list in terms of performance, it has a massive overhead in terms of memory usage. Since its objects are hashed it is memory intensive especially for large collections. As can be seen in table \ref{table:sizeDataStructures}, for 10000 elements, the size of the set is over five times of the list. Since the implementation used set of frozensets, the required memory was growing exponentially for bigger argumentation frameworks, making the solution unusable.
 
 \begin{table}[h]	
 	\centering
@@ -81,7 +81,44 @@ Although the set data structure is superior to list in terms of performance, it 
 
 % add some results from alias
 
-\subsubsection{PyTables}
-In order to try resolve the memory issue caused by the large set of frozensets, attempt has been made to implement the solution for Maximal Conflict Free sets using PyTables. PyTables is a python module for "managing hierarchical datasets and designed to efficiently and easily cope with extremely large amounts of data" \citep{pytables}.
+\subsubsection{PyTable}
+In order to try resolve the memory issue caused by the large set of frozensets, attempt has been made to implement the solution for Maximal Conflict Free sets using PyTables. PyTables is a python module for "managing hierarchical datasets and designed to efficiently and easily cope with extremely large amounts of data" \citep{pytables}. It is using HDF5, which is a "data model, library and file format for storing and managing data" \citep{hdf5}. 
+
+Using PyTables for storage of all generated sets will release the huge amount of memory required for using sets of sets. The algorithm used with PyTables is slightly modified version of the algorithm \ref{alg:mcf}. In order to maximize the performance while using PyTables, three tables are created:
+\begin{enumerate}
+	\item{Arguments Table - table for storing all arguments within the argumentation framework. The table consist of the name of the argument and its mapping}
+	\item{Conflict Free Table - table for storing references to conflict free sets. This table consists of only one column - id}
+	\item{Argument Conflict Free Bridge Table - this table is used for storing references of arguments within the conflict free sets. Consisting of three columns: argument id, conflict free set id and active flag, links the tables above.}
+\end{enumerate}
 
 
+\subsubsection{Dictionaries}
+Another approach to implement the maximal conflict free set algorithm is to use data structure 'defaultdict'. 'Defaultdict' class provides a new dictionary-like object, where the first argument in the constructor specifies default factory attribute. It is a subclass of a standard 'dict' class in Python and majority of the methods are the same between 'defaultdict' and 'dict' classes \citep{defaultdict}.
+
+The implementation uses two 'defaultdict' classes with sets as its default factory attribute. One of the dictionaries is used to store all the arguments from the argumentation framework as the keys and a set of references to the conflict free sets as a value. Second dictionary is used to store the conflict free sets, where the key is just the identifier that gets incremented with every new record and the value is a set of the argument names in that particular conflict free set. Table \ref{table:dictsRepresentation} shows an example of the dictionaries being used to compute the maximal conflict free sets based on the argumentation framework \ref{fig:argumentationFrameworkFigure} from section \ref{abstractArgumentation}.
+
+\begin{table}[h]
+	\centering
+	\caption{Representation of two dictionaries and their relations for Maximal Conflict Free sets generation}
+	\label{table:dictsRepresentation}
+	\begin{tabular}{lllll}
+		\multicolumn{2}{l}{Arguments}                            &                       & \multicolumn{2}{l}{Conflict Free Sets}                  \\ \cline{1-2} \cline{4-5} 
+		\multicolumn{1}{|l|}{Key} & \multicolumn{1}{l|}{Value}   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{Key} & \multicolumn{1}{l|}{Value}   \\ \cline{1-2} \cline{4-5} 
+		\multicolumn{1}{|l|}{a}   & \multicolumn{1}{l|}{\{1,2\}} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{\{a\}}   \\ \cline{1-2} \cline{4-5} 
+		\multicolumn{1}{|l|}{b}   & \multicolumn{1}{l|}{\{3,4\}} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{\{a,c\}} \\ \cline{1-2} \cline{4-5} 
+		\multicolumn{1}{|l|}{c}   & \multicolumn{1}{l|}{\{2\}}   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{3}   & \multicolumn{1}{l|}{\{b\}}   \\ \cline{1-2} \cline{4-5} 
+		\multicolumn{1}{|l|}{d}   & \multicolumn{1}{l|}{\{4\}}   & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{4}   & \multicolumn{1}{l|}{\{b,d\}} \\ \cline{1-2} \cline{4-5} 
+	\end{tabular}
+\end{table}
+
+As can be seen in table \ref{table:dictsRepresentation}, there is a direct link between the arguments and conflict free sets dictionaries. The benefit of using a dictionaries as a data structure is that the retrieval of keys are a very fast operation, as those are usually implemented as a hash tables \citep{pythonDictionary}. Hence, the implementation is operating on two dictionaries simultaneously in order to provide the quick retrieval of the values based on the keys, while keeping the memory usage at a low level compared to using sets of sets.
+
+% comparison of memory usage of defaultdict
+
+There are number of steps that need to be taken in order to compute the maximal conflict free set using the dictionaries. Firstly, the sets to be modified need to be found, based on the attack tuple being added - this is simply intersection of the sets from arguments dictionary for the attacking and attacked argument. Then for all the values from that intersection, access the sets in conflict free sets dictionary and replace the existing set with two copies of that set: one without the attacker and one without the attacking arguments. The final step is to update the arguments dictionary by updating the references to the conflict free sets for all the arguments that were included in that set.
+
+% some performance chart?
+
+The operations in the approach above consists of accessing the values from the dictionary and performing simple operations on sets. Those operations are performed relatively quickly. However, similarly to other approaches, the number of sets in the conflict free sets dictionary in the worst case scenario will exponentially grow with each attack being added. If the argumentation framework is linear, i.e. a attacks b, b attacks c, c attacks d, etc., then with each attack that is processed the number of conflict free sets and number of operations will double, ultimately giving $O(n^2)$ big O notation in the worst case scenario. 
+
+\subsubsection{SAT Solver}
