@@ -91,7 +91,7 @@ Testing of Alias shown that it is a great tool for computing the abstract argume
 \end{figure}
 Pyglaf is one of the solvers submitted to ICCMA 2017 competition. It is one of the best performing solvers in the competition, as it won tracks for Ideal, Complete and Stable extension and had the most winnings of all submitted solvers.
 
-Pyglaf takes advantage of circumscription, a form of non-monotonic reasoning augmenting ordinary first order logic created by \citet{circumpscription}, to formalize the "common sense" assumptions, to solve computational problems of abstract argumentation frameworks.  Circumscriptino, the main solver, is written in C/C++, and is a circumscription solver extending the SAT solver Glucose. However, it uses Python to build the encodings for each semantic and to orchestrate calls to the external solver \citep{pyglaf}. 
+Pyglaf takes advantage of circumscription, a form of non-monotonic reasoning augmenting ordinary first order logic created by \citet{circumpscription}, to formalize the "common sense" assumptions, to solve computational problems of abstract argumentation frameworks.  Circumscriptino, the main solver, is written in C/C++, and is a circumscription solver extending the SAT solver Glucose \citep{glucose}. However, it uses Python to build the encodings for each semantic and to orchestrate calls to the external solver \citep{pyglaf}. 
 
 As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and ideal extension tracks. As can be seen in figures \ref{fig:coTrack}, \ref{fig:idTrack}, \ref{fig:stTrack}, Pyglaf not only scored the most points for each of them, but also had one of the shortest execution times while delivering correct solutions.
 
