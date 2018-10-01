@@ -22,9 +22,13 @@ Each above task consists of 350 benchmark sets divided into 5 categories of hard
 \subsubsection{Alias}
 "ALIAS is a Python library for constructing, manipulating, storing, visualising, and converting argumentation structues" \citep{alias}. It allows to compute the three extensions: complete, preferred and stable, and to build the labellings for complete, grounded, preferred, stable and semi-stable semantics. Since Alias is implemented purely in Python, it can be used as a stand alone tool or a programming library. 
 
+
+
 Testing of Alias shown that it is a great tool for computing the abstract argumentation semantics on the smaller argumentation framework. In order to calculate the extensions it generates the power sets of all arguments, and checks whether each individual set is a part of the solution. This approach ensures the correct answer is produced every time, as every possible combination is examined, however, it causes problems with argument frameworks of size larger than twenty arguments. Generating the power set of all arguments and iterating through each possible combination is resource intensive and time consuming. 
 
 % test results of alias
+
+
 
 \subsubsection{Pyglaf}
 
@@ -102,3 +106,12 @@ Argmat-sat is another solver from the ICCMA 2017 competition and the winner of S
 
 
 \subsubsection{Cegartix}
+
+\subsubsection{ArgTools}
+Another worth mentioning solver for abstract argumentation semantics is ArgTools. Although it took part in the ICCMA 2017 competition, it did not win any of the tracks included. 
+
+ArgTools is using a different approach to computing argumentation semantics as compared to Pyglaf \citep{pyglaf} or Argmat-Sat \citep{argmatSat}. Instead of encoding the extension with help of the existing SAT solvers, it is using the DPLL (Davis-Putnam-Logemann-Loveland) backtracking algorithm from SAT solving \citep{} to traverse an abstract binary tree created from the definition of the argumentation framework and labels them accordingly. 
+
+ArgTools is implemented purely in C++ and requires at least C++11 in order to be compiled \citep{argtools}. In terms of functionality, the solver adheres to the requirements of the ICCMA competition and can solve all the tasks for complete, stable, preferred, stage, semi-stable, grounded and ideal extensions including computing all or some extensions and also verifying if given argument can be credulously or skeptically accepted for all extensions. Once the ArgTools is build locally, it can be used from the command line, similarly to other solvers, by providing few arguments: location of argumentation framework, format of the file of argumentation framework, task to be performed, and argument to be checked if required. 
+
+
