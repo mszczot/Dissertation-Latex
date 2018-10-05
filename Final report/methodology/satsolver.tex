@@ -1,5 +1,23 @@
 \subsection{Boolean Satisfiability Solver}
-As could be seen in section \ref{approaches}, Boolean Satisfiability Solvers are preferred way of computing abstract argumentation semantics in the existing solvers, and depending on the implementation, it can be very efficient. 
+As could be seen in section \ref{approaches}, Boolean Satisfiability Solvers are preferred way of computing abstract argumentation semantics in the existing solvers. However its efficiency will depend on the implementation and the way the argumentation semantics were encoded. 
+
+Boolean Satisfiability problem, also known as SAT is a NP-Complete problem. Due to its significance in theoretical research and practical applications it is one of the most studied problems. The SAT problem asks for the an assignment of variables, so the provided Boolean formula will evaluate to true, or determination that such an assignment does not exist \citep{satSolver1}. For most of the SAT solvers, the Boolean formula has to be specified in the conjunctive normal form (CNF) \citep{SatSolver2}. \citet{cnfDefinition} perfectly describes CNF as "a single conjunction of disjunctions of (possibly negated) literals". 
+
 
 \subsubsection{PycoSAT}
+
+
 \subsubsection{CNF Encodings}
+In order to use any SAT solver to solve the extensions of argumentation frameworks, the boolean formula needs to be encoded into CNF. The conflict free sets can easily be encoded using the list of all the attacks in the argumentation framework. From the definition of the conflict free sets we know that it is a set of arguments with no attacks between any of its elements. Hence, for each attack in the argumentation framework, the conflict free set will contain either the attacker, or the attack. In no case both of the arguments will be a part of the same conflict free set. This can be shown in CNF as:
+
+\begin{equation}
+	  \forall (a,b) \in attacks \implies (\neg a \lor \neg b)
+\end{equation}
+
+The above equation will provide all of the possible solution based on the arguments provided for the conflict free sets. This can be extended further to include the defending arguments of the set. This in turn will help to define the admissible sets, as based on the definition \ref{admissibleArgument}, the admissible set contains conflict free arguments and all arguments within the set are defended by the set itself.
+
+\begin{equation}
+\forall a \in AF | (a,b) \in attacks \land \exists c \in E | (c,a) \in attacks \implies (c \lor \neg b)
+\end{equation}
+
+In the equation above, we see that for the set \textit{E} to be admissible there must be argument \textit{a} that attacks \textit{b}, and some argument \textit{c} in set \textit{E}, such that \textit{c} attacks \textit{b}. This definition can be encoded in boolean form as \textit{c} or \textit{not b}. Hence, if the argument \textit{b} is included in the model, then argument \textit{c} is ignored, as the clause will evaluate to \textit{true} based on the $\neg b$ being itself \textit{true}. However, if argument \textit{b} is included in the model, then argument \textit{c} will have to be included in the same model in order for the clause to evaluate to \textit{true}.

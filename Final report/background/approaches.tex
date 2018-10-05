@@ -47,7 +47,7 @@ Testing of Alias shown that it is a great tool for computing the abstract argume
 	\legend{Score,Time}
 	\end{axis}
 	\end{tikzpicture}
-	\caption{Results of Complete Extension Track}
+	\caption{Results of Complete Extension Track from ICCMA 2017}
 	\label{fig:coTrack}
 \end{figure}
 
@@ -68,7 +68,7 @@ Testing of Alias shown that it is a great tool for computing the abstract argume
 	\end{axis}
 	\end{tikzpicture}
 	
-	\caption{Results of Ideal Extension Track}
+	\caption{Results of Ideal Extension Track from ICCMA 2017}
 	\label{fig:idTrack}
 	
 \end{figure}
@@ -90,7 +90,7 @@ Testing of Alias shown that it is a great tool for computing the abstract argume
 	\end{axis}
 	\end{tikzpicture}
 	
-	\caption{Results of StableExtension Track}
+	\caption{Results of Stable Extension Track from ICCMA 2017}
 	\label{fig:stTrack}
 \end{figure}
 Pyglaf is one of the solvers submitted to ICCMA 2017 competition. It is one of the best performing solvers in the competition, as it won tracks for Ideal, Complete and Stable extension and had the most winnings of all submitted solvers.
@@ -99,11 +99,105 @@ Pyglaf takes advantage of circumscription, a form of non-monotonic reasoning aug
 
 As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and ideal extension tracks. As can be seen in figures \ref{fig:coTrack}, \ref{fig:idTrack}, \ref{fig:stTrack}, Pyglaf not only scored the most points for each of them, but also had one of the shortest execution times while delivering correct solutions.
 
+\paragraph{Setup}
+Pyglaf can be obtained from Mark Alviano's website \citep{Pyglafwebsite}. The direct link provides Pyglaf but also build file to required to build the Circumscriptino. 
+
+Pyglaf provides a standard command-line interface that allows to compute 7 extensions, with option to define whether all or just some of the sets in the extensions should be outputted. It also allows to verify if the provided argument is credulously or skeptically accepted in the given argumentation framework for specific extensions. Finally, it also can compute all grounded, stable and preferred extensions in single call as part of the Dung's Triathlon task. All the functionality has been provided to conform to the ICCMA 2017 competition requirements. 
+
 \subsubsection{argmat-sat}
-Argmat-sat is another solver from the ICCMA 2017 competition and the winner of Semi-Stable and Stage tracks. It is implemented in C++ and using CryptoMiniSat5 as its SAT engine \citep{argmatSat}.
+Argmat-sat developed by \citet{argmatSat} along with argmat-dvisat: division based algorithm framework \citep{argmatDvisat} and argmat-mpg: geocode based solver is another solver submitted to ICCMA 2017 competition. As can be seen in figures \ref{fig:ssTrack} and \ref{fig:stTrack}, Argmat-sat won semi-stable and stage extension tracks significantly outperforming it rivals. It was not only the highest scoring solver for those tracks, but also the fastest. Although argmat-sat won only two tracks, it still was in top 3 solvers for the remaining tracks.
+
+Argmat-sat is implemented purely in C++, using CryptoMiniSAT5 \citep{CryptoMiniSat} as its SAT engine. Similarly to pyglaf \citep{pyglaf}, argmat-sat provides a command line interface that allows to compute all 7 semantics plus Dung Triathlon, to conform to ICCMA 2017 competition requirements. It uses three different CNF encodings: stable extensions, admissible sets and complete extensions, where stable extensions encoding is purely used for computing stable extensions. Admissible sets and complete extensions encodings can be used for searching admissible, complete, preferred, grounded and ideal extensions \citep{argmatSat}. 
+
+In order to compute preferred extension, argmat-sat introduced the 'assumption space' to SAT solvers. Used as a temporary clause base it aids the SAT solver with searching for the maximal extension. Once it is found, the assumption space is cleared to allow for new maximal extension to be searched for. Furthermore, the assumption space is used for computing the semi-stable and stage semantics \citep{argmatSat}.
+
+In order to build and setup argmat-sat additional software is required: cmake, valgrind, libm4ri-dev
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={argmat-sat,ArgSemSAT,cegartix,pyglaf,goDIAMOND,argmat-mpg,conarg,ArgTools,gg-sts,CoQuiAAS
+	},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\semiStableResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\semiStableResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Semi Stable Extension Track for ICCMA 2017}
+	\label{fig:ssTrack}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={argmat-sat,
+		pyglaf,
+		cegartix,
+		goDIAMOND,
+		conarg,
+		argmat-mpg,
+		ArgTools,
+		CoQuiAAS,
+		gg-sts,},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\stageResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\stageResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Stage Extension Track for ICCMA 2017}
+	\label{fig:stTrack}
+\end{figure}
 
 
 
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={ArgSemSAT,
+		argmat-sat,
+		pyglaf,
+		argmat-dvisat,
+		cegartix,
+		goDIAMOND,
+		ArgTools,
+		conarg,
+		argmat-mpg,
+		heureka,
+		EqArgSolver,
+		ASPrMin,
+		ChimaerArg,
+		CoQuiAAS,
+		gg-sts,},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\preferredResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\preferredResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Preferred Extension Track for ICCMA 2017}
+	\label{fig:prTrack}
+\end{figure}
 
 \subsubsection{Cegartix}
 
