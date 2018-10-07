@@ -1,5 +1,5 @@
 \subsection{Extensions}
-\subsubsection{Stable Extension}
+\subsubsection{Stable Extension} \label{section:stableExtension}
 Based on the definition \ref{def:stableExtension}, Stable Extension is the conflict-free set that attacks all arguments not included in the set. Hence, it can be said that the Stable Extension are the Maximal Conflict Free sets of the argumentation framework. This makes verifying the Stable Extension a straight forward process using just a set theory: attacks of the set to be verified has to be equal to the set of arguments not included in the set to be checked. If those are equal, then the set in question is a stable extension, since there are no other arguments that are neither attacked by this set nor included in it. Hence, Alias verifies all the solutions provided from the SAT solver using above property of the extension. This can be represented as: 
 
 \begin{equation}
@@ -43,5 +43,5 @@ As \citet{afmatrices1} points out, matrices can only be used to answer a single 
 
 By using sub-blocks of the matrix for different parts of the argumentation framework and transforming the matrix into one of the two standard forms, the proposed approach allows to check if the given set is conflict free, admissible, stable, complete, preferred and grounded extensions \citep{matrix2}.
 
-\subsubsection{Preferred Extension}
+\subsubsection{Preferred Extension} \label{section:preferredExtension}
 \subsubsection{Complete Extension}

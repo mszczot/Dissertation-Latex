@@ -1,11 +1,41 @@
-Alias was being developed using iterative approach. For each iteration a different approach for computing the extensions has been implemented. In order to verify and benchmark the approach, each iteration had allocated time for testing. Results of all tests have been used to evaluate the final solution and provide the insight for development progress.
+Alias was being developed using iterative approach. For each iteration a different approach for computing the extensions has been implemented. In order to verify and benchmark the approach, each iteration had allocated time for testing. Furthermore, the testing process can be divided into two separate processes: 
+\begin{enumerate}
+	\item Unit testing - number of tests created to verify the correctness of the proposed solution. Those tests are to verify if any change to the solution still produces correct output. 
+	\item Benchmark testing - more extensive testing carried out at the end of each iteration. The purpose of the benchmark testing is to help evaluate the system. 
+\end{enumerate}
 
-As described in section \ref{label:projectRequirements}, there are number of functional and non-functional requirements for Alias. One of the most critical set of requirements identified are the correctness of computed solution and the overall performance. In order to verify those requirements the black-box testing technique was used. The benchmarking results of correctness and performance were based on the requirements specifications. As the black-box technique was used, the final testing for each approach was done once the implementation was finished \citep{blackbox}.
 
-In order to extensively test Alias, benchmark argumentation frameworks have been taken from the published sample argumentation frameworks from ICCMA 2017 \citep{iccmaResults}. The website provides 5 different sets of argumentation frameworks for all tasks involved in the competition and additional set for a Dung's Triathlon. Selected argumentation frameworks have been classified into 
+As described in section \ref{label:projectRequirements}, there are number of functional and non-functional requirements for Alias. One of the most critical set of requirements identified are the correctness of computed solution and the scalability. In order to verify those requirements the black-box testing technique was used. Black box testing as described by \citet{testing2} is "based on the analysis of the specification of a piece of software without reference to its internal working". Hence, during the benchmark testing, the results were based on the output of the system and its response time. With no regards to the inner workings of the application, it allows examine only the fundamental workings of the system. Thus, in order to use the black-box testing, the final testing for each approach was done once the implementation was finished \citep{blackbox}.
+
+In order to extensively test Alias, benchmark argumentation frameworks have been taken from the published sample argumentation frameworks from ICCMA 2017 \citep{iccmaResults}. The website provides 5 different sets of argumentation frameworks for all tasks involved in the competition and additional set for a Dung's Triathlon. Selected argumentation frameworks have been classified into 5 categories: very easy, easy, medium, hard and too hard. Appendix \ref{appendix:benchmarkFiles} shows the full list of argumentation frameworks used including the number of arguments and attacks. Although, different set of frameworks have been used for testing preferred and complete, and stable extensions, it can be seen that the sizes and complexity of the argumentation frameworks used differ. Starting from small framework including only 2 arguments and single attack the complexity increases to as much as six thousand arguments and over sixty thousand attacks in some cases. This is to help identify limits and possible issues with proposed solution. 
+
+Additional benefit of using the benchmark frameworks from ICCMA 2017 competition is to be able to compare the results of Alias against the existing solutions. Furthermore, the benchmark testing can help identify the best solution and aid with improving the approach used. With satisfactory results, Alias could take a part in the future competitions.
+
+\subsection{Unit testing}
+Unit tests played important role during the development of each approach for Alias. Every change to the proposed solution has been tested and verified by using small number of argumentation frameworks. Each framework has been created and tested using other systems like Pyglaf and ArgSemSAT to ensure the outputted extensions are correct. 
+
+Although unit testing does not help with evaluating the overall performance of Alias it played critical role during the development of the system. 
 
 \subsection{Performance}
+As \citet{performanceTesting1} points out the performance requirements play a key role in determining the usability and quality of many systems. In case of Alias the biggest concern in terms of performance is scalability. Argumentation frameworks used for unit testing were small in comparison to frameworks used in real world application or competitions like ICCMA. Thus, to correctly evaluate the performance and abilities of Alias, the benchmark argumentation frameworks have been used.
 
+In order to test the scalability and performance, each implemented solution has been put through extensive testing. For each extension implemented within the proposed solutions, tests have been executed using the appropriate argumentation frameworks from appendix \ref{appendix:benchmarkFiles}. Each test run has been executed on the same machine with following specifications:
+
+\begin{itemize}
+	\item Processor: Intel Core I5-6200U @ 2.30 GHz
+	\item GPU: Nvidia GeForce 940MX
+	\item RAM: 8GB
+	\item OS: Linux based
+\end{itemize}
+
+Using the same specifications for each test run allows for the test results to be easily comparable. Furthermore, since ICCMA 2017 competition has been ran on a different machines, Pyglaf \citep{pyglaf} and ArgMatSAT \citep{argmatSat} have been put through the same benchmark testing. Those results were used to compare and evaluate the performance of Alias to the most successful solvers submitted to ICCMA 2017.
+
+During the testing, the CPU time has been limited per each argumentation framework to 20 minutes. This is to prevent the solver from computing the extensions indefinitely, especially on larger and more complex argumentation frameworks. The time required to read and parse files was not included in the specified time limit and it was used purely for computing all extensions. 
+
+There were four separate proposed solution for computing abstract argumentation. Three of them were using the same method of computing the maximal conflict free set, but using different data structures to overcome certain issues and limitations as described in section \ref{section:maxConflictFreeSet}. The final approach is using SAT solver to enumerate possible solutions (see section \ref{section:satSolver}). Each approach was generating a number of possible solutions, which were then verified using matrix approach for preferred extension and set inclusion for stable extension as shown in sections \ref{section:preferredExtension} and \ref{section:stableExtension} respectively. 
 
 
 \subsection{Correctness}
+Another important aspect of Alias is the correctness of the computed semantic. 
+
+In order to test and verify the correctness of Alias, the same argumentation frameworks from appendix \ref{appendix:benchmarkFiles} have been used as for the performance testing. Final system can compute three different extensions: complete, stable and preferred. 
