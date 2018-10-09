@@ -222,7 +222,7 @@ The above equation checks whether the proposed arguments are an admissible set a
 
 There are number of ways the argumentation frameworks semantics can be encoded and different implementations of solvers taking advantage of Boolean Satisfiability Solvers to compute the abstract argumentation framework extensions. As could be seen in the table \ref{table:iccmaResultsbySolver}, the SAT approach is the most preferred approach used within solvers submitted to ICCMA 2017. Interestingly, seven out of eight winning solvers were implemented using SAT based approach. 
 
-\paragraph{Pyglaf} \mbox{}\\ 
+\paragraph{Pyglaf} \mbox{}\\ \label{section:pyglaf}
 Pyglaf, winner of three tracks, takes advantage of circumscription, a form of non-monotonic reasoning augmenting ordinary first order logic created by \citet{circumpscription}, to formalize the "common sense" assumptions, to solve computational problems of abstract argumentation frameworks.  Circumscriptino, the main solver, is written in C/C++, and is a circumscription solver extending the SAT solver Glucose \citep{glucose}. However, it uses Python to build the encodings for each semantic and to orchestrate calls to the external solver \citep{pyglaf}. 
 
 As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and ideal extension tracks. As can be seen in figures \ref{fig:coTrack}, \ref{fig:idTrack}, \ref{fig:stTrack}, Pyglaf not only scored the most points for each of them, but also had one of the shortest execution times while delivering correct solutions.
