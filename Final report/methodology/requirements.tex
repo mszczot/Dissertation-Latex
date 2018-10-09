@@ -20,5 +20,41 @@ Furthermore, as mentioned above, there are number of tasks that the solver shoul
 
 Above tasks are relevant to all semantics with exception to grounded and ideal extensions, where only tasks 1 and 3 can be performed. Hence, it brings up the overall number of tasks for all semantics to 24 separate tasks. Thus, to deliver solution with the most value, for the extensions categorized as \textit{Must Have}, only tasks to compute all extensions have been categorized as \textit{Must Haves}. The remaining tasks for each of them have been classified as \textit{Should Have} and all the remaining tasks for all other extensions as \textit{Could Have}. This can be seen in appendix \ref{appendix:requirementAnalysis}.
 
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[]
+	\centering
+	\caption{MoSCoW qualifications of semantic based requirements}
+	\label{table:moscowSemanticRequirements}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Semantic}            & \textbf{Task}                                   & \textbf{MoSCoW} \\ \hline \hline
+		\multirow{4}{*}{Complete}    & Compute all extensions                           & Must Have       \\ \cline{2-3} 
+		& Compute some extensions                          & Should Have     \\ \cline{2-3} 
+		& Decide if argument is credulously accepted & Should Have     \\ \cline{2-3} 
+		& Decide if argument is skeptically accepted & Should Have     \\ \hline
+		\multirow{4}{*}{Preferred}   & Compute all extensions                           & Must Have       \\ \cline{2-3} 
+		& Compute some extensions                          & Should Have     \\ \cline{2-3} 
+		& Decide if argument is credulously accepted & Should Have     \\ \cline{2-3} 
+		& Decide if argument is skeptically accepted & Should Have     \\ \hline
+		\multirow{4}{*}{Stable}      & Compute all extensions                           & Must Have       \\ \cline{2-3} 
+		& Compute some extensions                          & Should Have     \\ \cline{2-3} 
+		& Decide if argument is credulously accepted & Should Have     \\ \cline{2-3} 
+		& Decide if argument is skeptically accepted & Should Have     \\ \hline
+		\multirow{4}{*}{Semi-Stable} & Compute all extensions                           & Could Have      \\ \cline{2-3} 
+		& Compute some extensions                          & Won't Have      \\ \cline{2-3} 
+		& Decide if argument is credulously accepted & Won't Have      \\ \cline{2-3} 
+		& Decide if argument is skeptically accepted & Won't Have      \\ \hline
+		\multirow{4}{*}{Stage}       & Compute all extensions                           & Could Have      \\ \cline{2-3} 
+		& Compute some extensions                          & Won't Have      \\ \cline{2-3} 
+		& Decide if argument is credulously accepted & Won't Have      \\ \cline{2-3} 
+		& Decide if argument is skeptically accepted & Won't Have      \\ \hline
+		\multirow{2}{*}{Grounded}    & Compute all extensions                           & Won't Have      \\ \cline{2-3} 
+		& Decide if argument is credulously accepted & Won't Have      \\ \hline
+		\multirow{2}{*}{Ideal}       & Compute all extensions                           & Won't Have      \\ \cline{2-3} 
+		& Decide if argument is credulously accepted & Won't Have      \\ \hline
+	\end{tabular}
+\end{table}
+
 \subsubsection{Non-Functional Requirements}
 Apart from all functional requirements, number of non-functional requirements have also been identified. Those are mostly concerned with the performance and scalability of the proposed solution. Although those do not bring any tangible value to the finished system, those requirements are critical to produce the high performance and scalable system that could match existing solvers in terms of computation time. 

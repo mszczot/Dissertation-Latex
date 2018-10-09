@@ -1,0 +1,295 @@
+\subsection{Approaches to computing argumentation semantics} \label{approaches}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={pyglaf, cegartix, argmat-sat, argmat-dvisat, CoQuiAAS, argmat-mpg, goDIAMOND, heureka, conarg, ArgTools, ArgSemSAT, EqArgSolver, argmat-clpb, gg-sts},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\completeResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\completeResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Results of Complete Extension Track from ICCMA 2017}
+	\label{fig:coTrack}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={pyglaf,argmat-dvisat,argmat-sat,goDIAMOND,cegartix,ArgTools,argmat-mpg,conarg,CoQuiAAS,gg-sts
+	},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\idealResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\idealResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Ideal Extension Track from ICCMA 2017}
+	\label{fig:idTrack}
+	
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={pyglaf,goDIAMOND,argmat-sat,cegartix,argmat-mpg,argmat-dvisat,conarg,heureka,ArgSemSAT,ArgTools,EqArgSolver,argmat-clpb,ChimaerArg,CoQuiAAS,gg-sts
+	},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\stableResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\stableResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Stable Extension Track from ICCMA 2017}
+	\label{fig:stTrack}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={argmat-sat,ArgSemSAT,cegartix,pyglaf,goDIAMOND,argmat-mpg,conarg,ArgTools,gg-sts,CoQuiAAS
+	},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\semiStableResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\semiStableResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Semi Stable Extension Track for ICCMA 2017}
+	\label{fig:ssTrack}
+\end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={argmat-sat,
+		pyglaf,
+		cegartix,
+		goDIAMOND,
+		conarg,
+		argmat-mpg,
+		ArgTools,
+		CoQuiAAS,
+		gg-sts,},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\stageResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\stageResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Stage Extension Track for ICCMA 2017}
+	\label{fig:stgTrack}
+\end{figure}
+
+
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	symbolic x coords={ArgSemSAT,
+		argmat-sat,
+		pyglaf,
+		argmat-dvisat,
+		cegartix,
+		goDIAMOND,
+		ArgTools,
+		conarg,
+		argmat-mpg,
+		heureka,
+		EqArgSolver,
+		ASPrMin,
+		ChimaerArg,
+		CoQuiAAS,
+		gg-sts,},
+	xtick=data,
+	x tick label style={rotate=90,anchor=east},
+	legend style={at={(0.05,0.1)},anchor=west},
+	]
+	\addplot table[x=Solver,y=Score]{\preferredResults};
+	\addplot[draw=red,ultra thick,smooth] table[x=Solver,y=Time]{\preferredResults};
+	\legend{Score,Time}
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Results of Preferred Extension Track for ICCMA 2017}
+	\label{fig:prTrack}
+\end{figure}
+
+There are many ways of computing abstract argumentation semantics. As shown in section \ref{sec:argumentationSemantics}, semantic definitions can been represented in the form of extensions and labelling. Solvers use different algorithms for computing the extensions. In this section, different approaches for computing abstract argumentation semantics used in different solvers will be reviewed. \citet{solvingMethods} in his paper categorized the approaches into two groups: reduction approach and direct approach.
+
+The idea of the reduction approach is to utilize existing technologies and approaches, which have been developed for a different purpose. Examples of those technologies are Boolean Satisfiability solvers, also known as SAT solvers, Answer-set programming or constraint satisfaction problem. Although those approaches have a benefit of ability to use the latest technologies that have been improved and optimized throughout the years, the biggest disadvantage is to reduce the original problem of the abstract argumentation semantics into other formalisms \citep{solvingMethods}.
+
+In contrast to reduction approach, the direct approach does not exploit any existing technologies. Instead, each solution has been developed from scratch. The advantage of the direct approach is the ability to shape and tailor the algorithms specifically to the argumentation frameworks.
+
+\subsubsection{ICCMA Introduction}
+
+International Competition on Computational Models of Argumentation is held every 2 years, where different solvers compete on reasoning tasks in abstract argumentation frameworks. The 2017 competition results will be used throughout the project as a point of reference for benchmarking the proposed solution. The competition consist of 7 main tracks, where each track represent each semantics: complete, preferred, stable, semi-stable, stage, grounded and ideal. Furthermore, each track is divided into 4 reasoning problems, with exception for grounded and ideal extensions, where only tasks 1 and 3 are relevant \citep{ICCMA2017}:
+\begin{enumerate}
+	\item{Given an abstract argumentation framework, determine some extensions}
+	\item{Given an abstract argumentation framework, determine all extensions}
+	\item{Given an abstract argumentation framework and some argument, decide whether the given argument is credulously inferred}
+	\item{Given an abstract argumentation framework and some argument, decide whether the given argument is skeptically inferred}
+\end{enumerate}
+Each above task consists of 350 benchmark sets divided into 5 categories of hardness from very easy to too hard and each set has a timeout limit of 10 minutes. For each benchmark set the solver can get following scores \citep{results_sildes}:
+\begin{itemize}
+	\item{1 point, if the output is correct}
+	\item{-5 points, if the output is incorrect}
+	\item{0 points otherwise, i.e. no result produced within the 10 minutes limit}
+\end{itemize}
+For the competition in 2017, there were a total of 16 solvers submitted to participate. Being implemented using different techniques and algorithms, ICCMA is a good starting place to compare and evaluate the approaches used by the solvers.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[]
+	\begin{tabular}{lll}
+		\textbf{Approach}                                                      & \textbf{Solver}                      & \textbf{Winning Track}           \\ \hline \hline
+		\multicolumn{1}{l|}{\multirow{6}{*}{SAT Based Approach}}      & argmat-dvisat               & Dung's Triathlon        \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & argmat-sat                  & Semi-stable, Stage      \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & ArgSem-SAT                  & Preferred               \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & cegartix                    &                         \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & GG-STS                      &                         \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & pyglaf                      & Complete, Ideal, Stable \\ \hline
+		\multicolumn{1}{l|}{\multirow{4}{*}{CSP Based Approach}}      & argmat-clpb                 &                         \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & ConArg                      &                         \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & CoQuiAAS                    & Grounded                \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & argmat-mpg                    &     \\
+		 \hline
+		\multicolumn{1}{l|}{\multirow{2}{*}{ASP Based Approach}}      & AsPrMin                     &                         \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & goDiamond                   &                         \\ \hline
+		\multicolumn{1}{l|}{\multirow{3}{*}{Labeling Based Approach}} & ArgTools                    &                         \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & EqArgSolver                 &                         \\ \cline{2-3} 
+		\multicolumn{1}{l|}{}                                         & heureka                     &                         \\ \hline
+		\multicolumn{1}{l|}{Static portfolio}                        & Chim\ae rarg &                         \\ \hline
+	\end{tabular}
+	\caption{Results of ICCMA 2017 competition by solver and technology}
+	\label{table:iccmaResultsbySolver}
+\end{table}
+
+\subsubsection{SAT Solvers}
+As could be seen in section \ref{approaches}, Boolean Satisfiability Solvers are preferred way of computing abstract argumentation semantics in the existing solvers. However its efficiency will depend on the implementation and the way the argumentation semantics were encoded. 
+
+Boolean Satisfiability problem, also known as SAT is a NP-Complete problem. Due to its significance in theoretical research and practical applications it is one of the most studied problems. The SAT problem asks for the an assignment of variables, so the provided Boolean formula will evaluate to true, or determination that such an assignment does not exist \citep{satSolver1}. For most of the SAT solvers, the Boolean formula has to be specified in the conjunctive normal form (CNF) \citep{SatSolver2}. \citet{cnfDefinition} perfectly describes CNF as "a single conjunction of disjunctions of (possibly negated) literals". 
+
+Some of the existing solvers take advantage of SAT Solver, iteratively searching for models of propositional formulae. The idea behind this approach is to iteratively constructs formulae that can be passed to the SAT solver and searched for models that can satisfy them. Most important aspect of this approach is to accurately and effectively encode the semantics into Boolean logic. 
+
+For example, in order to reduce Preferred Semantic into Boolean Satisfiability Problem, the formulae will have to ensure that the proposed model is the admissible set and it is a maximal subset, i.e. there is no proper subset which is also admissible. Only the elements that satisfy both conditions create the Preferred semantic. As shown by \citet{reasoningInArgumentationFr} the encoding for the admissibility set using extension-based approach can be represented as follow:
+
+\begin{equation}
+A < A' = \bigwedge\limits_{a \in A} (v_a \implies v_{a'}) \lor \neg \bigwedge\limits_{a' \in A'} (v_{a'} \implies v_a)
+\end{equation}
+
+In the above equation the set of renamed arguments in \textit{A} is denoted by $A' = \{a' | a \in A\}$. Furthermore, the renaming for attack relation s have been defined as $R' = \{(a',b') | (a,b) \in R\}$. This formula ensures that any model $ M \models (A < A')$ satisfies $ \{a \in A | v_a \in M\} \subset \{a \in A | v_{a'} \in M\} $. Having the admissible sets represented on the boolean formulea, the Preferred extension can be represented as a quantified boolean formulea, where the quantified variables be $ A'_v = \{v_{a'} | a' \in A'\} $:
+
+\begin{equation}
+prf_{A,R} = adm_{A,R} \lor \neg \exists A'_v ((A < A') \lor adm_{A',R'})
+\end{equation}
+
+The above equation checks whether the proposed arguments are an admissible set and whether there exists a proper superset, which is also admissible \citep{solvingMethods}.
+
+There are number of ways the argumentation frameworks semantics can be encoded and different implementations of solvers taking advantage of Boolean Satisfiability Solvers to compute the abstract argumentation framework extensions. As could be seen in the table \ref{table:iccmaResultsbySolver}, the SAT approach is the most preferred approach used within solvers submitted to ICCMA 2017. Interestingly, seven out of eight winning solvers were implemented using SAT based approach. 
+
+\paragraph{Pyglaf} \mbox{}\\ 
+Pyglaf, winner of three tracks, takes advantage of circumscription, a form of non-monotonic reasoning augmenting ordinary first order logic created by \citet{circumpscription}, to formalize the "common sense" assumptions, to solve computational problems of abstract argumentation frameworks.  Circumscriptino, the main solver, is written in C/C++, and is a circumscription solver extending the SAT solver Glucose \citep{glucose}. However, it uses Python to build the encodings for each semantic and to orchestrate calls to the external solver \citep{pyglaf}. 
+
+As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and ideal extension tracks. As can be seen in figures \ref{fig:coTrack}, \ref{fig:idTrack}, \ref{fig:stTrack}, Pyglaf not only scored the most points for each of them, but also had one of the shortest execution times while delivering correct solutions.
+
+\paragraph{argmat-sat} \mbox{}\\
+Argmat-sat developed by \citet{argmatSat} along with argmat-dvisat: division based algorithm framework \citep{argmatDvisat} and argmat-mpg: geocode based solver is another solver submitted to ICCMA 2017 competition. As can be seen in figures \ref{fig:ssTrack} and \ref{fig:stTrack}, Argmat-sat won semi-stable and stage extension tracks significantly outperforming it rivals. It was not only the highest scoring solver for those tracks, but also the fastest. Although argmat-sat won only two tracks, it still was in top 3 solvers for the remaining tracks.
+
+Argmat-sat is implemented purely in C++, using CryptoMiniSAT5 \citep{CryptoMiniSat} as its SAT engine. Similarly to pyglaf \citep{pyglaf}, argmat-sat provides a command line interface that allows to compute all 7 semantics plus Dung Triathlon, to conform to ICCMA 2017 competition requirements. It uses three different CNF encodings: stable extensions, admissible sets and complete extensions, where stable extensions encoding is purely used for computing stable extensions. Admissible sets and complete extensions encodings can be used for searching admissible, complete, preferred, grounded and ideal extensions \citep{argmatSat}. 
+
+In order to compute preferred extension, argmat-sat introduced the 'assumption space' to SAT solvers. Used as a temporary clause base it aids the SAT solver with searching for the maximal extension. Once it is found, the assumption space is cleared to allow for new maximal extension to be searched for. Furthermore, the assumption space is used for computing the semi-stable and stage semantics \citep{argmatSat}.
+
+
+\subsubsection{Constraint Satisfaction Problems}
+Constraint Satisfaction Problem "involves finding a value for each one of a set of problem variables where constraints specify that some subsets of values cannot be used together" \citep{csp1}. In simplified form it can be represented by a triple $(X, D, C)$, where:
+\begin{itemize}
+	\item $X = \{x_1, \ldots, x_n\} $ is the set of variables,
+	\item $ D = \{D_1, \ldots, D_n \} $ is a set of finite domains for variables
+	\item $ C = \{ C_1, \ldots, C_n \} $ is a set of constraints
+\end{itemize}
+Although CSP is NP-complete there are number of frameworks and libraries that support constraint programming \citep{solvingMethods}.
+
+Similarly to SAT solver approach in order to compute Preferred semantic for example, the constraints for admissible sets would have to be created. Although, most CSP solvers don't support subset maximization, the preferred extension can be computed on the basis of complete semantic with additional constraints to exclude certain sets \citep{solvingMethods}.
+
+Given the Argumentation Framework $ AF = (A,R)$, it can be mapped to constraint satisfaction problem $ CSP(X,D,C) $ by assigning all the arguments $A$ to the set of variables $X$ and create a domains for each variable $ a_i \in X, D_i = \{0,1\} $. The constraints can be created depending on the required semantic. For example, the conflict freeness of the sets can be represented as $((a,b),((0,0), (0,1),(1,0)))$ for $(a,b) \in R$, which is equivalent to either:
+\begin{enumerate}
+	\item \textit{a} and \textit{b} are not included in the solution
+	\item \textit{a} is not included in the solution, but \textit{b} is
+	\item \textit{a} is included in the solution, but \textit{b} is not
+\end{enumerate}
+
+Hence, as shown in the example in \citet{solvingMethods}, the admissible set can be encoded as:
+
+\begin{equation}
+c_adm = \{(a \implies \bigwedge\limits_{ b : (b,a) \in R } \neg  b) \lor (a \implies \bigwedge\limits_{b:(b,a) \in R} (\bigvee\limits_{c:(c,b) \in R} c) ) | a \in A\}
+\end{equation}
+
+The above equation can be split into two parts: the first part ensures that the set is conflict-free, and the second part encodes the defense of arguments \citep{csp2}. 
+
+As can be seen in table \ref{table:iccmaResultsbySolver}, there were three solvers using the CSP based approach submitted to the ICCMA 2017 competition. 
+
+\paragraph{CoQuiAAS} \mbox{} \\
+CoQuiAAS is the solver developed by \citet{coquiaas} and written in C++ programming language. Although CoQuiAAS is a stand alone system, after adapting the code, it can be used as a library instead \citep{coquiaas}.
+
+CoQuiAAS took part in both ICCMA competitions: 2015 and 2017. Although it only won the stage extension track in the most recent one, CoQuiAAS was an overall winner of the 2015 competition \citep{iccma2015}. Due to the efficient unit propagation technique used, the system performed incredibly well on the Grounded semantic. However, it failed short, being far behind the competitors, on the most computationally expensive semantics: preferred and stable. This can be seen in figure \ref{fig:prTrack} and \ref{fig:stTrack}.
+
+\subsubsection{Answer Set Programming}
+As described by \citet{asp}, Answer Set Programming is a "form of declarative programming oriented towards difficult search problems".
+
+
+\subsubsection{Labeling approach}
+Labeling approach is one of the direct approaches used for enumerating semantics of abstract argumentation frameworks. It is based on the concept of argument labellings, with three valued system: \textit{in}, \textit{out}, \textit{undec} being most famous due to \citet{caminadaLabeling}. The labels can be described as follow \citep{caminada2008gentle}:
+
+\begin{itemize}
+	\item \textit{in} - an argument is labeled \textit{in}, if and only if the argument has been accepted as part of the solution, i.e. all the defeaters of that arguments have been labeled \textit{out},
+	\item \textit{out} - an argument is labeled \textit{out}, if and only if the argument has been rejected as part of the solution, i.e. at least one of the defeaters of that argument have been labeled \textit{in},
+	\item \textit{undec} - an argument is labeled \textit{undec}, if no definitive position can be taken on whether the argument is accepted or rejected.
+\end{itemize}
+
+The idea behind the labeling approach is to label all arguments with one of the label to create a set of arguments that is also required extension. This is usually iterative approach, where with each iteration label for one of the arguments is fixed, propagating the information of the change to all neighbors. The algorithm finishes once there are no more changes done to the labels - extension has been found. Labeling based algorithms usually use a particular backtracking strategy in order to be more efficient. Further more different approaches to those types of algorithms may have their own strategy for selecting next argument to be labeled and how the label are being propagated throughout the arguments \citep{solvingMethods}.
+
+As can be seen in table \ref{table:iccmaResultsbySolver}, there were three labeling based solvers submitted to ICCMA 2017 competition. 
+
+\paragraph{ArgTools}\mbox{} \\
+ArgTools has been developed by \citet{argtools}. It is using the DPLL (Davis-Putnam-Logemann-Loveland) backtracking algorithm from SAT solving \citep{bierehandbook} to traverse an abstract binary tree created from the definition of the argumentation framework and labels them accordingly. 
+ 
+ArgTools is implemented purely in C++ and requires at least C++11 in order to be compiled \citep{argtools}. In terms of functionality, the solver adheres to the requirements of the ICCMA competition and can solve all the tasks for complete, stable, preferred, stage, semi-stable, grounded and ideal extensions including computing all or some extensions and also verifying if given argument can be credulously or skeptically accepted for all extensions. Once the ArgTools is build locally, it can be used from the command line, similarly to other solvers, by providing few arguments: location of argumentation framework, format of the file of argumentation framework, task to be performed, and argument to be checked if required. 
+
+
+\subsubsection{Other}
+There are number of other approaches that have not been covered in here, or have not been tried as of yet. Depending on approach they might not be as effective as using well defined and matured technology, however it is important to find a new ways and constantly improve existing solutions to find best approach.

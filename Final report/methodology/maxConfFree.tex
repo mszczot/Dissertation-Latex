@@ -18,7 +18,7 @@ Based on the proposition above, the maximal conflict free set can be calculated 
 	\centering
 	\includegraphics[width=\linewidth]{"img/mcf "}
 	\caption{Maximal Conflict Free sets creation example}
-	\label{fig:mcf}
+	\label{fig:mcfExample}
 \end{figure}
 
 Firstly, the attack \textit{(a,b)} is applied to the set of all arguments - \textit{\{a,b,c,d\}}, causing the set of arguments to split into two separate sets: one that does not contain argument \textit{b} - \textit{\{a,c,d\}}; and another that does not contain argument \textit{a} - \textit{\{b,c,d\}}. Then each attack from the argumentation framework is applied to the newly created sets, splitting them further into conflict free sets. Attack \textit{(b,c)} has impact only on the second set - \textit{\{b,c,d\}}, since argument \textit{b} is removed from the first set. Hence, applying the second attack to the sets, creates 3 sets: \textit{\{a,c,d\}}, \textit{\{c,d\}} and \textit{\{b,d\}}. Last attack - \textit{(c,d)}, has only impact on the first and second sets from the last step, giving the final set of Maximal Conflict Free sets of \textit{\{a,c\}}, \textit{\{a,d\}} and \textit{\{b,d\}}.

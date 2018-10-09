@@ -1,0 +1,21 @@
+\subsection{Performance}
+As could be seen in section \ref{approaches}, there are numerous ways to compute semantics of abstract argumentations. Furthermore, each approach, depending on technology, can be implemented using different algorithms, programming languages or existing systems. With such a range of possibilities it is important to reflect on the existing solvers.
+
+Results of ICCMA 2017 competition \citep{iccmaResults} gives an interesting overview of existing solvers and their performance. As shown in the table \ref{table:iccmaResultsbySolver}, majority of the winning solvers have been implemented using SAT based approach, and only winner of Stage semantic track has been implemented using CSP based approach. 
+
+Furthermore, majority of the solvers were using reduction based approaches, where computing semantics have been reduced to different, well defined problems. Out of overall 16 solvers submitted to ICCMA 2017 (appendix \ref{appendix:ICCMASubmissions}), only three of them were using a direct approach - labeling based approach. Although none of those solvers won any track, based on the figure \ref{fig:coTrack} to figure \ref{fig:prTrack}, it can be seen that their overall performance was mediocre. Depending on the semantics, the time required to compute it could be as much as double of the winning solver in that track. Furthermore, the scores accumulated by those solvers were significantly smaller than for the winning solvers, especially for Semi-Stable Track (figure \ref{fig:ssTrack}) and Stage Track (figure \ref{fig:stTrack}).
+
+\subsection{Ease of use}
+As described by \citet{easeOfUse}, the perceived ease of use is "the degree to which a person believes that using a particular system would be free of effort". In terms of the technology and the argumentation framework solvers, this can be translated to the effort required to setup those systems and the learning curve on how to use them. 
+
+In terms of the usage of the solvers submitted to ICCMA 2017 competition, they all are developed as a autonomous systems with command line interface. Due to the requirements of the competition they all implement the same command line arguments:
+
+\begin{itemize}
+	\item -f \textless file\textgreater - specifies the path to the file with argumentation framework
+	\item -p \textless task\textgreater - specifies the tasks that should be performed
+	\item -fo \textless fileformat\textgreater - specifies the format of the file for argumentation framework: apx or tgf
+\end{itemize}
+
+Majority of ICCMA 2017 solvers are implemented in C++ programming language, with few exception like goDiamond \citep{goDiamond}, which is implemented using Go language \citep{GoLang}, or Pyglaf \citep{pyglaf}, where is a mix of Python and C++ programming languages. 
+
+During the project two systems from ICCMA 2017 competition were set up on the testing machine: Pyglaf \citep{pyglaf} and argmat-sat \citep{argmatSat}.
