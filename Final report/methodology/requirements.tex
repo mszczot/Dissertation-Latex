@@ -2,6 +2,23 @@
 Number of functional and non-functional requirements have been identified and classified using MoSCoW system during the design stage. 
 
 \subsubsection{Functional Requirements}
-Majority of functional requirements have been created based on the requirements of International Competition on Computational Models of Argumentation 2017. 
+Majority of functional requirements have been created based on solver requirements for International Competition on Computational Models of Argumentation 2017. Furthermore, those requirements can be characterized based on their functionality:
+\begin{itemize}
+	\item Computational functionality - those include all different types of semantics and individual tasks related to them. For example, a requirement will exist for the solver to compute the stable extensions of the given argumentation framework. However, this could be further split up into separate tasks: compute all extensions, some extensions, evaluate if the given argument is skeptically or credulously accepted.
+	\item Solver functionality - those include additional requirements that the solver should have. They might include requirements like solver should be able to read \textit{tgf} file and parse the argumentation framework from them, etc.
+\end{itemize}
+
+In terms of the computational functionality, Alias is required to solve all semantics identified in section \ref{sec:argumentationSemantics}, which are as follow: complete, stable, preferred and grounded extensions \citep{dung1995}, stage \citep{verheij1996two}, ideal \citep{dung2007computing}, and semi-stable \citep{caminada2006semi} semantics. Although seven individual semantics have been identified as the requirements for the solver, only three of them: complete, stable and preferred, have been classified as \textit{Mush Have} in terms of MoSCoW approach. The proposed semantics are part of the original group of extensions introduced by \citet{dung1995} in his paper. 
+
+Furthermore, as mentioned above, there are number of tasks that the solver should be able to perform for each semantic and as seen in the section \ref{approaches}, those are as follow:
+\begin{enumerate}
+	\item Given an abstract argumentation framework compute some of the extensions
+	\item Given an abstract argumentation framework compute all extensions
+	\item Given an abstract argumentation framework and some argument, decide whether the given argument is credulously accepted
+	\item Given an abstract argumentation framework and some argument, decide whether the given argument is skeptically accepted
+\end{enumerate}
+
+Above tasks are relevant to all semantics with exception to grounded and ideal extensions, where only tasks 1 and 3 can be performed. Hence, it brings up the overall number of tasks for all semantics to 24 separate tasks. Thus, to deliver solution with the most value, for the extensions categorized as \textit{Must Have}, only tasks to compute all extensions have been categorized as \textit{Must Haves}. The remaining tasks for each of them have been classified as \textit{Should Have} and all the remaining tasks for all other extensions as \textit{Could Have}. This can be seen in appendix \ref{appendix:requirementAnalysis}.
 
 \subsubsection{Non-Functional Requirements}
+Apart from all functional requirements, number of non-functional requirements have also been identified. Those are mostly concerned with the performance and scalability of the proposed solution. Although those do not bring any tangible value to the finished system, those requirements are critical to produce the high performance and scalable system that could match existing solvers in terms of computation time. 
