@@ -290,6 +290,12 @@ ArgTools has been developed by \citet{argtools}. It is using the DPLL (Davis-Put
  
 ArgTools is implemented purely in C++ and requires at least C++11 in order to be compiled \citep{argtools}. In terms of functionality, the solver adheres to the requirements of the ICCMA competition and can solve all the tasks for complete, stable, preferred, stage, semi-stable, grounded and ideal extensions including computing all or some extensions and also verifying if given argument can be credulously or skeptically accepted for all extensions. Once the ArgTools is build locally, it can be used from the command line, similarly to other solvers, by providing few arguments: location of argumentation framework, format of the file of argumentation framework, task to be performed, and argument to be checked if required. 
 
+\paragraph{Alias} \label{section:alias}
+
+"ALIAS is a Python library for constructing, manipulating, storing, visualising, and converting argumentation structues" \citep{alias}. It allows to compute the three extensions: complete, preferred and stable, and to build the labellings for complete, grounded, preferred, stable and semi-stable semantics. Since Alias is implemented purely in Python, it can be used as a stand alone tool or a programming library. 
+
+Testing of Alias shown that it is a great tool for computing the abstract argumentation semantics on the smaller argumentation framework. In order to calculate the extensions it generates the power sets of all arguments, and checks whether each individual set is a part of the solution. This approach ensures the correct answer is produced every time, as every possible combination is examined, however, it causes problems with argument frameworks of size larger than twenty arguments. Generating the power set of all arguments and iterating through each possible combination is resource intensive and time consuming. 
+
 
 \subsubsection{Other}
 There are number of other approaches that have not been covered in here, or have not been tried as of yet. Depending on approach they might not be as effective as using well defined and matured technology, however it is important to find a new ways and constantly improve existing solutions to find best approach.

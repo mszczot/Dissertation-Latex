@@ -18,6 +18,17 @@ In terms of the usage of the solvers submitted to ICCMA 2017 competition, they a
 
 Majority of ICCMA 2017 solvers are implemented in C++ programming language, with few exception like goDiamond \citep{goDiamond}, which is implemented using Go language \citep{GoLang}, or Pyglaf \citep{pyglaf}, where is a mix of Python and C++ programming languages. 
 
-During the project two systems from ICCMA 2017 competition were set up on the testing machine: Pyglaf \citep{pyglaf} and argmat-sat \citep{argmatSat}. 
+During the project two systems from ICCMA 2017 competition were set up on the testing machine: Pyglaf \citep{pyglaf} and ArgSem-SAT \citep{argsemsat}. 
 
-As seen in section \ref{section:pyglaf}, Pyglaf is implemented using Python for building encodings of semantics and C++ programming language for the main solver. 
+As seen in section \ref{section:pyglaf}, Pyglaf is implemented using Python for building encodings of semantics and C++ programming language for the main solver. Hence, in order to use Pyglaf, user has to manually build Circumscriptino \citep{circumscriptino} solver and either provide the path to it to Pyglaf, or move it to the same folder as Pyglaf executable exists. The source code for pyglaf and Circumsriptino can be obtained either from GitHub or all required files compressed together can be found on Mark Alviano website \textit{https://alviano.com/software/pyglaf/}. Although, Pyglaf won the most track in ICCMA 2017 competition, the steps required to set it up can be troublesome, especially for someone with limited technological skills. 
+
+Similarly to Pyglaf, in order to use ArgSem-SAT solver, user is required to build the source code himself. However, ArgSem-SAT source code is not easily available through any version control systems, but instead can be found on Source Forge website \textit{https://sourceforge.net/projects/argsemsat/}. The build script is provided together with the source code, which helps with the set up of the solver. However, the solver is dependent on the STLSoft C++ library \citep{stlsoft}, which is providing facades over operating-system and technology specific APIs and Standard Template Library. The problem starts when user tries to build solver using any latest version of the GCC Compiler \citep{gcc}. As shown in figure \ref{fig:argsemsatBuildError}, the STLSoft library only supports GCC compilers up to version 4. However, the latest released version of GCC is 8.2 as of July 2018 \citep{gcc} and any up to date Linux distribution will use version 5 or higher. Hence, in order to use ArgSem-SAT the user is forced to downgrade the compiler. Again, this can be troublesome and problematic for certain users.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{"img/argsemsat_error"}
+	\caption{ArgSem-SAT build error}
+	\label{fig:argsemsatBuildError}
+\end{figure}
+
+

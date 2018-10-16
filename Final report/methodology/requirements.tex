@@ -18,7 +18,8 @@ Furthermore, as mentioned above, there are number of tasks that the solver shoul
 	\item Given an abstract argumentation framework and some argument, decide whether the given argument is skeptically accepted
 \end{enumerate}
 
-Above tasks are relevant to all semantics with exception to grounded and ideal extensions, where only tasks 1 and 3 can be performed. Hence, it brings up the overall number of tasks for all semantics to 24 separate tasks. Thus, to deliver solution with the most value, for the extensions categorized as \textit{Must Have}, only tasks to compute all extensions have been categorized as \textit{Must Haves}. The remaining tasks for each of them have been classified as \textit{Should Have} and all the remaining tasks for all other extensions as \textit{Could Have}. This can be seen in appendix \ref{appendix:requirementAnalysis}.
+Above tasks are relevant to all semantics with exception to grounded and ideal extensions, where only tasks 1 and 3 can be performed. Hence, it brings up the overall number of tasks for all semantics to 24 separate tasks. Thus, to deliver solution with the most value, for the extensions categorized as \textit{Must Have}, only tasks to compute all extensions have been categorized as \textit{Must Haves}. The remaining tasks for each of them have been classified as \textit{Should Have}. Furthermore, computing all Semi-Stable and Stage extensions have been categorized as \textit{Could Have}, with all the remaining tasks and extensions as \textit{Won't Have}. This can be seen in table \ref{table:moscowSemanticRequirements} and further in the appendix \ref{appendix:requirementAnalysis}. 
+
 
 % Please add the following required packages to your document preamble:
 % \usepackage{multirow}
@@ -56,5 +57,11 @@ Above tasks are relevant to all semantics with exception to grounded and ideal e
 	\end{tabular}
 \end{table}
 
+
+The above classification is only concerned with the argumentation semantics and its tasks. Other requirements have been identified that although are not concerned with solving the abstract argumentation semantics are needed for the solver and can improve the system. As an example, Alias should be able to read parse the argumentation framework from the provided file, like \textit{tgf} or \textit{apx}, or from dot graph or even the database. Furthermore, the user should be able to save created argumentation framework in different formats for future use. 
+
+Although original implementation of Alias provides a certain aspects of those requirements, during the development of the new version, the architecture of the system and its implementation will have to be reviewed and modified to allow for the changes.
+
 \subsubsection{Non-Functional Requirements}
 Apart from all functional requirements, number of non-functional requirements have also been identified. Those are mostly concerned with the performance and scalability of the proposed solution. Although those do not bring any tangible value to the finished system, those requirements are critical to produce the high performance and scalable system that could match existing solvers in terms of computation time. 
+
