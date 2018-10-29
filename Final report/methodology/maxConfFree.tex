@@ -92,7 +92,7 @@ Using PyTables for storage of all generated sets will release the huge amount of
 \end{enumerate}
 
 
-\subsubsection{Dictionaries}
+\subsubsection{Dictionaries}\label{sec:dicts}
 Another approach to implement the maximal conflict free set algorithm is to use data structure 'defaultdict'. 'Defaultdict' class provides a new dictionary-like object, where the first argument in the constructor specifies default factory attribute. It is a subclass of a standard 'dict' class in Python and majority of the methods are the same between 'defaultdict' and 'dict' classes \citep{defaultdict}.
 
 The implementation uses two 'defaultdict' classes with sets as its default factory attribute. One of the dictionaries is used to store all the arguments from the argumentation framework as the keys and a set of references to the conflict free sets as a value. Second dictionary is used to store the conflict free sets, where the key is just the identifier that gets incremented with every new record and the value is a set of the argument names in that particular conflict free set. Table \ref{table:dictsRepresentation} shows an example of the dictionaries being used to compute the maximal conflict free sets based on the argumentation framework \ref{fig:argumentationFrameworkFigure} from section \ref{abstractArgumentation}.

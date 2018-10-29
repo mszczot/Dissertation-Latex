@@ -1,7 +1,72 @@
 \subsection{Boolean Satisfiability Solver} \label{section:satSolver}
 
 
-\subsubsection{PicoSAT with PycoSAT}
+\subsubsection{PicoSAT and PycoSAT} \label{section:pycosat}
+PicoSAT is a Boolean Satisfiability Solver for boolean variables in boolean expressions written by Armin Bierre \citep{picosatMan}. Implemented in C, PicoSAT optimized with compact data structures for watching literals provides a high performance solver capabilities with low memory usage \citep{picosat}.
+
+PycoSAT is a Python package that provides user-friendly interface for interacting with PicoSAT \citep{pycoSat}. The advantage of PycoSAT is that it imports the PicoSAT binaries directly, which removes the hassle of manually building the solver. PycoSAT provides only two functions \citep{pycosatPyPi}: 
+\begin{enumerate}
+	\item \textit{solve} - where only a single solution is returned, or the "UNSAT" string when the clauses are unsatisfiable
+	\item \textit{itersolve} - returns iterator over solutions
+\end{enumerate}
+
+The advantage of PycoSAT is the ability to easily create clauses in form of boolean conjunctions of disjunctions. Hence, encoding the conflict-free, admissible sets and extensions can be easily achieved. PycoSAT clauses are defined in terms of list of lists. In order to show the encodings let consider the example from PycoSAT documentation \citep{pycosatGithub}. 
+
+\begin{figure}
+\begin{tcolorbox}
+	p cnf 5 3 \\
+	1 -5 4 0 \\ 
+	-1 5 3 4 0 \\
+	-3 -4 0 
+\end{tcolorbox}
+\caption{Example of PycoSAT problem}
+\label{fig:pycosat1}
+\end{figure}
+
+The above example represents the example clauses encoded using DIMACS CNF format. The first line of the example is used to provide information about the clauses. \textit{p} stands for \textit{problem} and indicates that this line is used to define the problem to be solved. \textit{cnf} describes the file type, which is followed by the number of variables and clauses. Hence, we can conclude that this particular problem contains 5 variables and 3 clauses. 
+
+The following 3 lines are representing individual clauses. Each number represents one of the 5 variables and the sign next to the number shows whether the variable should or should not be included in the solution. Hence, the first line can be translated into $ a_1 \lor \neg a_5 \lor a_4 \lor a_0 $. 
+
+\begin{figure}
+\begin{minted}{python}
+	>>> import pycosat
+	>>>
+	>>> cnf = [[1, -5, 4], [-1, 5, 3, 4], [-3, -4]]
+	>>> for sol in pycosat.itersolve(cnf):
+	...	    print(sol)
+\end{minted}
+\caption{PycoSAT usage example}
+\label{fig:pycosatUsage}
+\end{figure}
+
+Example \ref{fig:pycosat1} can be translated into list of lists and used with PycoSAT as shown in figure \ref{fig:pycosatUsate}. The clauses encodings are passed into itersolve method of PycoSAT, which in turn returns iterator. The example above will produce following output:
+
+\begin{figure}
+	\begin{minted}{python}
+[1, -2, -3, -4, 5]
+[1, -2, -3, 4, -5]
+[1, -2, -3, 4, 5]
+[1, -2, 3, -4, -5]
+[1, -2, 3, -4, 5]
+[1, 2, 3, -4, -5]
+[1, 2, 3, -4, 5]
+[1, 2, -3, -4, 5]
+[1, 2, -3, 4, -5]
+[1, 2, -3, 4, 5]
+[-1, 2, -3, 4, -5]
+[-1, 2, -3, 4, 5]
+[-1, 2, -3, -4, -5]
+[-1, 2, 3, -4, -5]
+[-1, -2, 3, -4, -5]
+[-1, -2, -3, -4, -5]
+[-1, -2, -3, 4, 5]
+[-1, -2, -3, 4, -5]
+	\end{minted}
+	\caption{PycoSAT example output}
+	\label{fig:pycosatOutput}
+\end{figure}
+
+The output presented in figure \ref{fig:pycosatOutput}, is the list of all possible combination of 5 variables that satisfy the clauses from figure \ref{fig:pycosat1}. With appropriate mapping, the values from output can easily be replaced with appropriate variables to create individual solutions. 
 
 
 
