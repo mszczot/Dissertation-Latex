@@ -65,4 +65,20 @@ Although original implementation of Alias provides a certain aspects of those re
 \subsubsection{Non-Functional Requirements}
 Apart from all functional requirements, number of non-functional requirements have also been identified. Those are mostly concerned with the performance and scalability of the proposed solution. Although those do not bring any tangible value to the finished system, those requirements are critical to produce the high performance and scalable system that could match existing solvers in terms of computation time. 
 
-Hence, based on the results of original Alias implementation and timings from the solvers submitted to ICCMA 2017, the timing requirements have been created. 
+In terms of performance and scalability, the requirement for the Alias is to be able to cope with argumentation frameworks of any size. User should be confident that the application will be able to provide the correct results all time, no matter the size of provided framework. Although, it is difficult to convert it into tangible requirements, the attempt has been made to specify brackets for different sizes of argumentation frameworks: 
+
+\begin{enumerate}
+	\item Small - up to 20 arguments and relations
+	\item Medium - from 20 up to 100 arguments and relations
+	\item Large - above 100 arguments 
+\end{enumerate}
+
+However, the above classification is only concerned with the size of graph generated from the argumentation framework. Although this can usually correspond to the complexity of the framework, it is not always the case. For example, argumentation framework shown in figure \ref{fig:mediumAF} consist of only 41 arguments and 73 attacks. However, the testing of proposed solutions showed that although the argumentation framework is of medium size, the complexity of relations between the arguments proved to be challenging due to many arguments defending themselves. Thus, the above classification will only be used for establishing basic requirements for the application to be able to handle all types of argumentation frameworks. 
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{medium}
+	\caption{Medium sized argumentation framework}
+	\label{fig:mediumAF}
+\end{figure}
+
+Another aspect of non-functional requirements is the ease of use of the application. Original Alias application has been implemented in Python, an interpreted, high-level programming language \citep{millman2011python}. Although Python has been designed as the general purpose language, it became very popular. And with the libraries like NumPy and SciPy, it became a popular choice for high-level scientific code development \citep{perez2011python}. Thus, the Python implementation of abstract argumentation semantics solver without the need to setup the environment in any way prior to using it would be beneficial. Being able to install the Alias from the PyPi, the Python package manager \citep{pypi}, and use it 'out of the box', gives it an advantage over other solvers.

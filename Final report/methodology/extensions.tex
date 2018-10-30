@@ -34,7 +34,7 @@ The only values used within the matrix are 0 and 1, where 1 indicates that there
 
 As \citet{afmatrices1} points out, matrices can only be used to answer a single question with reasonable efficiency from the work of \citet{bench2007argumentation}: 'Is \textit{A} an extension?'. And although \citet{afmatrices1} implemented system called ASSA \citep{assa}, to compute all stable extensions using purely matrices, this approach is inefficient. In order to find all stable extensions the proposed solver needs to create all possible instances of selected set of arguments into a vector form. It then combines all vectors into a single massive matrix \citep{afmatrices1}. Thus, the proposed approach is ineffective, especially when compared to other available solvers.
 
-\citet{matrix2} in his paper presented different approach of using the matrices to verify if the given set is an extension. The argumentation framework can be divided into three parts: 
+\citet{matrix2} in their paper presented different approach of using the matrices to verify if the given set is an extension. The argumentation framework can be divided into three parts: 
 \begin{enumerate}
 	\item The conflict-free set $S$
 	\item The attacked set: $R^+(S)$
@@ -43,5 +43,102 @@ As \citet{afmatrices1} points out, matrices can only be used to answer a single 
 
 By using sub-blocks of the matrix for different parts of the argumentation framework and transforming the matrix into one of the two standard forms, the proposed approach allows to check if the given set is conflict free, admissible, stable, complete, preferred and grounded extensions \citep{matrix2}.
 
-\subsubsection{Preferred Extension} \label{section:preferredExtension}
+
 \subsubsection{Complete Extension}
+The implementation for verifying if the given set is a Complete Extension is based on the approach presented by \citet{xu2015matrix}. By dividing the matrix into certain sub-blocks, they found a dependency between column and row vectors that allow to confirm if the set is in fact a complete extension.
+
+Lets consider an example presented by \citet{xu2015matrix}: given the argumentation framework $AF = (Args, attacks)$, where $Args = \{1,2,3,4,5\}$ and $attacks = \{(2,5), (3,4), (4,3), (5,1), (5,3)\}$, it can be represented in a graph as shown in figure \ref{fig:exampleAF}.
+
+\begin{figure}[h]
+	\tikzset{
+		main/.style={draw, rectangle, rounded corners, minimum height=1cm, minimum width=4.5cm},
+		arrow/.style={thick,<-,>=stealth}
+	}
+	\centering
+	\begin{tikzpicture}[auto,node distance=1.5cm]
+	\coordinate(coor);
+	\node[draw=none,fill=none][above=0.75cm of coor](2){2};
+	\node[draw=none,fill=none][below=0.75cm of coor](1){1};
+	\node[draw=none,fill=none][right=of coor](5){5};
+	\node[draw=none,fill=none][right=of 5](3){3};
+	\node[draw=none,fill=none][right=of 3](4){4};			
+	%%% ARROWS %%%
+	\draw[arrow](5) -- (2);
+	\draw[arrow](1) -- (5);
+	\draw[arrow](3) -- (5);
+	\draw[thick,<-,>=stealth,transform canvas={yshift=-0.2em}](3) -- (4);
+	\draw[thick,<-,>=stealth,transform canvas={yshift=0.5em}](4) -- (3);
+	\end{tikzpicture}
+	\caption{Argumentation Framework \ref{fig:exampleAF}}
+	\label{fig:exampleAF}
+\end{figure}
+
+The above argumentation framework can also be represented in form of the matrix as shown in figure \ref{fig:exampleAFMatrix}.
+
+\begin{figure}[h]
+	\centering
+	\begin{blockarray}{cccccc}
+		& 1 & 2 & 3 & 4 & 5\\
+		\begin{block}{c[ccccc]}
+			1 & 0 & 0 & 0 & 0 & 0 \\
+			2 & 0 & 0 & 0 & 0 & 1 \\
+			3 & 0 & 0 & 0 & 1 & 0 \\
+			4 & 0 & 0 & 1 & 0 & 0 \\
+			5 & 1 & 0 & 1 & 0 & 0 \\
+		\end{block}	
+	\end{blockarray}
+	\caption{Matrix representation of Argumentation Framework from figure \ref{fig:exampleAF}}
+	\label{fig:exampleAFMatrix}
+\end{figure}
+
+Lets consider an admissible set $S = \{1,2\}$. In order to verify if the set $S$ is complete, the matrix should be divided into sub-blocks as shown in figure \ref{fig:subblocks}. The green area represents the set $S$, orange sub-block of relation between the set $S$ and the remaining arguments indicated by $M^s(\{1,2\})$, while yellow sub-block of arguments not included in the set $S$ indicated by $M^c(\{1,2\})$. 
+
+\citep{xu2015matrix} proposes the following theorem:
+\begin{theorem}
+Given $AF = (A, R)$ with $A = {1, 2, ..., n}$, an admissible extension $S = {i_1, i_2, ..., i_k} \subseteq A$ is complete if and only if:
+\begin{enumerate}\label{theorem:completeMatrix}
+	\item some column vector $M^s_{*,p}$ of the s-sub-block $M^s(S)$ is zero, then its corresponding column vector $M^c_{*,p}$ of the c-sub-block $M^c(S)$ is non-zero, and
+	\item for each non-zero column vector $M^c_{*,p}$ of the c-sub-block $M^c(S)$ appearing in (1), there is at least one non-zero element $a_{j_q,j_p}$ of $M^c_{*,p}$ such that the corresponding column vector $M^s_{*,q}$ of the s-sub-block $M^s(S)$ is zero, where $\{j_1,j_2,...,j_h\} = A\backslash S$ and $1\leq q,p \leq h$.
+\end{enumerate}
+\end{theorem}
+
+
+\begin{figure}[h]
+	\centering
+	\begin{tabular}{llllll}
+		& \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\ \hline
+		\multicolumn{1}{l|}{\textbf{1}} & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} \textbf{0}} & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} \textbf{0}} & \cellcolor[HTML]{F8A102}\textbf{0} & \cellcolor[HTML]{F8A102}\textbf{0} & \cellcolor[HTML]{F8A102}\textbf{0} \\
+		\multicolumn{1}{l|}{\textbf{2}} & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} \textbf{0}} & \cellcolor[HTML]{32CB00}{\color[HTML]{FFFFFF} \textbf{0}} & \cellcolor[HTML]{F8A102}\textbf{0} & \cellcolor[HTML]{F8A102}\textbf{0} & \cellcolor[HTML]{F8A102}\textbf{1} \\
+		\multicolumn{1}{l|}{\textbf{3}} & 0 & 0 & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{0}} & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{1}} & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{0}} \\
+		\multicolumn{1}{l|}{\textbf{4}} & 0 & 0 & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{1}} & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{0}} & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{0}} \\
+		\multicolumn{1}{l|}{\textbf{5}} & 1 & 0 & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{1}} & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{0}} & \cellcolor[HTML]{FCFF2F}{\color[HTML]{000000} \textbf{0}}
+	\end{tabular}
+	\caption{Matrix sub-blocks of Argumentation Framework \ref{fig:exampleAF} for set $S = \{1,2)\}$}
+	\label{fig:subblocks}
+\end{figure}
+
+From the figure \ref{fig:subblocks}, it can be seen that the $M^s(\{1,2\})$, contains two zero column vectors: $M^s_{*,1} = \begin{pmatrix}
+0\\ 
+0
+\end{pmatrix}$ and $M^s_{*,2} = \begin{pmatrix}
+0\\ 
+0
+\end{pmatrix}$ . Their corresponding column vectors in $M^c(\{1,2\})$ are $M^c_{*,1} = \begin{pmatrix}
+0\\ 
+1\\ 
+1
+\end{pmatrix}$ and $M^c_{*,2} = \begin{pmatrix}
+1\\ 
+0\\ 
+0
+\end{pmatrix}$, which are all non-zero. Furthermore, for $a_{43} = 1$ in $M^c_{*,1}$, the corresponding column vector $M^s_{*,2}$ in $M^s(\{1,2\})$ is zero. And for $a_{34} = 1$ in $M^c(\{1,2\})$, the corresponding column vector $M^s_{*,1}$ in $M^s(\{1,2\})$ is also zero. Hence based on the theorem \ref{theorem:completeMatrix}, subset $S = \{1,2\}$ is a Complete Extension of $AF$.
+
+In order to implement this in Python, SciPy \citep{jones2014scipy} sparse matrix object has been used. Class Matrix has been created that takes the responsibility of matrix creation and accessing the required sub-blocks of matrix. Once the solver provides a possible solution, then both both c and s sub-blocks of the matrix are fetched. Once all the required data is gathered, the first condition of the theorem \ref{theorem:completeMatrix} can be verified. The columns of each sub-block are summed, zipped together and compared. If the sum of the corresponding columns in s-block and c-block are equal to 0 then the application breaks out of the method returning False. 
+
+Once all the column sums have been checked the application can move to the second condition of the theorem. Search is performed to filter out all the elements from c sub-block with value 1. For each element $a_{i,j}$ from the generated list, the corresponding value from the sum of columns of s sub-block is checked. The dictionary holding results for all columns is updated setting the value to either True if the corresponding column vector from s sub-block is 0, or False otherwise. There are additional checks to ensure the record does not already exists in the dictionary, as this condition has to be met for at least one non-zero element from each column vector of c sub-block.
+
+\subsubsection{Preferred Extension} \label{section:preferredExtension}
+Preferred extensions are checked in similar way to the Complete Extensions above. By definition \ref{def:preferredExtension}, Preferred Extension is the maximal, with respect to set inclusion, admissible set of arguments. Hence, the only checks we have to do is to verify if the given set is admissible and if it is maximal with respect to set inclusion.
+
+Similarly to the complete extension, SciPy matrix representations have been used for the argumentation frameworks. Once the solver generates possible solution, the fetch of arguments to be checked is performed. However, in case of the Preferred extension, the application only fetches the arguments not included in the proposed solution and not attacked by the solution. Hence, the required matrix is a c sub-block without the attacked set $R^+(S)$.
+ 
