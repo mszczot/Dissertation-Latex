@@ -42,6 +42,7 @@
 \usepackage{multirow}
 \usepackage{tcolorbox}
 \usepackage[cache=false]{minted}
+\usepackage{dirtree}
 
 \graphicspath{{./img/}}
 
@@ -200,6 +201,14 @@
 	gg-sts & 323.0009643 & -1107 \\	
 }\preferredResults
 
+\pgfplotstableread[row sep=\\, col sep=&]{
+Args & attacks & Time \\
+2/1 & 1 & 0.000087 \\
+13/17 & 17 & 0.1819 \\
+15/5 & 5 & 0.9173 \\
+15/2 & 2 & 1.8042 \\
+19/15 & 15 & 238.425 \\
+}\aliasvResults
 
 %this starts the document
 \begin{document}

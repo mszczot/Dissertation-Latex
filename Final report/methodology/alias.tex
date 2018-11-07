@@ -53,4 +53,72 @@ This structure and the relations between them can be seen in figure \ref{fig:ali
 \end{landscape}
 
 \subsubsection{Performance}
+As mentioned above, current implementation of ALIAS generates a power set from all arguments within the argumentation framework and checks each of them to create the solution. As can be seen in figure \ref{fig:aliasPerResults}, the time required to compute Stable extensions grows exponentially with the size of the argumentation framework. 
 
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\begin{semilogyaxis}
+		[
+		log ticks with fixed point,
+		xlabel=Args/Attacks,
+		ylabel=Time (secs),
+		symbolic x coords={2/1, 13/17, 15/5, 15/2, 19/15},
+		xtick=data,
+	    x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+	    y label style={at={(axis description cs:-0.1,.5)},anchor=south},
+		legend style={at={(0.95,0.2)},anchor=east}
+		]
+
+	\addplot[mark=diamond*,thick,red] coordinates {
+		(2/1,0.000087)
+		(13/17,0.1819)
+		(15/5, 0.9173)
+		(15/2, 1.8042)
+		(19/15, 238.425)
+	};
+	\legend{Time}
+	\end{semilogyaxis}
+	\end{tikzpicture}
+	
+	\caption{ALIAS Performance Results for Stable Extensions}
+	\label{fig:aliasPerResults}
+	
+\end{figure}
+
+Furthermore, the approach of creating a power set from all arguments within the framework is memory intensive. Figure \ref{fig:bytesPowerSet} shows how much memory in bytes is required to store a power set based on the number of elements. As it can be seen the memory usage is exponentially growing with every additional element in the list. Thus, with this approach, the available memory can quickly be used for storing the power set of all arguments, making the machine ALIAS is run on, unusable.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}
+	[
+	log ticks with fixed point,
+	xlabel=Number of elements,
+	ylabel=Size (bytes),
+	symbolic x coords={1,2,3,4,5,6,7,8,9,10},
+	xtick=data,
+	x label style={at={(axis description cs:0.5,-0.1)},anchor=north},
+	y label style={at={(axis description cs:-0.1,.5)},anchor=south},
+	legend style={at={(0.95,0.2)},anchor=east}
+	]
+	
+	\addplot[mark=diamond*,thick,red] coordinates {
+		(1,80)
+		(2,96)
+		(3,128)
+		(4,192)
+		(5,320)
+		(6,576)
+		(7,1088)
+		(8,2112)
+		(9,4160)
+		(10,8256)
+	};
+	\end{axis}
+	\end{tikzpicture}
+	
+	\caption{Size of Power Set in bytes}
+	\label{fig:bytesPowerSet}
+	
+\end{figure}

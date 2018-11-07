@@ -11,7 +11,7 @@ The back-end of web interface has been implemented using Python Flask micro fram
 
 In order to display the Argumentation Framework as a graph in the User Interface, the CytoscapeJS \citep{cytoscapejs} framework has been used with the Cola.js constraint-based layout type. As can be seen in figure \ref{fig:webUi}, those technologies allow for creation of complex directed graphs which are dynamically balanced.
 
-\begin{figure}
+\begin{figure}[h]
 	\includegraphics[width=\textwidth]{webui}
 	\caption{ALIAS Web User Interface}
 	\label{fig:webUi}
@@ -19,21 +19,21 @@ In order to display the Argumentation Framework as a graph in the User Interface
 
 The Web Interface allows the user to upload their own Argumentation Framework in trivial graph format. Although ALIAS can parse Argumentation Frameworks from different file formats like apx or JSON, at the moment the web interface can work only in tgf file format. All the user interaction uploading the framework, adding arguments and attacks are done through modal boxes in HTML structure. This can be seen in figures \ref{fig:upload}, \ref{fig:addArgument}, \ref{fig:addAttacks}. Each modal consist of the form that allows the user to either select the file to upload, or enter id of the argument or id of attacking and attacked arguments. Once the form is submitted, the ajax call is made through JQuery to access the exposed methods from ALIAS. As mentioned above, each method implemented with Flask returns the JSON representation of the current Argumentation Framework. Once the ajax call was successful, the returned framework is rendered in Web Interface using Cytoscape.js.
 
-\begin{figure}
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{upload}
 	\caption{ALIAS Web User Interface - upload Argumentation Framework modal}
 	\label{fig:upload}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{addArgument}
 	\caption{ALIAS Web User Interface - Add Argument modal}
 	\label{fig:addArgument}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\textwidth]{addAttack}
 	\caption{ALIAS Web User Interface - Add Attacks modal}
