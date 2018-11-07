@@ -1,0 +1,10 @@
+\subsection{Performance}
+As could be seen in section \ref{approaches}, there are numerous ways to compute semantics of abstract argumentations. Furthermore, each approach, depending on technology, can be implemented using different algorithms, programming languages or existing systems. With such a range of possibilities it is important to reflect on the existing solvers.
+
+Results of ICCMA 2017 competition \citep{iccmaResults} gives an interesting overview of existing solvers and their performance. As shown in the table \ref{table:iccmaResultsbySolver}, majority of the winning solvers have been implemented using SAT based approach, and only winner of Stage semantic track has been implemented using CSP based approach. 
+
+Furthermore, majority of the solvers were using reduction based approaches, where computing semantics have been reduced to different, well defined problems. Out of overall 16 solvers submitted to ICCMA 2017 (appendix \ref{appendix:ICCMASubmissions}), only three of them were using a direct approach - labeling based approach. Although none of those solvers won any track, based on the figure \ref{fig:coTrack} to figure \ref{fig:prTrack}, it can be seen that their overall performance was mediocre. Depending on the semantics, the time required to compute it could be as much as double of the winning solver in that track. Furthermore, the scores accumulated by those solvers were significantly smaller than for the winning solvers, especially for Semi-Stable Track (figure \ref{fig:ssTrack}) and Stage Track (figure \ref{fig:stTrack}).
+
+\subsubsection{ICCMA 2017 Solvers}
+
+\subsubsection{Scalability}
