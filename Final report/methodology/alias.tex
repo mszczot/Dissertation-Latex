@@ -5,7 +5,52 @@ ALIAS can also produce the labellings for complete, grounded, preferred, stable 
 
 The benefit of ALIAS is its ability to read and parse argumentation frameworks from multiple input formats. In the existing implementation, Apart from standard input of tgf (Trivial Graph Format) and apx (Ability Photopaint Studio Image) files, ALIAS also support input from JSON, DOT graph, networkx and databases SQLLite, mySql and Neo4j. 
 
+Although current implementation of ALIAS don't have any mandatory dependencies, additional dependencies are required to allow for additional functionality:
+\begin{itemize}
+	\item Input/Output
+	\begin{itemize}
+		\item pyparsing - module for file input and output
+		\item networkx - used for conversion to and from NetworkX graphs 
+	\end{itemize}
+	\item Databases
+	\begin{itemize}
+		\item sqlalchemy - required for interaction with SQL based databases
+		\item py2neo - used with neo4j graph databases
+	\end{itemize}
+	\item Testing
+	\begin{itemize}
+		\item nose - Nose Testing Framework
+	\end{itemize}
+\end{itemize}
+
+Those dependencies can be easily installed through setup script if required. 
 
 \subsubsection{ALIAS Structure}
+Currently ALIAS is made of 3 modules: 
+
+\begin{itemize}
+	\item classes - consist of classes representing argumentation framework, arguments and labelling
+	\item inout - module responsible for input and output from and to different file formats
+	\item semantics - collection of static methods used for computing extensions and labellings of given argumentation framework.
+\end{itemize}
+
+This structure and the relations between them can be seen in figure \ref{fig:aliasUml1}. Inout and semantics modules requires framework class from classes module. Otherwise, there are no connections between each individual package.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{alias_current_uml}
+	\caption{ALIAS UML diagram}
+	\label{fig:aliasUml1}
+\end{figure}
+
+
+
+\begin{landscape}
+	\begin{figure}
+		\includegraphics[width=21cm]{alias1}
+		\caption{ALIAS Class breakdown}
+		\label{fig:aliasClassBreakdown}
+	\end{figure}
+\end{landscape}
 
 \subsubsection{Performance}
+
