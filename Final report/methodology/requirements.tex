@@ -17,7 +17,7 @@ Hence, any features categorized as \textit{Must Haves} are critical to the proje
 
 \subsubsection{Functional Requirements}
 
-\paragraph{Solver} \mbox{} \\
+\paragraph{Solver}
 
 Most of functional requirements have been created based on solver requirements for International Competition on Computational Models of Argumentation 2017. Furthermore, those requirements can be characterized based on their functionality:
 \begin{itemize}
@@ -107,7 +107,7 @@ Although original implementation of ALIAS provides a certain aspects of those re
 	\label{table:functReqFunctionality}
 \end{table}
 
-\paragraph{Web User Interface} \mbox{} \\
+\paragraph{Web User Interface} \label{section:WebUIRequirements}
 Apart from the requirements for the solver itself, there are number of requirements for the Web UI. The User Interface does not introduce any new functionality in terms of the solver abilities, however it provides a facade that can be used to work on, and modify argumentation frameworks in ALIAS and request certain extensions to be computed. 
 
 % Please add the following required packages to your document preamble:
@@ -167,7 +167,7 @@ Apart from all functional requirements, number of non-functional requirements ha
 
 Performance, scalability and ease of use requirements are applied not only to the ALIAS application, but also to the Web User Interface. 
 
-\paragraph{Performance and Scalability} \mbox{} \\
+\paragraph{Performance and Scalability}
 
 In terms of performance and scalability, the requirement for the ALIAS is to be able to cope with argumentation frameworks of any size. User should be confident that the application will be able to provide the correct results all time, no matter the size of provided framework. Although, it is difficult to convert it into tangible requirements, the attempt has been made to specify brackets for different sizes of argumentation frameworks: 
 
@@ -187,11 +187,11 @@ However, the above classification is only concerned with the size of graph gener
 
 In terms of ALIAS Web Extension, the performance and scalability requirements are mostly concerned with the time required to load and render any given Argumentation Framework. User should be able to display and work on large graphs in the UI. On the other hand, the performance of any operation on the given Argumentation Framework will be highly dependent on the performance of ALIAS.
 
-\paragraph{Ease of Use} \mbox{}\\
+\paragraph{Ease of Use}
 
 Another aspect of non-functional requirements is the ease of use of the application. Original ALIAS application has been implemented in Python, an interpreted, high-level programming language \citep{millman2011python}. Although Python has been designed as the general purpose language, it became very popular. And with the libraries like NumPy and SciPy, it became a popular choice for high-level scientific code development \citep{perez2011python}. Thus, the Python implementation of abstract argumentation semantics solver without the need to setup the environment in any way prior to using it would be beneficial. Being able to install the ALIAS from the PyPi, the Python package manager \citep{pypi}, and use it 'out of the box', gives it an advantage over other solvers.
 
 Ease of use requirement is further addressed by the ALIAS Web Interface. By providing the User Interface, the application is more readily available for anyone wishing to explore and work with Argumentation Frameworks. Web UI removes any need for programming skills as the user would be able to interact with ALIAS through the API.
 
-\paragraph{Design} \mbox{} \\
+\paragraph{Design} 
 Design functionality is concerned with the User Interface design. The Web Interface should have intuitive and minimalistic design to maximize the space for Argumentation Framework graphs. 

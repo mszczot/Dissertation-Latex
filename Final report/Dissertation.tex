@@ -79,6 +79,11 @@
                                {4pt plus 2pt minus 1pt} % before skip
                                {4pt plus 0pt} % after skip
                                {\bfseries}}
+                            
+\renewcommand\paragraph{\@startsection {paragraph}{3}{6mm} % name, level, indent
+                     	{3pt plus 2pt minus 1pt} % before skip
+                     	{3pt plus 0pt} % after skip
+                     	{\bfseries}}
 \makeatother
 
 \setcounter{secnumdepth}{4}
@@ -209,6 +214,8 @@ Args & attacks & Time \\
 15/2 & 2 & 1.8042 \\
 19/15 & 15 & 238.425 \\
 }\aliasvResults
+
+\definecolor{grey}{RGB}{211,211,211}
 
 %this starts the document
 \begin{document}

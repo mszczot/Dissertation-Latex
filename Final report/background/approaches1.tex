@@ -222,12 +222,12 @@ The above equation checks whether the proposed arguments are an admissible set a
 
 There are number of ways the argumentation frameworks semantics can be encoded and different implementations of solvers taking advantage of Boolean Satisfiability Solvers to compute the abstract argumentation framework extensions. As could be seen in the table \ref{table:iccmaResultsbySolver}, the SAT approach is the most preferred approach used within solvers submitted to ICCMA 2017. Interestingly, seven out of eight winning solvers were implemented using SAT based approach. 
 
-\paragraph{Pyglaf} \mbox{}\\ \label{section:pyglaf}
+\paragraph{Pyglaf} \label{section:pyglaf}
 Pyglaf, winner of three tracks, takes advantage of circumscription, a form of non-monotonic reasoning augmenting ordinary first order logic created by \citet{circumpscription}, to formalize the "common sense" assumptions, to solve computational problems of abstract argumentation frameworks.  Circumscriptino, the main solver, is written in C/C++, and is a circumscription solver extending the SAT solver Glucose \citep{glucose}. However, it uses Python to build the encodings for each semantic and to orchestrate calls to the external solver \citep{pyglaf}. 
 
 As mentioned above, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and ideal extension tracks. As can be seen in figures \ref{fig:coTrack}, \ref{fig:idTrack}, \ref{fig:stTrack}, Pyglaf not only scored the most points for each of them, but also had one of the shortest execution times while delivering correct solutions.
 
-\paragraph{argmat-sat} \mbox{}\\
+\paragraph{argmat-sat}
 Argmat-sat developed by \citet{argmatSat} along with argmat-dvisat: division based algorithm framework \citep{argmatDvisat} and argmat-mpg: geocode based solver is another solver submitted to ICCMA 2017 competition. As can be seen in figures \ref{fig:ssTrack} and \ref{fig:stTrack}, Argmat-sat won semi-stable and stage extension tracks significantly outperforming it rivals. It was not only the highest scoring solver for those tracks, but also the fastest. Although argmat-sat won only two tracks, it still was in top 3 solvers for the remaining tracks.
 
 Argmat-sat is implemented purely in C++, using CryptoMiniSAT5 \citep{CryptoMiniSat} as its SAT engine. Similarly to pyglaf \citep{pyglaf}, argmat-sat provides a command line interface that allows to compute all 7 semantics plus Dung Triathlon, to conform to ICCMA 2017 competition requirements. It uses three different CNF encodings: stable extensions, admissible sets and complete extensions, where stable extensions encoding is purely used for computing stable extensions. Admissible sets and complete extensions encodings can be used for searching admissible, complete, preferred, grounded and ideal extensions \citep{argmatSat}. 
@@ -263,7 +263,7 @@ The above equation can be split into two parts: the first part ensures that the 
 
 As can be seen in table \ref{table:iccmaResultsbySolver}, there were three solvers using the CSP based approach submitted to the ICCMA 2017 competition. 
 
-\paragraph{CoQuiAAS} \mbox{} \\
+\paragraph{CoQuiAAS}
 CoQuiAAS is the solver developed by \citet{coquiaas} and written in C++ programming language. Although CoQuiAAS is a stand alone system, after adapting the code, it can be used as a library instead \citep{coquiaas}.
 
 CoQuiAAS took part in both ICCMA competitions: 2015 and 2017. Although it only won the stage extension track in the most recent one, CoQuiAAS was an overall winner of the 2015 competition \citep{iccma2015}. Due to the efficient unit propagation technique used, the system performed incredibly well on the Grounded semantic. However, it failed short, being far behind the competitors, on the most computationally expensive semantics: preferred and stable. This can be seen in figure \ref{fig:prTrack} and \ref{fig:stTrack}.
@@ -285,12 +285,12 @@ The idea behind the labeling approach is to label all arguments with one of the 
 
 As can be seen in table \ref{table:iccmaResultsbySolver}, there were three labeling based solvers submitted to ICCMA 2017 competition. 
 
-\paragraph{ArgTools}\mbox{} \\
+\paragraph{ArgTools}
 ArgTools has been developed by \citet{argtools}. It is using the DPLL (Davis-Putnam-Logemann-Loveland) backtracking algorithm from SAT solving \citep{bierehandbook} to traverse an abstract binary tree created from the definition of the argumentation framework and labels them accordingly. 
  
 ArgTools is implemented purely in C++ and requires at least C++11 in order to be compiled \citep{argtools}. In terms of functionality, the solver adheres to the requirements of the ICCMA competition and can solve all the tasks for complete, stable, preferred, stage, semi-stable, grounded and ideal extensions including computing all or some extensions and also verifying if given argument can be credulously or skeptically accepted for all extensions. Once the ArgTools is build locally, it can be used from the command line, similarly to other solvers, by providing few arguments: location of argumentation framework, format of the file of argumentation framework, task to be performed, and argument to be checked if required. 
 
-\paragraph{ALIAS} \mbox{}\\ \label{section:alias}
+\paragraph{ALIAS}  \label{section:alias}
 
 "ALIAS is a Python library for constructing, manipulating, storing, visualising, and converting argumentation structues" \citep{alias}. It allows to compute the three extensions: complete, preferred and stable, and to build the labellings for complete, grounded, preferred, stable and semi-stable semantics. Since ALIAS is implemented purely in Python, it can be used as a stand alone tool or a programming library. 
 

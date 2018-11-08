@@ -34,29 +34,318 @@ During the testing, the CPU time has been limited per each argumentation framewo
 
 There were four separate proposed solution for computing abstract argumentation. Three of them were using the same method of computing the maximal conflict free set, but using different data structures to overcome certain issues and limitations as described in section \ref{section:maxConflictFreeSet}. The final approach is using SAT solver to enumerate possible solutions (see section \ref{section:satSolver}). Each approach was generating a number of possible solutions, which were then verified using matrix approach for preferred extension and set inclusion for stable extension as shown in sections \ref{section:preferredExtension} and \ref{section:stableExtension} respectively. 
 
-\subsubsection{Stable Extension results}
+\subsubsection{Stable Extension results} \label{section:stableExtensionResults}
+Figure \ref{fig:stableFinalResults} shows the execution times of all four approaches: sets, PyTables, parallel dictionaries and SAT solver for computing all Stable Extension on the set of argumentation frameworks specified in appendix \ref{appendix:benchmarkFiles}. The chart only shows the timings for the first 44 frameworks, as all the approaches timed out for the few final frameworks.
 
-\begin{figure}[h]
-	\includegraphics[width=\textwidth]{stable_results}
-	\caption{Timings of 4 approaches computing Stable Extension}
-	\label{fig:stableFinalResults}
-\end{figure}
+As can be seen in the chart \ref{fig:stableFinalResults}, certain data points are missing for some of the approaches. This is due to the solver reaching a 20 minutes time limit without providing the solution. Hence, no time has been recorded for given argumentation framework.
 
-Figure \ref{fig:stableFinalResults} shows the execution times of all four approaches: sets, PyTables, parallel dictionaries and SAT solver for computing all Stable Extension on the set of argumentation frameworks specified in appendix \ref{appendix:benchmarkFiles}. The chart only shows the timings for the first 13 frameworks. Almost most of the approaches failed to produce the results for the remaining frameworks within the specified 20 minutes time limit. Furthermore, as can be seen in the chart \ref{fig:stableFinalResults}, certain data points are missing for some of the approaches. This is also due to the solver reaching a 20 minutes time limit without providing the solution. 
+Based on the results shown in figure \ref{fig:stableFinalResults}, approach using parallel dictionaries managed to compute the stable extension for most of the frameworks. Furthermore, it has the shortest execution time for majority of the time across all approaches, with exception for eight of them, where SAT solver approach considerably outperformed it. The execution time of dictionaries approach closely correspond to the approach using sets. Although sets operation are highly optimized in Python, it still did not outperform the implementation using dictionaries.
 
-As can be seen in figure \ref{fig:stableFinalResults}, only approach using parallel dictionaries managed to compute the stable extensions for those frameworks in the specified time. Furthermore, it has the shortest execution time for majority of the frameworks across all approaches, with exception for five of them, where SAT solver approach considerably outperformed it. The execution time of dictionaries approach closely correspond to the approach using sets. Although sets operation are highly optimized in Python, it still did not outperform the implementation using dictionaries.
+\begin{landscape}
+	\begin{figure}
+		\includegraphics[width=21cm]{stableResults2}
+		\caption{Timings of 4 approaches computing Stable Extension}
+		\label{fig:stableFinalResults}
+	\end{figure}
+\end{landscape}
 
-The worst performing solution is the PyTables approach to computing and storing the Maximal Conflict Free Sets. This approach only computed the extensions for first five argumentation frameworks provided, which had the lowest number of arguments and relations between them. Those results are due to dynamically creating the sets iterating through all the attacks within the argumentation framework as shown in section \ref{section:maxConflictFreeSet}. Since PyTables stores data on the hard drive, the read/write access creates high latency in terms of getting and storing values. This in turn has impact on the overall performance of the solution. 
 
-Although the sets and dictionaries approaches for Maximal Conflict Free Sets creation produced results for most of the provided argumentation frameworks, they have a massive overhead - memory usage. The tests were performed on the machine with 8GB RAM available for the solver and another 8GB swap memory. Both of the solutions: sets and dictionaries, were running out of memory space for any framework with 20 or more arguments. Since this approach is combinatorial and generates all the possible maximal conflict free sets first, the number of combinations is extremely high. Hence, storing all possible sets is memory expensive as in the worst case scenario it will generate $2^n$ records, where $n$ is the number of arguments in the framework.
+The worst performing solution is the PyTables approach to computing and storing the Maximal Conflict Free Sets. This approach only computed the extensions for first five argumentation frameworks provided, which had the lowest number of arguments and relations between them. Those results are due to dynamically creating the sets iterating through all the attacks within the argumentation framework as shown in section \ref{section:maxConflictFreeSet}. Since PyTables stores data on the hard drive, the read/write access creates high latency in terms of getting and storing values. This in turn has impact on the overall performance of the solution. 	
 
-SAT based approach tends to outperform other solutions for frameworks it managed to complete the computation. As can be seen in figure \ref{fig:stableFinalResults}, half of the timings for SAT solver approach are considerably faster than other approaches. Only in 3 instances, this approach was slower than approach using dictionaries. However, as shown in the section \ref{section:satSolver}, SAT based approach uses a simple encodings for the admissible sets. Due to the size of argumentation frameworks used for testing, it caused the solver to reach the 20 minutes time out for 5 of the frameworks used for comparison. 
 
-\subsubsection{Preferred Extension results}
+
+\subsubsection{Preferred Extension results} \label{section:preferredExtensionResults}
+Results of timed execution of computing Preferred extension in all approaches implemented can be seen in figure \ref{fig:preferredFinalResults}. The chart shows the results for the first 34 argumentation frameworks from benchmark files for preferred extension (see appendix \ref{appendix:benchmarkFiles}). All the solutions timed out for the last 16 benchmark frameworks.
+
+Similarly to the stable extension results, two approaches dominated the results, computing all the extensions for most of the frameworks: direct approach implemented with parallel dictionaries and SAT based approach. Furthermore, dictionaries approach outperformed the SAT based approach in majority of the results. 
+
+\begin{landscape}
+	\begin{figure}[h]
+		\includegraphics[width=21cm]{preferredResults2}
+		\caption{Timings of 4 approaches computing Preferred Extension}
+		\label{fig:preferredFinalResults}
+	\end{figure}
+\end{landscape}
+
+Again, using data store from PyTables turned to be the least effective way, managing to produce results only for the first four argumentation frameworks. Additionally, the approach using sets data structure correlate to approach using dictionaries. However, as it was the case with stable extension, it only managed to compute results for first few argumentation frameworks.
+
 
 \subsection{Correctness}
 Correctness of the computed semantic is the critical functionality of the successful solver. However, this introduce the challenge of finding the best way to verify the produced solution. There are number of formal approaches that could be applied to the solver in order to confirm it provides the correct answer. For example, formal method called Z, "formal specification methodology that can dramatically improve the way software systems are modeled and implemented" \citep{potter1996introduction}, could be used to model the application and provide the proof of correctness. Although defining the approach and modeling the system could provide the guarantee for the correctness of the application, this is outside of the scope of this project. 
 
 Thus, In order to test and verify the correctness of ALIAS, the same argumentation frameworks from appendix \ref{appendix:benchmarkFiles} have been used as for the performance testing. The outputs of the SAT based approach have been compared to the results of two winning solvers: Pyglaf \citep{pyglaf} and ArgSem-SAT \citep{argsemsat}. Although this does not guarantee the correct results, those solvers were the two highest scoring solvers in the competition and if their results are equal, the probability of answer being incorrect is low.
 
-\subsection{Web UI Test Cases}
+\subsection{Web UI Test Cases} \label{section:testCases}
+In order to test the functionality of ALIAS Web User Interface, number of test cases has been created and executed. Those test cases correspond to each \textit{Must} and \textit{Should Have} requirement from the Web UI requirements. Tables \ref{table:testcase1} to \ref{table:testcase8} show the scenarios tested and results of each test.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{longtable}
+% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
+\renewcommand{\arraystretch}{1.5}
+\begin{longtable}[c]{p{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.4\textwidth}|p{0.05\textwidth}}
+	\caption{Web UI - Test Case 1}
+	\label{table:testcase1}
+	\\
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Scenario}} & \multicolumn{3}{p{0.7\textwidth}}{User should be able to load predefined example argumentation frameworks} \\ 
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Related Requirements}} & \multicolumn{3}{p{0.6\textwidth}}{WebUI.1} \\ 
+	\hline
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Priority}} & \multicolumn{3}{p{0.6\textwidth}}{Critical} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Actor}} & \multicolumn{3}{p{0.7\textwidth}}{Web User} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Precondition}} & \multicolumn{3}{p{0.7\textwidth}}{Web server is running and example argumentation frameworks are provided} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Postcondition}} & \multicolumn{3}{p{0.7\textwidth}}{Graph of an example argumentation framework is displayed on the page} \\ 
+	\hline
+	\multicolumn{5}{c}{\cellcolor{grey}\textbf{TEST EXECUTION}} \\ 
+	\hline
+	\textbf{ID} & \multicolumn{2}{|p{0.4\textwidth}|}{\textbf{User Action}} & \textbf{System Response} & \textbf{P/F} \\ 
+	\hline
+	1 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks on the 'Examples' drop down list in the toolbar} & List of predefined example argumentation frameworks is displayed & P \\ 
+	\hline
+	2 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks on an item from 'Examples' drop down list} & Selected example argumentation framework is displayed in the graph format & P \\ \hline 
+\end{longtable}
+
+
+\begin{longtable}[c]{p{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.4\textwidth}|p{0.05\textwidth}}
+	\caption{Web UI - Test Case 2}
+	\label{table:testcase2} \\
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Scenario}} & \multicolumn{3}{p{0.7\textwidth}}{User should be able to discard existing and create new argumentation framework} \\ 
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Related Requirements}} & \multicolumn{3}{p{0.6\textwidth}}{WebUI.2} \\ 
+	\hline
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Priority}} & \multicolumn{3}{p{0.6\textwidth}}{Critical} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Actor}} & \multicolumn{3}{p{0.7\textwidth}}{Web User} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Precondition}} & \multicolumn{3}{p{0.7\textwidth}}{Web server is running and argumentation framework is displayed on the page} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Postcondition}} & \multicolumn{3}{p{0.7\textwidth}}{Existing argumentation framework is discarded} \\ 
+	\hline
+	\multicolumn{5}{c}{\cellcolor{grey}\textbf{TEST EXECUTION}} \\ 
+	\hline
+	\textbf{ID} & \multicolumn{2}{|p{0.4\textwidth}|}{\textbf{User Action}} & \textbf{System Response} & \textbf{P/F} \\ 
+	\hline
+	1 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'New Framework' button from the toolbar} & Existing framework is discarded and graph is no longer displayed for that framework & P \\ 
+	\hline
+\end{longtable}
+
+\begin{longtable}[c]{p{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.4\textwidth}|p{0.05\textwidth}}
+	\caption{Web UI - Test Case 3}
+	\label{table:testcase3} \\
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Scenario}} & \multicolumn{3}{p{0.7\textwidth}}{User should be able to add arguments to argumentation framework} \\ 
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Related Requirements}} & \multicolumn{3}{p{0.6\textwidth}}{WebUI.3} \\ 
+	\hline
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Priority}} & \multicolumn{3}{p{0.6\textwidth}}{Critical} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Actor}} & \multicolumn{3}{p{0.7\textwidth}}{Web User} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Precondition}} & \multicolumn{3}{p{0.7\textwidth}}{Web server is running} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Postcondition}} & \multicolumn{3}{p{0.7\textwidth}}{New argument is added to argumentation framework} \\ 
+	\hline
+	\multicolumn{5}{c}{\cellcolor{grey}\textbf{TEST EXECUTION}} \\ 
+	\hline
+	\textbf{ID} & \multicolumn{2}{|p{0.4\textwidth}|}{\textbf{User Action}} & \textbf{System Response} & \textbf{P/F} \\ 
+	\hline
+	1 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'New Framework' button from the toolbar} & Any existing framework is discarded and graph is no longer displayed for that framework & P \\ 
+	\hline
+	2 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Add Argument' button from the toolbar} & Modal window is shown prompting user to enter name for the new argument & P \\ 
+	\hline
+	3 & \multicolumn{2}{|p{0.4\textwidth}|}{User enters a name for the new argument} & New name is displayed in the field & P \\ 
+	\hline
+	4 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Add' button on the modal form} & Modal form disappears and argument with specified name is added to the argumentation framework and is displayed as a graph on the page & P \\ 
+	\hline
+\end{longtable}
+
+\begin{longtable}[c]{p{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.4\textwidth}|p{0.05\textwidth}}
+	\caption{Web UI - Test Case 4}
+	\label{table:testcase4} \\
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Scenario}} & \multicolumn{3}{p{0.7\textwidth}}{User should be able to add attacks to argumentation framework} \\ 
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Related Requirements}} & \multicolumn{3}{p{0.6\textwidth}}{WebUI.4} \\ 
+	\hline
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Priority}} & \multicolumn{3}{p{0.6\textwidth}}{Critical} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Actor}} & \multicolumn{3}{p{0.7\textwidth}}{Web User} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Precondition}} & \multicolumn{3}{p{0.7\textwidth}}{Web server is running} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Postcondition}} & \multicolumn{3}{p{0.7\textwidth}}{New attack is added to argumentation framework} \\ 
+	\hline
+	\multicolumn{5}{c}{\cellcolor{grey}\textbf{TEST EXECUTION}} \\ 
+	\hline
+	\textbf{ID} & \multicolumn{2}{|p{0.4\textwidth}|}{\textbf{User Action}} & \textbf{System Response} & \textbf{P/F} \\ 
+	\hline
+	1 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'New Framework' button from the toolbar} & Any existing framework is discarded and graph is no longer displayed for that framework & P \\ 
+	\hline
+	2 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Add Attack' button from the toolbar} & Modal window is shown prompting user to enter name of the attacking and attacked argument & P \\ 
+	\hline
+	3 & \multicolumn{2}{|p{0.4\textwidth}|}{User enters a name for the attacking argument} & Attacker name is displayed in the field & P \\ 
+	\hline
+	4 & \multicolumn{2}{|p{0.4\textwidth}|}{User enters a name for the attacked argument} & Attacked name is displayed in the field & P \\ 
+	\hline
+	5 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Add' button on the modal form} & Modal form disappears and two argument: attacker and attacked, are added to the argumentation framework and displayed on the page and correct relation from attacker to attacked is shown on the graph & P \\ 
+	\hline
+\end{longtable}
+
+
+\begin{longtable}[c]{p{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.4\textwidth}|p{0.05\textwidth}}
+	\caption{Web UI - Test Case 5}
+	\label{table:testcase5} \\
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Scenario}} & \multicolumn{3}{p{0.7\textwidth}}{User should be able to view Complete Extensions of given argumentation framework} \\ 
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Related Requirements}} & \multicolumn{3}{p{0.6\textwidth}}{WebUI.11} \\ 
+	\hline
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Priority}} & \multicolumn{3}{p{0.6\textwidth}}{Critical} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Actor}} & \multicolumn{3}{p{0.7\textwidth}}{Web User} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Precondition}} & \multicolumn{3}{p{0.7\textwidth}}{Web server is running and argumentation framework is loaded into the system and displayed as a graph} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Postcondition}} & \multicolumn{3}{p{0.7\textwidth}}{Complete extension is computed and the result shown. User can view each individual solution} \\ 
+	\hline
+	\multicolumn{5}{c}{\cellcolor{grey}\textbf{TEST EXECUTION}} \\ 
+	\hline
+	\textbf{ID} & \multicolumn{2}{|p{0.4\textwidth}|}{\textbf{User Action}} & \textbf{System Response} & \textbf{P/F} \\ 
+	\hline
+	1 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Extensions' drop down link in the toolbar} & List of all available extensions is displayed & P \\ 
+	\hline
+	2 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Complete' from the drop down list} & All Complete extensions for the given argumentation framework are computed and displayed as a list on the right hand side of the page & P \\ 
+	\hline
+	3 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks one of the solution from the list of all Complete extensions} & All arguments from the selected solutions are highlighted in green and label is displayed in white bold text & P \\ 
+	\hline
+	4 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks another solution from the list of all Complete extensions with different argument} & Highlighted styling is removed from any already highlighted arguments and all arguments from the selected solutions are highlighted in green and label is displayed in white bold text & P \\ 
+	\hline
+\end{longtable}
+
+\begin{longtable}[c]{p{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.4\textwidth}|p{0.05\textwidth}}
+	\caption{Web UI - Test Case 6}
+	\label{table:testcase6} \\
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Scenario}} & \multicolumn{3}{p{0.7\textwidth}}{User should be able to view Stable Extensions of given argumentation framework} \\ 
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Related Requirements}} & \multicolumn{3}{p{0.6\textwidth}}{WebUI.14} \\ 
+	\hline
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Priority}} & \multicolumn{3}{p{0.6\textwidth}}{Critical} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Actor}} & \multicolumn{3}{p{0.7\textwidth}}{Web User} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Precondition}} & \multicolumn{3}{p{0.7\textwidth}}{Web server is running and argumentation framework is loaded into the system and displayed as a graph} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Postcondition}} & \multicolumn{3}{p{0.7\textwidth}}{Stable extension is computed and the result shown. User can view each individual solution} \\ 
+	\hline
+	\multicolumn{5}{c}{\cellcolor{grey}\textbf{TEST EXECUTION}} \\ 
+	\hline
+	\textbf{ID} & \multicolumn{2}{|p{0.4\textwidth}|}{\textbf{User Action}} & \textbf{System Response} & \textbf{P/F} \\ 
+	\hline
+	1 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Extensions' drop down link in the toolbar} & List of all available extensions is displayed & P \\ 
+	\hline
+	2 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Stable' from the drop down list} & All Stable extensions for the given argumentation framework are computed and displayed as a list on the right hand side of the page & P \\ 
+	\hline
+	3 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks one of the solution from the list of all Stable extensions} & All arguments from the selected solutions are highlighted in green and label is displayed in white bold text & P \\ 
+	\hline
+	4 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks another solution from the list of all Stable extensions with different argument} & Highlighted styling is removed from any already highlighted arguments and all arguments from the selected solutions are highlighted in green and label is displayed in white bold text & P \\ 
+	\hline
+\end{longtable}
+
+\begin{longtable}[c]{p{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.4\textwidth}|p{0.05\textwidth}}
+	\caption{Web UI - Test Case 7}
+	\label{table:testcase7} \\
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Scenario}} & \multicolumn{3}{p{0.7\textwidth}}{User should be able to view Preferred Extensions of given argumentation framework} \\ 
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Related Requirements}} & \multicolumn{3}{p{0.6\textwidth}}{WebUI.17} \\ 
+	\hline
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Priority}} & \multicolumn{3}{p{0.6\textwidth}}{Critical} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Actor}} & \multicolumn{3}{p{0.7\textwidth}}{Web User} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Precondition}} & \multicolumn{3}{p{0.7\textwidth}}{Web server is running and argumentation framework is loaded into the system and displayed as a graph} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Postcondition}} & \multicolumn{3}{p{0.7\textwidth}}{Preferred extension is computed and the result shown. User can view each individual solution} \\ 
+	\hline
+	\multicolumn{5}{c}{\cellcolor{grey}\textbf{TEST EXECUTION}} \\ 
+	\hline
+	\textbf{ID} & \multicolumn{2}{|p{0.4\textwidth}|}{\textbf{User Action}} & \textbf{System Response} & \textbf{P/F} \\ 
+	\hline
+	1 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Extensions' drop down link in the toolbar} & List of all available extensions is displayed & P \\ 
+	\hline
+	2 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Preferred' from the drop down list} & All Preferred extensions for the given argumentation framework are computed and displayed as a list on the right hand side of the page & P \\ 
+	\hline
+	3 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks one of the solution from the list of all Preferred extensions} & All arguments from the selected solutions are highlighted in green and label is displayed in white bold text & P \\ 
+	\hline
+	4 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks another solution from the list of all Preferred extensions with different argument} & Highlighted styling is removed from any already highlighted arguments and all arguments from the selected solutions are highlighted in green and label is displayed in white bold text & P \\ 
+	\hline
+\end{longtable}
+
+\begin{longtable}[c]{p{0.05\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|p{0.4\textwidth}|p{0.05\textwidth}}
+	\caption{Web UI - Test Case 8}
+	\label{table:testcase8} \\
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Scenario}} & \multicolumn{3}{p{0.7\textwidth}}{User should be able upload argumentation framework in tgf format} \\ 
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Related Requirements}} & \multicolumn{3}{p{0.6\textwidth}}{WebUI.5} \\ 
+	\hline
+	\multicolumn{2}{p{0.4\textwidth}}{\textbf{Priority}} & \multicolumn{3}{p{0.6\textwidth}}{High} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Actor}} & \multicolumn{3}{p{0.7\textwidth}}{Web User} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Precondition}} & \multicolumn{3}{p{0.7\textwidth}}{Web server is running and argumentation framework is loaded into the system and displayed as a graph} \\ 
+	\hline
+	\multicolumn{2}{p{0.3\textwidth}}{\textbf{Postcondition}} & \multicolumn{3}{p{0.7\textwidth}}{Preferred extension is computed and the result shown. User can view each individual solution} \\ 
+	\hline
+	\multicolumn{5}{c}{\cellcolor{grey}\textbf{TEST EXECUTION}} \\ 
+	\hline
+	\textbf{ID} & \multicolumn{2}{|p{0.4\textwidth}|}{\textbf{User Action}} & \textbf{System Response} & \textbf{P/F} \\ 
+	\hline
+	1 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Frameworks' drop down link in the toolbar} & Drop down list is expanded and 'Frameworks' options are displayed & P \\ 
+	\hline
+	2 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Upload file' option from the 'Frameworks' drop down list } & Modal form is shown titled 'Load Argumentation Framework from file' & P \\ 
+	\hline
+	3 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Choose File' button in the modal form } & Prompt to select file is shown & P \\ 
+	\hline
+	4 & \multicolumn{2}{|p{0.4\textwidth}|}{User selects a file in .tgf format from local folder } & File selection form closes and filename is displayed next to the 'Choose file' button & P \\ 
+	\hline
+	5 & \multicolumn{2}{|p{0.4\textwidth}|}{User clicks 'Upload' button in the modal form } & The modal form closes and the file is uploaded to the './upload' folder and argumentation framework is parsed and the graph representation of the framework displayed on the page & P \\ 
+	\hline
+\end{longtable}
