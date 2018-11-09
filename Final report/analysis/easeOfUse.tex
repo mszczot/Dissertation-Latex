@@ -12,7 +12,10 @@ In terms of the usage of the solvers submitted to ICCMA 2017 competition, they a
 
 Majority of ICCMA 2017 solvers are implemented in C++ programming language, with few exception like goDiamond \citep{goDiamond}, which is implemented using Go language \citep{GoLang}, or Pyglaf \citep{pyglaf}, where is a mix of Python and C++ programming languages. 
 
-During the project two systems from ICCMA 2017 competition were set up on the testing machine: Pyglaf \citep{pyglaf} and ArgSem-SAT \citep{argsemsat}. 
+
+
+\subsubsection{Setup And Installation}
+During the project three systems from ICCMA 2017 competition were set up on the testing machine: Pyglaf \citep{pyglaf}, ArgSem-SAT \citep{argsemsat} and gg-sts \citep{gg-sts}. The setup of the 
 
 As seen in section \ref{section:pyglaf}, Pyglaf is implemented using Python for building encodings of semantics and C++ programming language for the main solver. Hence, in order to use Pyglaf, user has to manually build Circumscriptino \citep{circumscriptino} solver and either provide the path to it to Pyglaf, or move it to the same folder as Pyglaf executable exists. The source code for pyglaf and Circumsriptino can be obtained either from GitHub or all required files compressed together can be found on Mark Alviano website \textit{https://alviano.com/software/pyglaf/}. Although, Pyglaf won the most track in ICCMA 2017 competition, the steps required to set it up can be troublesome, especially for someone with limited technological skills. 
 
@@ -25,7 +28,23 @@ Similarly to Pyglaf, in order to use ArgSem-SAT solver, user is required to buil
 	\label{fig:argsemsatBuildError}
 \end{figure}
 
-\subsubsection{Setup And Installation}
+\subsubsection{Graphical User Interface}
+Although abstract argumentation semantics can be easily represented and manipulated using graphs, there are hardly any applications providing a GUI based applications. OVA-gen is an on-line tool that provides the "point and click" graphical interface. The tool is using Dung-O-Matic and Dungine, Java based solvers, for computation of different semantics \citep{ova-gen}. 
 
-\subsubsection{User Interface}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{ova-gen1}
+	\caption{OVA-gen Graphical User Interface}
+	\label{fig:ovagen1}
+\end{figure}
 
+OVA-gen user interface is implemented using Adobe Flash Player technology. Although OVA-gen has been implemented in 2010 it is unlikely that the tool has been updated since based on the use of old technology. The tool allows the user to add arguments and attacks, and request all standard semantics to be computed. Figure \ref{fig:ovagen1} shows the simple argumentation framework representation in OVA-gen.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\linewidth]{ova-gen2}
+	\caption{OVA-gen Graphical User Interface - Stable Semantic}
+	\label{fig:ovagen2}
+\end{figure}
+
+One of the problems with OVA-gen is very unclear design. User can only add argument by left-click on the graph area and attack by holding 'Shift' key and clicking two arguments. The toolbar only offer ability to save and/or clear existing argumentation framework and select the required extension. Furthermore, when simple argumentation framework has been created with two arguments: $a$ and $b$, and relation $a \implies b$, and any extension requested, both arguments are marked with red colour. This would indicate that both arguments are not accepted. However, in this case, argument $a$ should be accepted in majority, if not all, extensions.

@@ -18,10 +18,16 @@ Inout module will be left unchanged, with the exception of modification to allow
 \end{figure}
 
 \subsection{Web User Interface Design}
-The Web Interface will consist of a single page, with menu options at the top of the page and computed solutions displayed at the side of the page in form of the list. The graph representation of the argumentation framework will be displayed centrally taking up the remaining space. This way, the real estate of the web page will be used the most efficiently concentrating on the graph structure. 
+The Web Interface will consist of a single page, with menu options at the top of the page and computed solutions displayed at the side of the page in form of the list. The graph representation of the argumentation framework will be displayed centrally taking up the remaining space. This way, the real estate of the web page will be used most efficiently by concentrating on the graph structure. 
 
 \subsubsection{Usability}
-
+The design of User Interface should be done with usability in mind. Following usability criteria will be addressed during design and implementation stages:
+\begin{itemize}
+	\item Number of pages - website will consist of a single page, where the requests to ALIAS will be made through ajax calls
+	\item Easy to follow layout - website will consist of three main elements: toolbar, list of possible solutions and graph area. Furthermore, graph area will take majority of the space
+	\item Clear functionality - the available functionality will be clear to user as all the buttons and navigation links will be clearly labeled and additional information provided in the modal windows
+	\item Feedback - website should provide feedback to user, especially when certain operations take long time to complete
+\end{itemize}
 
 \subsubsection{RESTful Design}
 RESTful API will be implemented in order to allow user to interact with ALIAS application through web interface. The web extension will be divided into 2 tiers: front-end and back-end. 

@@ -1,7 +1,7 @@
-
+\subsection{Functionality}
+All the requirements identified in the design stage that were not implemented in this project should be considered as future work. Those include computing additional semantics, such as ground, ideal, semi-stable. Furthermore, ALIAS could be extended to give user possibility of removing arguments and attacks. 
 
 \subsection{Solver}
-
 ALIAS is using PicoSAT solver with PycoSAT python module as the translation between Python and PicoSAT. As discussed in section \ref{section:pycosat}, PicoSAT is a high performance solver, which helps to increase the performance of ALIAS itself. However, it has certain limitations. The most noticeable one is the limited ability of encoding the clauses. PycoSAT only allows the clauses to be encoded in the format of conjunctions of disjunctions. This can have big impact on the way semantics are being encoded. Future work might include investigation of alternative solvers with Python interfaces and incorporating them in ALIAS. One of the most noticeable alternatives is a Satisfiability Modulo Theories solver from Microsoft Research, Z3 Prover. Z3 provides an API in Python by default, hence no additional packages will be required. Z3 supports standard Boolean operators: \textit{and}, \textit{or}, \textit{implies}, \textit{if-then-else} and does not limit clauses to disjunctions, but allows the individual clauses to be a selection of conjunctions. 
 
 \begin{figure}
