@@ -2,7 +2,7 @@
 \label{sec:argumentationSemantics}
 
 
-The original concept of abstract argumentation semantics included complete, stable, preferred and grounded extensions \citep{dung1995}, which was extended by stage \citep{verheij1996two}, ideal \citep{dung2007computing}, and semi-stable \citep{caminada2006semi} semantics. All the sematics are based around the definitions of acceptable and admissible arguments. Definitions of the original semantics as described by \citet{dung1995} are as follow: 
+The original concept of abstract argumentation semantics included complete, stable, preferred and grounded extensions \citep{dung1995}. They were further extended by stage \citep{verheij1996two}, ideal \citep{dung2007computing}, and semi-stable \citep{caminada2006semi} semantics. All the semantics are based around the definitions of acceptable and admissible arguments. Definitions of the original semantics as described by \citet{dung1995} are as follow: 
 
 \begin{definition}{Preferred Extension}
 \label{def:preferredExtension}\\
@@ -10,7 +10,7 @@ A \textit{preferred extension} of an argumentation framework \textit{AF} is a ma
 \end{definition}
 
 
-From the definition \ref{def:preferredExtension} it can be seen that the preferred extension is the largest set that is able to defend itself from attacks. If we consider example \ref{fig:af1} we can see that the extension \textit{$E_{PR}$} = \{\{a,c\}, \{b\}\}. Argument \textit{c} is attacked by argument \textit{b}, which in turn is defeated by \textit{a}, hence \textit{a} and \textit{c} are preferred extension. Furthermore, \textit{b} is attacked by \textit{a}, but it defends itself. Hence argument \textit{b} is also preferred extension.
+From the definition \ref{def:preferredExtension} it can be seen that the preferred extension is the largest set that is able to defend itself from attacks. If we consider example from figure \ref{fig:af1}, we can see that the extension \textit{$E_{PR}$} = \{\{a,c\}, \{b\}\}. Argument \textit{c} is attacked by argument \textit{b}, which in turn is defeated by \textit{a}, hence \textit{a} and \textit{c} are preferred extension. Furthermore, \textit{b} is attacked by \textit{a}, but it defends itself. Hence argument \textit{b} is also preferred extension.
 
 \begin{figure}[h]
 \tikzset{
@@ -36,7 +36,7 @@ From the definition \ref{def:preferredExtension} it can be seen that the preferr
 A \textit{conflict-free} set of arguments \textit{S} is called a \textit{stable extension} if and only if \textit{S} attacks each argument which does not belong to \textit{S}.
 \end{definition}
 
-Stable extension has more aggressive approach than preferred extension. As in definition \ref{def:stableExtension}, the extension needs to attack all arguments that are not included in it. Based on argumentation framework from example \ref{fig:af1}, the stable extension \textit{$E_{ST}(AF_{\ref{fig:af1}})$} = \{\{a,c\}, \{b\}\}, which is the same as for preferred extension. This is because argument \textit{a} attacks \textit{b}, hence \textit{a} and \textit{c} are included, and argument \textit{b} attack both arguments \textit{a} and \textit{c}. Looking at more complex example in figure \ref{fig:af2}, three stable extensions can be identified as follow \textit{$E_{ST}(AF_{\ref{fig:af2}})$} = \{\{a,c\}, \{a,d\}, \{b,d\}\}.
+Stable extension has more aggressive approach than preferred extension. As in definition \ref{def:stableExtension}, the extension needs to attack all arguments that are not included in it. Based on argumentation framework from example \ref{fig:af1}, the stable extension \textit{$E_{ST}(AF_{\ref{fig:af1}})$} = \{\{a,c\}, \{b\}\}, which is the same as for preferred extension. This is because argument \textit{a} attacks \textit{b}, hence \textit{a} and \textit{c} are included, and argument \textit{b} attack both arguments \textit{a} and \textit{c}. Looking at more complex example in figure \ref{fig:af2}, three stable extensions can be identified. Those are as follow \textit{$E_{ST}(AF_{\ref{fig:af2}})$} = \{\{a,c\}, \{a,d\}, \{b,d\}\}.
 
 \begin{figure}[h]
 \tikzset{
@@ -106,7 +106,7 @@ Based on the definition of characteristic function and grounded extension it can
 An admissible set \textit{S} of arguments is called \textit{complete exension} if and only if each argument which is acceptable with respect to \textit{S}, belongs to \textit{S}.
 \end{definition}
 
-Complete extension is defined as a set which is able to defend itself and includes all arguments it defends \citep{baroni2009semantics}. Based on this, we can see that there are three complete extensions in figure \ref{fig:af1}, and those are \textit{$E_{CO}(AF_{\ref{fig:af1}})$} = \{$\emptyset$, \{a,c\}, \{b\}\}. With a more complex argumentation framework in figure \ref{fig:af2}, it can be seen that the complete extension will definitely include empty set, as there are no initial arguments, argument \textit{a}, as it does not defend argument \textit{c} from \textit{d}, and argument \textit{d}, as it only defends itself. Furthermore, \textit{b} attacks \textit{c}, the only attacked of argument \textit{d}, hence set \{b,d\} is a complete extension as well. Additionally, sets \{a,c\} and \{a,d\} are also compltete extensions as both of them are admissible. Hence, the complete extension is \textit{$E_{CO}(AF_{\ref{fig:af2}})$} = \{$\emptyset$, \{a\}, \{d\}, \{a,c\}\, \{a,d\}, \{b,d\}\}.
+Complete extension is defined as a set which is able to defend itself and includes all arguments it defends \citep{baroni2009semantics}. Based on this, we can see that there are three complete extensions in figure \ref{fig:af1}, and those are \textit{$E_{CO}(AF_{\ref{fig:af1}})$} = \{$\emptyset$, \{a,c\}, \{b\}\}. With a more complex argumentation framework in figure \ref{fig:af2}, it can be seen that the complete extension will definitely include empty set, as there are no initial arguments, argument \textit{a}, as it does not defend argument \textit{c} from \textit{d}, and argument \textit{d}, as it only defends itself. Furthermore, \textit{b} attacks \textit{c}, the only argument attacked by \textit{d}, hence set \{b,d\} is a complete extension as well. Additionally, sets \{a,c\} and \{a,d\} are also complete extensions as both of them are admissible. Hence, the complete extension is \textit{$E_{CO}(AF_{\ref{fig:af2}})$} = \{$\emptyset$, \{a\}, \{d\}, \{a,c\}\, \{a,d\}, \{b,d\}\}.
 
 As mentioned earlier, \citet{dung1995} semantics were further extended with additional semantics. Their definitions are as follow: 
 
@@ -154,7 +154,7 @@ By its definition the ideal extension satisfies I-maximality and admissibility p
 A set of extensions \textit{E} is I-maximal if and only if $\forall$\textit{$E_1$}, \textit{$E_2$} $\in$ \textit{E}, if \textit{$E_1$} $\subseteq$ \textit{$E_2$} then \textit{$E_1$} = \textit{$E_2$}.
 \end{definition}
 
-Perhaps, the ideal semantics can be best explained using the notion of a judgement aggregation context intoduced by \citet{caminada2011judgment}. Given an argumentation framework, if we assume a group of people who all try to accept as much as possible the sets of arguments they all agree on needs to be examined and checked whether this position is still defensible. However, if they are not defensible some of the arguments needs to be abstained from instead of accepting or rejecting them until it becomes defensible. The result is the ideal extension \citep{baroni2011introduction}.
+Perhaps, the ideal semantics can be best explained using the notion of a judgement aggregation context intoduced by \citet{caminada2011judgment}. Given an argumentation framework, if we assume a group of people who all try to accept as many as possible of sets of arguments, they all agree on needs to be examined and checked whether this position is still defensible. However, if they are not defensible some of the arguments need to be abstained from instead of accepting or rejecting them until it becomes defensible. The result is the ideal extension \citep{baroni2011introduction}.
 
 \begin{definition}{Stage Extension}
 \label{def:stageExtension}\\
@@ -197,14 +197,14 @@ Above semantics can be used to decide whether a given argument, or set of argume
 	\item{Every preferred extesion is also complete}
 	\item{Every stable extension is also semi-stable and stage extension}
 \end{itemize}
-Furthermore, it can be seen that the complete extension provides the link between preferred extension (credulous semantic), and grounded extension (skeptical smenatics) \citep{dung1995}. It can also be concluded seen that the maximal complete extension is also maximal admissible set. On the other hand the grounded extension is determined by the minimal complete extension \citep{gaggl2009solving}. The relations between the semantics can be seen in figure \ref{fig:semanticsRelations}.
+Furthermore, it can be seen that the complete extension provides the link between preferred extension (credulous semantic), and grounded extension (skeptical smenatics) \citep{dung1995}. It can also be concluded, that the maximal complete extension is also maximal admissible set. On the other hand, the grounded extension is determined by the minimal complete extension \citep{gaggl2009solving}. The relations between the semantics can be seen in figure \ref{fig:semanticsRelations}.
 
-
+\subsection{Credulous and Skeptical Acceptance}
 %sceptical and credulous semantics
 %sceptical and credulous acceptance of argument
-Additional notion of credulous and sceptical semantics has been introduced. Usually, a credulous semantics is intended to capture as much information as possible \citep{dix1995non}, while skeptical makes less committed choices about the justification of the arguments \citep{baroni2007comparing}. As mentioned previosly grounded semantic is a good example of skeptical extension as it always yields exactly one extension, and this extension is admissible \citep{caminada2007comparing}.
+Additional notion of credulous and sceptical semantics has been introduced. Usually, a credulous semantics is intended to capture as much information as possible \citep{dix1995non}, while skeptical makes less committed choices about the justification of the arguments \citep{baroni2007comparing}. As mentioned previously, grounded semantic is a good example of skeptical extension, as it always yields exactly one extension and this extension is admissible \citep{caminada2007comparing}.
 
-Furthermore, argument can be defined as credulous or skeptical in terms of its acceptability. As describe by \citet{arieli2015conflict} an argument \textit{a} $\in$ \textit{Args} is credulously accepted by one type of semantics only if it belongs to some of the semantic extensions of a given argumentation framework. On the other hand, the argument \textit{b} is skeptically accepted by the semantic if it belongs to all of its extensions of a given argumentation framework. This can be represented using argumentation framework \ref{fig:af5}. It has 5 complete extensions: $\emptyset$, {b}, {e}, {b, e}, {a, c, e}, however none of the arguments is skeptically accepted, while \textit{a}, \textit{b}, \textit{c} and \textit{e} are credulously accepted. On the other hand, \{\textit{b, e}\} and \{\textit{a, c, e}\} are preferred, stable, semi-stable and stage extensions of argumentation framework \ref{fig:af5}. It can be seen that only argument \textit{e} is skeptically accepted for all those semantics, while \textit{a}, \textit{b} and \textit{c} are credulously accepted.
+Furthermore, argument can be defined as credulous or skeptical in terms of its acceptability. As described by \citet{arieli2015conflict}, an argument \textit{a} $\in$ \textit{Args} is credulously accepted by one type of semantics, only if it belongs to some of the semantic extensions of a given argumentation framework. On the other hand, the argument \textit{b} is skeptically accepted by the semantic if it belongs to all of its extensions of a given argumentation framework. This can be represented using argumentation framework \ref{fig:af5}. It has 5 complete extensions: $\emptyset$, \{b\}, \{e\}, \{b, e\}, \{a, c, e\}, however none of the arguments is skeptically accepted, while \textit{a}, \textit{b}, \textit{c} and \textit{e} are credulously accepted. On the other hand, \{\textit{b, e}\} and \{\textit{a, c, e}\} are preferred, stable, semi-stable and stage extensions of argumentation framework \ref{fig:af5}. It can be seen that only argument \textit{e} is skeptically accepted for all those semantics, while \textit{a}, \textit{b} and \textit{c} are credulously accepted.
 
 \begin{figure}[h]
 \tikzset{

@@ -13,7 +13,7 @@
 \usepackage{graphicx} % support the \includegraphics command and options
 
 % \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
-
+\DeclareUnicodeCharacter{22C6}{*}
 %%% PACKAGES
 \usepackage{booktabs} % for much better looking tables
 \usepackage{array} % for better arrays (eg matrices) in maths
@@ -45,7 +45,7 @@
 \usepackage{dirtree}
 \usepackage{tabu}
 \usepackage{booktabs}
-
+\usepackage{adjustbox}
 
 
 \graphicspath{{./img/}}
@@ -219,6 +219,16 @@ Args & attacks & Time \\
 19/15 & 15 & 238.425 \\
 }\aliasvResults
 
+\pgfplotstableread[row sep=\\,col sep=&]{
+Approach&Count\\
+SAT&6\\
+CSP&4\\
+Labelling&3\\
+ASP&2\\
+Other&1\\
+}\solverTypes
+
+
 \definecolor{grey}{RGB}{211,211,211}
 
 %this starts the document
@@ -303,13 +313,13 @@ Insert acknowledgements here
 \label{appendix:IPO}
 \input{./appendices/IPO.tex}
 
-\section{Requirement Analysis} 
-\label{appendix:requirementAnalysis}
-\input{./appendices/requirementAnalysis.tex}
+%\section{Requirement Analysis} 
+%\label{appendix:requirementAnalysis}
+%\input{./appendices/requirementAnalysis.tex}
 
-\section{Project Schedule}
-\label{appendix:projectSchedule}
-\input{./appendices/projectSchedule.tex}
+%\section{Project Schedule}
+%\label{appendix:projectSchedule}
+%\input{./appendices/projectSchedule.tex}
 
 \section{Meetings diaries}
 \label{appendix:diaries}

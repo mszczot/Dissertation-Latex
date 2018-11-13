@@ -1,9 +1,12 @@
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-
-\begin{longtable}{@{}llllllll@{}}
+%
+\begin{landscape}
+\begin{longtabu} {|l|l|l|l|l|l|l|l|}
 \toprule
 Args & Att & Sets     & PyTables & Parallel Dicts & SAT      & pyglaf      & argsem-sat  \\ \midrule
+\endhead
+
 2         & 1       & 0.000453 & 0.00279  & 0.000326395    & 0.009292 & 0.065012217 & 0.025399447 \\
 6         & 10      & 0.000871 & 0.024364 & 0.000370264    & 0.000291 & 0.06543088  & 0.007328749 \\
 13        & 17      & 0.006193 & 19.4888  & 0.001136303    & 0.003224 & 0.064931393 & 0.006547213 \\
@@ -55,4 +58,5 @@ Args & Att & Sets     & PyTables & Parallel Dicts & SAT      & pyglaf      & arg
 3018      & 137019  & Time out & Time out & Time out       & Time out & 2.199171305 & 2.013922215 \\
 20000     & 29998   & Time out & Time out & Time out       & Time out & 0.539016247 & 0.395638228 \\
 50000     & 74998   & Time out & Time out & Time out       & Time out & 1.365074396 & 0.93032527  \\ \bottomrule
-\end{longtable}
+\end{longtabu}
+\end{landscape}
