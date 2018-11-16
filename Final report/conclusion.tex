@@ -1,0 +1,9 @@
+\subsection{Overall goals}
+The original aim of this project was to develop a good performance, easy to use solver for abstract argumentation framework semantics. 
+
+All the critical functionality defined in the Initial Project Overview and further in requirement analysis have been implemented. Furthermore, additional functionality has been added to ALIAS to improve the system. Additional tasks for complete, preferred and stable semantics have been implemented and web user interface created. This allows users to view and interact with argumentation frameworks through graphical interface by using graphs.
+
+\subsection{Compliance with non-functional requirements}
+Non-functional requirements are mainly concerned with overall performance and scalability of ALIAS. Solver should be able to handle argumentation frameworks of all sizes: from small ones with few arguments, to large ones with few thousands of arguments and attacks. 
+
+Throughout the project, four different implementations of solver have been implemented. This allowed to test and evaluate different approaches and data structures. However, the final solution is not able to handle large frameworks and might have problems computing semantics for complex medium sized frameworks in reasonable time. Although the system does not scale properly, the SAT based approach has a lot of room for improvement to increase the performance. 
