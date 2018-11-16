@@ -46,9 +46,14 @@
 \usepackage{tabu}
 \usepackage{booktabs}
 \usepackage{adjustbox}
-
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{afterpage}
 
 \graphicspath{{./img/}}
+
+\newcommand{\Checkmark}{\ding{51}}%
+\newcommand{\cross}{\ding{55}}%
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -230,6 +235,8 @@ Other&1\\
 
 
 \definecolor{grey}{RGB}{211,211,211}
+\definecolor{green}{RGB}{127,255,0}
+\definecolor{red}{RGB}{255,0,0}
 
 %this starts the document
 \begin{document}

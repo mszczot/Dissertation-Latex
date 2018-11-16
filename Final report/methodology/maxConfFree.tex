@@ -1,8 +1,8 @@
 \subsection{Maximal Conflict Free Sets} \label{section:maxConflictFreeSet}
-According to the definitions \ref{def:preferredExtension} and \ref{def:stableExtension}, Preferred and Stable extensions are based on the maximal sets. Preferred extensions are the maximal element with respect to the set from all the admissible sets, and Stable extensions are the maximal conflict free sets that attack every argument outside those sets. Furthermore, since each admissible set is also a conflict free set, this property has been used in exploring possible solutions for computing Preferred and Stable extensions.
+According to the definitions \ref{def:preferredExtension} and \ref{def:stableExtension}, Preferred and Stable extensions are based on the maximal sets. Preferred extensions are the maximal element with respect to the set from all the admissible sets, and Stable extensions are the maximal conflict free sets that attack every argument outside those sets. Furthermore, since each admissible set is also a conflict free set, both extensions can be build from the maximal conflict free set. Hence, this property has been used in exploring possible solutions for computing Preferred and Stable extensions.
 
 Let \textit{args} be a collection of arguments in a given argumentation framework \textit{AF}. Then \textit{args} can be represented as $args=arg_1, arg_2,...,arg_n$ where \textit{n} is the total number of arguments in \textit{AF}. 
-Furthermore, set of arguments \textit{CF} is conflict free, if and only if there are no attacks between the arguments within the set \textit{CF}: $\forall a,b \in AF, (a, b) \notin attacks$.
+Furthermore, set of arguments \textit{CF} is conflict free, if and only if there are no attacks between the arguments within the set itself. This can be written as: $CF = \forall a,b \in AF, (a, b) \notin attacks$.
 
 Hence, the maximal conflict free sets can be represented as:
 \begin{equation}
@@ -12,7 +12,7 @@ args_2 $ = $ \text{args} $ - $ \text{b} \\
 \end{array} \bigg| \forall a, b \in AF, (a,b) \in attacks
 \end{equation}
 
-Based on the proposition above, the maximal conflict free set can be calculated by splitting the existing sets of arguments within the given argumentation framework by each pair of arguments from the \textit{attacks}. The process is shown in example in figure \ref{fig:mcfExample}. The Argumentation Framework \textit{AF} consist of four arguments: a, b, c, d, and 3 attacks: a attacks b, b attacks c, and d attacks c. This argumentation framework is presented in figure \ref{fig:af1}. 
+Based on the proposition above, the maximal conflict free set can be calculated by splitting the existing sets of arguments within the given argumentation framework by each pair of arguments from the \textit{attacks}. Example process is shown in figure \ref{fig:mcfExample}. The Argumentation Framework \textit{AF} consist of four arguments: a, b, c, d, and 3 attacks: a attacks b, b attacks c, and d attacks c. This argumentation framework is presented in figure \ref{fig:af1}. 
 
 \begin{figure}[h]
 	\centering
@@ -21,7 +21,9 @@ Based on the proposition above, the maximal conflict free set can be calculated 
 	\label{fig:mcfExample}
 \end{figure}
 
-Firstly, the attack \textit{(a,b)} is applied to the set of all arguments - \textit{\{a,b,c,d\}}, causing the set of arguments to split into two separate sets: one that does not contain argument \textit{b} - \textit{\{a,c,d\}}; and another that does not contain argument \textit{a} - \textit{\{b,c,d\}}. Then each attack from the argumentation framework is applied to the newly created sets, splitting them further into conflict free sets. Attack \textit{(b,c)} has impact only on the second set - \textit{\{b,c,d\}}, since argument \textit{b} is removed from the first set. Hence, applying the second attack to the sets, creates 3 sets: \textit{\{a,c,d\}}, \textit{\{c,d\}} and \textit{\{b,d\}}. Last attack - \textit{(c,d)}, has only impact on the first and second sets from the last step, giving the final set of Maximal Conflict Free sets of \textit{\{a,c\}}, \textit{\{a,d\}} and \textit{\{b,d\}}.
+Firstly, the attack \textit{(a,b)} is applied to the set of all arguments - \textit{\{a,b,c,d\}}, causing the set of arguments to split into two separate sets: one that does not contain argument \textit{b}, set \textit{\{a,c,d\}}; and another that does not contain argument \textit{a}, set \textit{\{b,c,d\}}. Then, iteratively, each attack from the argumentation framework is applied to the newly created sets, splitting them further into conflict free sets where required. Attack \textit{(b,c)} has impact only on the second set, \textit{\{b,c,d\}}, since argument \textit{b} is removed from the first set. Hence, applying the second attack to all sets, creates 3 sets: \textit{\{a,c,d\}}, \textit{\{c,d\}} and \textit{\{b,d\}}. Last attack - \textit{(c,d)}, has only impact on the first and second sets from the last step, giving the final set of Maximal Conflict Free sets of \textit{\{a,c\}}, \textit{\{a,d\}} and \textit{\{b,d\}}.
+
+This approach allows to split create maximal conflict free sets from the set of arguments within the framework and list of all the relations in that framework. Once all the attacks have been processed, each set will contain conflict free sets that can be checked for the inclusion in preferred or stable extensions.
 
 \begin{algorithm}
 	\caption{Maximal Conflict Free sets calculation}\label{mcfPseudocode}
@@ -49,9 +51,15 @@ Firstly, the attack \textit{(a,b)} is applied to the set of all arguments - \tex
 
 \subsubsection{Sets}
 
-The algorithm \ref{alg:mcf} is the representation of calculation of the Maximal Conflict Free sets. Depending on the size of the Argumentation Framework and it's complexity this approach will depend on the creation of the large number of combinations of sets. Furthermore, since the size of the collection of the conflict free sets can be $2^n$, where \textit{n} is the total number of arguments within the framework, iterating through this collection for each attack can be time consuming. Hence, to reduce the cost of running the above algorithm, first implementation involved sets data structures. "Set object is an unordered collection of distinct hashable objects" \citep{python_sets}.
+The algorithm \ref{alg:mcf} is the representation of calculation of the Maximal Conflict Free sets. Depending on the size of argumentation framework and its complexity, this approach will depend on the creation of large number of combinations of sets. 
 
-To implement the algorithm the conflict free sets were stored as frozenset inside a set. Since the objects within the set are hashed, it provides fast access to its elements. Furthermore, testing membership within the set is performed in the constant time as it does not need to iterate through the whole set as it is the case with list data structure as it can be seen in table \ref{table:timingsMembership}. Additional benefit of using set is its property of being a collection of distinct objects. This helps to ensure that the duplicate sets are not stored, reducing the time required to iterate through the frozensets.
+The size of the collection of conflict free sets can be $2^n$, where \textit{n} is the total number of arguments within the framework. This can happen if for each pair of arguments in attack, both arguments are included in all created conflict free sets. Hence, for each attack it will double the number of created sets. 
+
+Iterating through the collection of already generated sets for each attack can be time consuming. Hence, to reduce the cost of running the above algorithm, first implementation involved \textit{sets} data structures. "Set object is an unordered collection of distinct hashable objects" \citep{python_sets}.
+
+To implement the algorithm, conflict free sets were stored as \textit{frozensets} inside a \textit{set}. Since the objects within the set are hashed, it provides fast access to its elements. Furthermore, testing membership within the set is performed in the constant time as it does not need to iterate through the whole set as it is the case with \textit{list} data structure. The time required to test membership of each element of the set and compared to list can be seen in table \ref{table:timingsMembership}. The test included a collection of elements and each element was checked if it is a member of the collection. With 1000 elements, the list performance drops to almost a minute, while the same operation can be performed in half a second when using sets. 
+
+Additional benefit of using set is its property of being a collection of distinct objects. This helps to ensure that the duplicate sets are not stored. Since there is high chance of creating duplicate sets of arguments through attack reduction, this helps to keep the domain space of the maximal conflict free collection to minimum, reducing the time required to iterate through the frozensets.
 
 \begin{table}[h]
 	\centering
@@ -65,7 +73,7 @@ To implement the algorithm the conflict free sets were stored as frozenset insid
 	\end{tabular}
 \end{table}
 
-Although the set data structure is superior to list in terms of performance, it has a massive overhead in terms of memory usage. Since its objects are hashed it is memory intensive especially for large collections. As can be seen in table \ref{table:sizeDataStructures}, for 10000 elements, the size of the set is over five times of the list. Since the implementation used set of frozensets, the required memory was growing exponentially for bigger argumentation frameworks, making the solution unusable.
+Although the \textit{set} data structure is superior to list in terms of performance, it has a massive overhead in terms of memory usage. Since its objects are hashed it is memory intensive especially for large collections. As can be seen in table \ref{table:sizeDataStructures}, for 10000 elements, the size of the set is over five times the size of list. Since the implementation used \textit{set} of \textit{frozensets}, the required memory was growing exponentially for bigger argumentation frameworks, making the solution unusable.
 
 \begin{table}[h]	
 	\centering
@@ -82,20 +90,28 @@ Although the set data structure is superior to list in terms of performance, it 
 % add some results from alias
 
 \subsubsection{PyTable}
-In order to try resolve the memory issue caused by the large set of frozensets, attempt has been made to implement the solution for Maximal Conflict Free sets using PyTables. PyTables is a python module for "managing hierarchical datasets and designed to efficiently and easily cope with extremely large amounts of data" \citep{pytables}. It is using HDF5, which is a "data model, library and file format for storing and managing data" \citep{hdf5}. 
+In order to resolve the memory issue caused by the large \textit{set} of \textit{frozensets}, attempt has been made to implement the solution for Maximal Conflict Free sets using PyTables. PyTables is a python module for "managing hierarchical datasets and designed to efficiently and easily cope with extremely large amounts of data" \citep{pytables}. It is using HDF5, which is a "data model, library and file format for storing and managing data" \citep{hdf5}. 
 
-Using PyTables for storage of all generated sets will release the huge amount of memory required for using sets of sets. The algorithm used with PyTables is slightly modified version of the algorithm \ref{alg:mcf}. In order to maximize the performance while using PyTables, three tables are created:
+Using PyTables for storage of all generated sets will release the huge amount of memory required for using hashed collections. The algorithm used with PyTables is slightly modified version of the algorithm \ref{alg:mcf}. The difference is that the PyTables is storing data in tables. Thus, to maximize the performance while using PyTables, three tables have been created:
 \begin{enumerate}
 	\item{Arguments Table - table for storing all arguments within the argumentation framework. The table consist of the name of the argument and its mapping}
-	\item{Conflict Free Table - table for storing references to conflict free sets. This table consists of only one column - id}
-	\item{Argument Conflict Free Bridge Table - this table is used for storing references of arguments within the conflict free sets. Consisting of three columns: argument id, conflict free set id and active flag, links the tables above.}
+	\item{Conflict Free Table - this table is used for storing references of arguments within the conflict free sets. Consisting of three columns: argument id, conflict free set id and active flag}
 \end{enumerate}
 
+When the argumentation framework is first created and a collection of arguments is added, those are added to the arguments table, where name is the name of the argument and mapping is its unique id. Once all arguments are added, a set containing all of those arguments is also created and stored in the conflict free table. The active flag is set to \textit{true} for all arguments in that set.
+
+Once the tables are ready, the algorithm iterates through the collection of attacks. For each pair of arguments, their respective mappings are fetched from the arguments table. Once those are retrieved, for each of those arguments a collection of instances in the conflict free table is fetched where the argument id matches provided argument and the active flag is set to \textit{true}. This provides the collection of ids of conflict free sets that contains one or the other argument. Hence, in order to select the conflict free sets that will have to be updated, the intersection of both collection is taken.
+
+Once the affected conflict free sets have been identified, the algorithm fetches arguments from each individual set, copies and updates them accordingly to create two sets, each containing only a single argument from the given attack.
+
+This approach replaced the need for storing all generated collections in RAM and stored them on hard drive instead. Although this has improved responsiveness of the machine running ALIAS, it considerably reduced the performance of the solver. 
+
+All conflict free sets are generated dynamically. With large number of arguments, retrieving, updating and saving them requires constant read and write operations to hard drive. This in turn is very time consuming and reduces the performance.
 
 \subsubsection{Dictionaries}\label{sec:dicts}
-Another approach to implement the maximal conflict free set algorithm is to use data structure 'defaultdict'. 'Defaultdict' class provides a new dictionary-like object, where the first argument in the constructor specifies default factory attribute. It is a subclass of a standard 'dict' class in Python and majority of the methods are the same between 'defaultdict' and 'dict' classes \citep{defaultdict}.
+Last approach to implement the maximal conflict free set algorithm is to use dictionary data structure called 'defaultdict'. 'Defaultdict' class provides a new dictionary-like object, where the first argument in the constructor specifies default factory attribute. It is a subclass of a standard 'dict' class in Python and majority of the methods are the same between 'defaultdict' and 'dict' classes \citep{defaultdict}.
 
-The implementation uses two 'defaultdict' classes with sets as its default factory attribute. One of the dictionaries is used to store all the arguments from the argumentation framework as the keys and a set of references to the conflict free sets as a value. Second dictionary is used to store the conflict free sets, where the key is just the identifier that gets incremented with every new record and the value is a set of the argument names in that particular conflict free set. Table \ref{table:dictsRepresentation} shows an example of the dictionaries being used to compute the maximal conflict free sets based on the argumentation framework \ref{fig:argumentationFrameworkFigure} from section \ref{abstractArgumentation}.
+The implementation uses two 'defaultdict' objects with sets as its default factory attribute. One of the dictionaries is used to store all the arguments from the argumentation framework as the keys and a set of references to the conflict free sets as a value. Second dictionary is used to store the conflict free sets, where the key is just the identifier that gets incremented with every new record and the value is a set of the argument names in that particular conflict free set. Table \ref{table:dictsRepresentation} shows an example of the dictionaries being used to compute the maximal conflict free sets based on the argumentation framework \ref{fig:argumentationFrameworkFigure} from section \ref{abstractArgumentation}.
 
 \begin{table}[h]
 	\centering
@@ -115,11 +131,9 @@ As can be seen in table \ref{table:dictsRepresentation}, there is a direct link 
 
 % comparison of memory usage of defaultdict
 
-There are number of steps that need to be taken in order to compute the maximal conflict free set using the dictionaries. Firstly, the sets to be modified need to be found, based on the attack tuple being added - this is simply intersection of the sets from arguments dictionary for the attacking and attacked argument. Then for all the values from that intersection, access the sets in conflict free sets dictionary and replace the existing set with two copies of that set: one without the attacker and one without the attacking arguments. The final step is to update the arguments dictionary by updating the references to the conflict free sets for all the arguments that were included in that set.
+The process of computing the maximal conflict free sets is similar to that shown in algorithm \ref{alg:mcf}. Firstly, the sets to be modified need to be found, based on the pair of arguments from attack relation being added - this is simply intersection of the sets from arguments dictionary for the attacking and attacked argument. Then for all the values from that intersection, access the sets in conflict free sets dictionary and replace the existing set with two copies of that set: one without the attacker and one without the attacking arguments. The final step is to update the arguments dictionary by updating the references to the conflict free sets for all the arguments that were included in that set.
 
-% some performance chart?
-
-The operations in the approach above consists of accessing the values from the dictionary and performing simple operations on sets. Those operations are performed relatively quickly. However, similarly to other approaches, the number of sets in the conflict free sets dictionary in the worst case scenario will exponentially grow with each attack being added. If the argumentation framework is linear, i.e. a attacks b, b attacks c, c attacks d, etc., then with each attack that is processed the number of conflict free sets and number of operations will double, ultimately giving $O(n^2)$ big O notation in the worst case scenario. 
+This approach is similar to approach using PyTables. In order to improve the performance loss from accessing the data on the hard drive, the tables have been represented as the dictionaries. All operations performed to compute the maximal conflict free sets consist of accessing the values from dictionary and performing simple operations on sets. Those operations are performed relatively quickly. However, similarly to other approaches, the number of sets in the conflict free sets dictionary, in the worst case scenario, will exponentially grow with each attack being added. If the argumentation framework is linear, i.e. a attacks b, b attacks c, c attacks d, etc., then with each attack that is processed the number of conflict free sets and number of operations will double, ultimately giving $O(n^2)$ big O notation. 
 
 
 

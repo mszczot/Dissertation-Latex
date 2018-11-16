@@ -1,20 +1,61 @@
 \subsection{Solver Evaluation}
-ALIAS solver will be evaluated in terms of the functional and non-functional requirements discussed in section \ref{label:projectRequirements}. 
 
 \subsubsection{Functionality Evaluation}
-Although original implementation of ALIAS provided a lot of functionality, the core of the application has been reimplemented to explore different approaches of computing abstract argumentation semantics. 
+Although original implementation of ALIAS provided a lot of functionality, the core of the application has been reimplemented to explore different approaches for computing abstract argumentation semantics. 
 
-In terms of functionality, user can easily use ALIAS to create new argumentation framework, add arguments and attacks and perform tasks for three main extensions: complete, preferred and stable. The implementation has covered all critical functionalities identified and categorized as \textit{Must Haves} in section \ref{label:projectRequirements}. Furthermore, additional functionality in terms of available tasks per each extensions has been implemented. User can perform following tasks:
+In terms of semantic based functionalities, ALIAS can compute following main extensions: complete, preferred and stable. Furthermore, additional functionality in terms of available tasks per each extensions has been implemented. User can perform following tasks:
 \begin{itemize}
 	\item Compute all extensions
 	\item Compute some extensions
 	\item Given argument calculate if the argument is credulously accepted 
 	\item Given argument calculate if the argument is skeptically accepted
 \end{itemize}
-Only first task has been classified as critical for all three main extensions. The remaining tasks are categorized as \textit{Should have}. 
 
-Table \ref{table:tasksSupportedBySolvers} shows the comparison of ALIAS functionality to existing solvers submitted to ICCMA 2017 competition. Only half of the submitted solvers offer full functionality in terms of the possible extensions. Other half implements only selection of extensions, for example argmat-clpb can only compute all tasks from complete, stable and grounded extension, while ASPrMin solver only all preferred extensions. Furthermore, it can be seen that from the solvers implementing only some of the extensions, complete, preferred and stable extensions are the most common one.
-	
+As shown in table \ref{table:moscowSemanticRequirements}, only first task has been classified as critical for all three main extensions. The remaining tasks have been categorized as \textit{Should have}. Thus, semantic based requirements covered all \textit{Must} and \textit{Should Have} requirements.
+
+In terms of functionality not related to semantics, all critical requirements have been implemented. Furthermore, number of less important functionalities have also been added to ALIAS. As mentioned previously, ALIAS already provided the interface to read and parse argumentation frameworks from different sources. Those methods have been reviewed and updated to allow for the changes to the main solver. Hence, out of 17 requirements identified in table \ref{table:functReqFunctionality}, 12 items have been delivered as can be seen in table \ref{table:DelivfunctReqFunctionality}.
+
+\begin{longtable}{|p{0.4cm}|p{9cm}|p{2.2cm}|p{0.3cm}|}
+	\caption{Delivered Functional Requirements for Solver functionality}
+	\label{table:DelivfunctReqFunctionality}\\
+	\hline
+	\textbf{Id} & \textbf{Requirement} & \textbf{MoSCoW} & \textbf{}  \\ \hline \hline
+1 & Should read and parse AF from provided tgf file & Must have & \cellcolor{green}\Checkmark \\ \hline
+2 & Should read and parse AF from provided apx file & Should have & \cellcolor{green}\Checkmark \\ \hline
+3 & Should read and parse AF from provided JSON file & Could Have & \cellcolor{green}\Checkmark \\ \hline
+4 & Should read and parse AF from provided D3.js file & Could Have & \cellcolor{green}\Checkmark \\ \hline
+5 & Should read and parse AF from provided dot file & Could Have & \cellcolor{green}\Checkmark \\ \hline
+6 & Should read and parse AF from provided networkx object & Could Have & \cellcolor{green}\Checkmark \\ \hline
+7 & Should read and parse AF from provided SQL database & Could Have & \cellcolor{green}\Checkmark \\ \hline
+8 & User should be able to create a new empty AF & Must have & \cellcolor{green}\Checkmark \\ \hline
+9 & User should be able to add argument to AF & Must have & \cellcolor{green}\Checkmark \\ \hline
+10 & User should be able to add list of arguments to AF & Could Have & \cellcolor{red}\cross \\ \hline
+11 & User should be able to add attack to AF & Must have & \cellcolor{green}\Checkmark \\ \hline
+12 & User should be able to add list of attacks to AF & Could Have & \cellcolor{red}\cross \\ \hline
+13 & User should be able to draw AF as networkx graph & Should have & \cellcolor{green}\Checkmark \\ \hline
+14 & User should be able to export the AF in JSON format & Must have & \cellcolor{green}\Checkmark \\ \hline
+15 & User should be able to remove argument from AF & Won't have & \cellcolor{red}\cross \\ \hline
+16 & User should be able to remove attack from AF & Won't have & \cellcolor{red}\cross \\ \hline
+17 & ALIAS should cache computed semantics & Won't have & \cellcolor{red}\cross \\ \hline
+\end{longtable}% 
+
+
+\subsubsection{Performance Evaluation}
+
+\paragraph{Approaches} 
+Two different approaches for computing abstract argumentation semantics have been tried throughout this project: direct and SAT based approach. Furthermore, the direct approach of computing Maximal Conflict Free Sets have been implemented using three different data structures. This has been done to try to improve the proposed solution. 
+
+Based on the results from section \ref{section:stableExtensionResults} and \ref{section:preferredExtensionResults}, it can be seen that the least successful approach was a direct approach using PyTables. Solver only managed to compute extension for the smallest and easiest argumentation frameworks within the specified 20 minutes time limit. However, the idea of PyTables is to use the hard drive for a data store. All benchmark testing has been performed using hard disk drive, thus it will have impact on the overall performance. Solver could have performed better if latest generation of solid state drive would have been used. 
+
+Although the sets and dictionaries approaches for Maximal Conflict Free Sets creation produced results for large number of provided argumentation frameworks, they have a massive overhead - memory usage. The tests were performed on the machine with 8GB RAM available for the solver and another 8GB swap memory. Both of the solutions: sets and dictionaries, were running out of memory space for any framework with 20 or more arguments. Since this approach is combinatorial and  generates all the possible maximal conflict free sets first, the number of combinations is extremely high. Hence, storing all possible sets is memory expensive as in the worst case scenario it will generate $2^n$ records, where $n$ is the number of arguments in the framework.
+
+SAT based approach tends to outperform other solutions for frameworks it managed to compute. As can be seen in figure \ref{fig:stableFinalResults}, half of the timings for SAT solver approach are considerably faster than other approaches when computing stable extensions. Only in 4 instances, this approach was slower than approach using dictionaries. On the other hand, figure \ref{fig:preferredFinalResults} shows that SAT based approach was considerably slower for preferred extensions. 
+
+However, as shown in the section \ref{section:satSolver}, SAT based approach has been implemented using a simple encodings for the admissible sets. This increases the possibilities of improving ALIAS. Introducing more complex CNF encoding to reduce the search space will help to improve the performance. On the other hand, the only changes to direct approach of computing maximal conflict free sets can be done to optimize and fine tune the algorithm. Hence, the SAT based approach seems to be the most promising solution for ALIAS>
+
+\paragraph{Other Solvers Comparison}
+Table \ref{table:tasksSupportedBySolvers} shows the comparison of ALIAS functionality to existing solvers submitted to ICCMA 2017 competition. Only half of the submitted solvers offer full functionality in terms of the possible extensions. Other half implements only selection of extensions. For example argmat-clpb can only compute all tasks from complete, stable and grounded extension, while ASPrMin solver can only do all preferred extensions. Furthermore, it can be seen that from the solvers implementing only some of the extensions, complete, preferred and stable extensions are the most common one. This also correlates to available extensions in ALIAS.
+
 \begin{sidewaystable}
 	\caption{Tasks supported by solvers}
 	\label{table:tasksSupportedBySolvers}
@@ -45,25 +86,12 @@ Table \ref{table:tasksSupportedBySolvers} shows the comparison of ALIAS function
 	}
 \end{sidewaystable}
 
-\subsubsection{Performance Evaluation}
-Performance evaluation will consist of evaluation of each approach in comparison to other approaches implemented and in comparison to the results of certain solvers from ICCMA 2017 competition. In order for comparison to be valid, Pyglaf \citep{pyglaf}, Argsem-sat \citep{argsemsat} and gg-sts \citep{gg-sts} solvers have been tested on the same machine as ALIAS with the same argumentation frameworks from appendix \ref{appendix:benchmarkFiles}.
+In terms of performance and scalability, at the moment ALIAS cannot match the best performing solvers from ICCMA 2017 competition. As shown in figure \ref{fig:pyglafArgsemsat}, both Pyglaf and ArgSem-SAT have rather constant execution time for stable extension. As those tests were using the same argumentation frameworks as for benchmark testing, it can be seen that ALIAS is considerably slower.
 
-
-\paragraph{Approaches} 
-Two different approaches for computing abstract argumentation semantics have been tried throughout this project: direct and SAT based approach. Furthermore, the direct approach of computing Maximal Conflict Free Sets have been implemented using three different data structures. This has been done to try to improve the proposed solution. 
-
-Based on the results from section \ref{section:stableExtensionResults} and \ref{section:preferredExtensionResults}, it can be seen that the least successful approach was a direct approach using PyTables. Solver only managed to compute extension for the smallest and easiest argumentation frameworks within the specified 20 minutes time limit. However, the idea of PyTables is to use the hard drive for a data store. All benchmark testing has been performed using hard disk drive, thus it will reduce the performance. The solver could have performed better if latest generation of solid state drive would have been used. 
-
-Although the sets and dictionaries approaches for Maximal Conflict Free Sets creation produced results for large number of provided argumentation frameworks, they have a massive overhead - memory usage. The tests were performed on the machine with 8GB RAM available for the solver and another 8GB swap memory. Both of the solutions: sets and dictionaries, were running out of memory space for any framework with 20 or more arguments. Since this approach is combinatorial and  generates all the possible maximal conflict free sets first, the number of combinations is extremely high. Hence, storing all possible sets is memory expensive as in the worst case scenario it will generate $2^n$ records, where $n$ is the number of arguments in the framework.
-
-SAT based approach tends to outperform other solutions for frameworks it managed to compute. As can be seen in figure \ref{fig:stableFinalResults}, half of the timings for SAT solver approach are considerably faster than other approaches when computing stable extensions. Only in 4 instances, this approach was slower than approach using dictionaries. On the other hand, figure \ref{fig:preferredFinalResults} shows that SAT based approach was considerably slower for preferred extensions. 
-
-However, as shown in the section \ref{section:satSolver}, SAT based approach uses a simple encodings for the admissible sets. While, for direct approach of computing Maximal Conflict Free sets, the only changes in the implementation can be done to fine tune and optimize the solution, the SAT based approach has bigger possibilities. Implementing more complex CNF encodings to reduce the search space will greatly improve the performance of ALIAS.
-
-\paragraph{Other Solvers Comparison}
-
-
+On the other hand, Pyglaf and ArgSem-SAT are rather mature solvers, developed by teams specializing in argumentation theory. Both of them are using complex proposition to encode the semantics directly into SAT solver. ALIAS on the hand uses only simple encodings for admissible sets. 
 
 \subsubsection{Ease of Use}
-Although the SAT solver used by ALIAS is implemented in C++, ALIAS itself has been implemented using pure Python programming language. Responsibility for compiling and building PicoSAT solver has been moved to the Python wrapper package - PycoSAT. Hence, once the setup script is run and all dependencies installed automatically, user can start working with ALIAS by simply importing the module to Python environment.
+Although the SAT solver used by ALIAS is implemented in C, ALIAS itself has been implemented using pure Python programming language. Responsibility for compiling and building PicoSAT solver has been moved to the Python wrapper package - PycoSAT. Hence, once the setup script is run and all dependencies installed automatically, user can start working with ALIAS by simply importing the module to Python environment.
+
+Current implementation of ALIAS is ready to be packaged and published on PyPi \citep{pypi}. This would further improve the usability, as user would be able to install ALIAS and all its dependencies through pip command.
 

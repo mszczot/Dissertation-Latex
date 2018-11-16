@@ -1,11 +1,14 @@
 \subsection{Web User Interface Evaluation}
-Web User Interface has been introduced as an extension of ALIAS application in order to maximize the usability and easy of use. Testing of the Web Interface consist of executing previously prepared test cases for all critical and high priority functionalities. As could be seen in section \ref{section:testCases}, all test cases passed.
+
 
 \subsubsection{Functionality Evalution}
-Majority of the functionality of ALIAS Web User Interface comes from the solver itself. The Web UI makes calls to ALIAS through exposed API to manipulate argumentation frameworks. Based on the requirements analysis, user can create new or load existing argumentation framework (this is limited only to trivial graph formats), add arguments and attacks and request all possible complete, stable or preferred extensions to be completed. 
+Testing of the Web Interface consist of executing previously prepared test cases for all critical and high priority functionalities. As could be seen in section \ref{section:testCases}, all test cases passed.
 
-Additional tasks per extension have not been exposed in Web Interface during this project. Although those functionalities could have been useful, especially to determine if given argument is credulously or skeptically accepted in given argumentation framework, they have been categorized low priority items. They will be included in the future work.
+Majority of the functionality of ALIAS Web User Interface comes from the solver itself. The Web UI makes calls to ALIAS through exposed API to manipulate argumentation frameworks. Based on the requirements analysis, user can create new or load existing argumentation framework (this is limited only to trivial graph formats), add arguments and attacks, and request all possible complete, stable or preferred extensions to be completed. 
 
-ALIAS Web UI gives user the ability to easily visualize the argumentation framework by using cytoscape.js framework. Displaying the 
+Additional tasks per extension have not been exposed in Web Interface during this project. Although those functionalities could have been useful, especially to determine if given argument is credulously or skeptically accepted in given argumentation framework, they have been categorized low priority items. Those items will be included in the future work.
+
+Main aspect of ALIAS Web UI is that it gives user the ability to easily visualize the argumentation framework by using cytoscape.js framework. For many people it is easier to visualize information through graphs instead of raw data. 
 
 \subsubsection{Usability Evaluation}
+Although ALIAS Web User Interface has been introduced in order to showcase the capabilities of ALIAS, this extension has been also used to maximize ALIAS usability. This extension has been introduced in the final stage of the project, which did not allow to perform evaluation session with number of users. However, once the web interface will be further expanded and complete, a proper usability testing should be performed.

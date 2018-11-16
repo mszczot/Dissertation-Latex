@@ -3,7 +3,7 @@ As shown in section \ref{section:alias}, ALIAS \citep{alias} is the pure Python 
 
 ALIAS can also produce the labellings for complete, grounded, preferred, stable and semi-stable semantics, by iterating through the whole argumentation framework and label the arguments accordingly. Once the solution is created it breaks out of the loop and outputs the labellings. Hence, although ALIAS has a lot of functionality in terms of computing abstract argumentation semantics, the implementation method used for the solver makes it inefficient and difficult to work on the larger frameworks. 
 
-The benefit of ALIAS is its ability to read and parse argumentation frameworks from multiple input formats. In the existing implementation, Apart from standard input of tgf (Trivial Graph Format) and apx (Ability Photopaint Studio Image) files, ALIAS also support input from JSON, DOT graph, networkx and databases SQLLite, mySql and Neo4j. 
+The benefit of ALIAS is its ability to read and parse argumentation frameworks from multiple input formats. In the existing implementation, Apart from standard input of tgf (Trivial Graph Format) and apx (Ability Photopaint Studio Image) files, ALIAS also support input from JSON, DOT graph, networkx and databases SQLLite, mySql and Neo4j. Furthermore, it is possible ot output the argumentation framework into those formats as well.
 
 Although current implementation of ALIAS don't have any mandatory dependencies, additional dependencies are required to allow for additional functionality:
 \begin{itemize}
