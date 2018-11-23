@@ -154,14 +154,14 @@ By its definition the ideal extension satisfies I-maximality and admissibility p
 A set of extensions \textit{E} is I-maximal if and only if $\forall$\textit{$E_1$}, \textit{$E_2$} $\in$ \textit{E}, if \textit{$E_1$} $\subseteq$ \textit{$E_2$} then \textit{$E_1$} = \textit{$E_2$}.
 \end{definition}
 
-Perhaps, the ideal semantics can be best explained using the notion of a judgement aggregation context intoduced by \citet{caminada2011judgment}. Given an argumentation framework, if we assume a group of people who all try to accept as many as possible of sets of arguments, they all agree on needs to be examined and checked whether this position is still defensible. However, if they are not defensible some of the arguments need to be abstained from instead of accepting or rejecting them until it becomes defensible. The result is the ideal extension \citep{baroni2011introduction}.
+Perhaps, the ideal semantics can be best explained using the notion of a judgement aggregation context introduced by \citet{caminada2011judgment}. Given an argumentation framework, if we assume a group of people whom all try to accept as many as possible of sets of arguments, they all agree on needs to be examined and checked whether this position is still defensible. However, if they are not defensible some of the arguments need to be abstained from instead of accepting or rejecting them until it becomes defensible. The result is the ideal extension \citep{baroni2011introduction}.
 
 \begin{definition}{Stage Extension}
 \label{def:stageExtension}\\
 Let (\textit{AR}, \textit{attacks}) be an argumentation framework. A \textit{stage extension} conflict-free set \textit{Args} $\subseteq$ \textit{AR}, where \textit{Args} $\cup$ \textit{$Args^+$} is maximal with respect to set inclusion among all conflict-free sets.
 \end{definition}
 
-Stage extension introduced by \citet{verheij1996two} can also be explained in terms of labelling. It is a conflict-free extension where number of arguments labeled \textit{undec} is minimal. 
+Stage extension introduced by \citet{verheij1996two} can also be explained in terms of labelling. It is a conflict-free extension where a number of arguments labelled \textit{undec} is minimal. 
 \newline
 
 \begin{figure}[h]
@@ -191,18 +191,16 @@ Stage extension introduced by \citet{verheij1996two} can also be explained in te
 \label{fig:semanticsRelations}
 \end{figure}
 
-Above semantics can be used to decide whether a given argument, or set of arguments can be accepted in terms of set inclusion.  Based on the definitions a number of inclusions between the sets can be conluded. Those are:
+Above semantics can be used to decide whether a given argument or set of arguments can be accepted in terms of set inclusion.  Based on the definitions a number of inclusions between the sets can be concluded. Those are:
 \begin{itemize}
 	\item{Grounded extension is the smallest complete extension}
-	\item{Every preferred extesion is also complete}
+	\item{Every preferred extension is also complete}
 	\item{Every stable extension is also semi-stable and stage extension}
 \end{itemize}
-Furthermore, it can be seen that the complete extension provides the link between preferred extension (credulous semantic), and grounded extension (skeptical smenatics) \citep{dung1995}. It can also be concluded, that the maximal complete extension is also maximal admissible set. On the other hand, the grounded extension is determined by the minimal complete extension \citep{gaggl2009solving}. The relations between the semantics can be seen in figure \ref{fig:semanticsRelations}.
+Furthermore, it can be seen that the complete extension provides the link between preferred extension (credulous semantic), and grounded extension (skeptical semantics) \citep{dung1995}. It can also be concluded, that the maximal complete extension is also maximal admissible set. On the other hand, the grounded extension is determined by the minimal complete extension \citep{gaggl2009solving}. The relations between the semantics can be seen in figure \ref{fig:semanticsRelations}.
 
 \section{Credulous and Skeptical Acceptance}
-%sceptical and credulous semantics
-%sceptical and credulous acceptance of argument
-Additional notion of credulous and sceptical semantics has been introduced. Usually, a credulous semantics is intended to capture as much information as possible \citep{dix1995non}, while skeptical makes less committed choices about the justification of the arguments \citep{baroni2007comparing}. As mentioned previously, grounded semantic is a good example of skeptical extension, as it always yields exactly one extension and this extension is admissible \citep{caminada2007comparing}.
+The additional notion of credulous and sceptical semantics has been introduced. Usually, a credulous semantics is intended to capture as much information as possible \citep{dix1995non}, while skeptical makes less committed choices about the justification of the arguments \citep{baroni2007comparing}. As mentioned previously, grounded semantic is a good example of skeptical extension, as it always yields exactly one extension and this extension is admissible \citep{caminada2007comparing}.
 
 Furthermore, argument can be defined as credulous or skeptical in terms of its acceptability. As described by \citet{arieli2015conflict}, an argument \textit{a} $\in$ \textit{Args} is credulously accepted by one type of semantics, only if it belongs to some of the semantic extensions of a given argumentation framework. On the other hand, the argument \textit{b} is skeptically accepted by the semantic if it belongs to all of its extensions of a given argumentation framework. This can be represented using argumentation framework \ref{fig:af5}. It has 5 complete extensions: $\emptyset$, \{b\}, \{e\}, \{b, e\}, \{a, c, e\}, however none of the arguments is skeptically accepted, while \textit{a}, \textit{b}, \textit{c} and \textit{e} are credulously accepted. On the other hand, \{\textit{b, e}\} and \{\textit{a, c, e}\} are preferred, stable, semi-stable and stage extensions of argumentation framework \ref{fig:af5}. It can be seen that only argument \textit{e} is skeptically accepted for all those semantics, while \textit{a}, \textit{b} and \textit{c} are credulously accepted.
 
