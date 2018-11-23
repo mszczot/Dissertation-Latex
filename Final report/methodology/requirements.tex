@@ -1,7 +1,7 @@
-\subsection{Project Requirements} \label{label:projectRequirements}
+\section{Project Requirements} \label{label:projectRequirements}
 Number of functional and non-functional requirements have been identified and prioritized using MoSCoW approach during the design stage. 
 
-\subsubsection{MoSCoW method}
+\subsection{MoSCoW method}
 Large number of requirements have been identified for ALIAS. However, due to the time limitation of the project, not all of them will delivered. The final software deliverable will be a minimum viable product: a product with enough features that can be delivered in the specified time line. Furthermore, the selected features should be critical to the system, introducing important functionality into the application \citep{mvp}.
 
 Thus, in order to select the minimum viable product for this project, all the requirements have been prioritized using MoSCoW approach. The approach originated from DSDM methodology (Dynamic Software Development Method) and uses four levels to define the priority \citep{moscow}:
@@ -15,9 +15,9 @@ Thus, in order to select the minimum viable product for this project, all the re
 
 Hence, any features categorized as \textit{Must Haves} are critical to the project and they have to be implemented during this project. Failing to do so might result in the project to be considered as failed. 
 
-\subsubsection{Functional Requirements}
+\subsection{Functional Requirements}
 
-\paragraph{Solver}
+\subsubsection{Solver}
 
 Most of functional requirements have been created based on solver requirements for International Competition on Computational Models of Argumentation 2017. Furthermore, those requirements can be characterized based on their functionality:
 \begin{itemize}
@@ -101,7 +101,7 @@ Although original implementation of ALIAS provides a certain aspects of those re
 		17 & ALIAS should cache computed semantics & Won't have \\ \hline
 	\end{longtable}%
 
-\paragraph{Web User Interface} \label{section:WebUIRequirements}
+\subsubsection{Web User Interface} \label{section:WebUIRequirements}
 Apart from the requirements for the solver itself, there are number of functional requirements for the Web UI. The User Interface does not introduce any new functionality in terms of the solver abilities, however it provides a facade that can be used to work with, and modify argumentation frameworks in ALIAS and request certain extensions to be computed. 
 
 % Please add the following required packages to your document preamble:
@@ -151,7 +151,7 @@ Apart from the requirements for the solver itself, there are number of functiona
 
 As can be seen in table \ref{table:webUiRequirements}, the requirements for the Web User Interface extend those of the main solver. However, since the Web UI will be build on top of ALIAS, it is critical to treat it separately in terms of requirements. 
 
-\subsubsection{Non-Functional Requirements}
+\subsection{Non-Functional Requirements}
 Apart from all functional requirements, number of non-functional requirements have also been identified. Those are mostly concerned with the performance and scalability of the proposed solution. Although those do not bring any tangible value to the finished system, those requirements are critical to produce the high performance and scalable system that could match existing solvers in terms of computation time. Hence, the non-functional requirements can be classified as follow:
 
 \begin{enumerate}
@@ -163,7 +163,7 @@ Apart from all functional requirements, number of non-functional requirements ha
 
 Performance, scalability and ease of use requirements are applied not only to the ALIAS application, but also to the Web User Interface. 
 
-\paragraph{Performance and Scalability}
+\subsubsection{Performance and Scalability}
 
 In terms of performance and scalability, the requirement for ALIAS is to be able to cope with argumentation frameworks of any size. User should be confident that the application will be able to provide the correct results at all times, no matter the size of provided framework. Although, it is difficult to convert it into tangible requirements, the attempt has been made to specify brackets for different sizes of argumentation frameworks: 
 
@@ -183,11 +183,11 @@ However, the above classification is only concerned with the size of graph gener
 
 In terms of ALIAS Web Extension, the performance and scalability requirements are mostly concerned with the time required to load and render any given Argumentation Framework. User should be able to display and work on large graphs in the UI. On the other hand, the performance of any operation on the given Argumentation Framework will be highly dependent on the performance of ALIAS.
 
-\paragraph{Ease of Use}
+\subsubsection{Ease of Use}
 
 Another aspect of non-functional requirements is the ease of use of the application. Original ALIAS application has been implemented in Python, an interpreted, high-level programming language \citep{millman2011python}. Although Python has been designed as the general purpose language, it became very popular. Furthermore, availability of libraries like NumPy and SciPy, it became a popular choice for high-level scientific code development \citep{perez2011python}. Thus, the Python implementation of abstract argumentation semantics solver without the need to setup the environment in any way prior to using it would be beneficial. Being able to install the ALIAS from the PyPi, the Python package manager \citep{pypi}, and use it 'out of the box', gives it an advantage over other solvers.
 
 Ease of use requirement is further addressed by the ALIAS Web Interface. By providing the User Interface, the application is more readily available for anyone wishing to explore and work with Argumentation Frameworks. Web UI removes any need for programming skills as the user would be able to interact with ALIAS through the API.
 
-\paragraph{Design} 
+\subsubsection{Design} 
 Design functionality is concerned with the User Interface design. The Web Interface should have intuitive and minimalistic design to maximize the space for Argumentation Framework graphs. Available functionality should be easily recognized through descriptive links or buttons.

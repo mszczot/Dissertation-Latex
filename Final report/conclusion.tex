@@ -1,9 +1,18 @@
-\subsection{Overall goals}
+\section{Overall goals}
 The original aim of this project was to develop a good performance, easy to use solver for abstract argumentation framework semantics. 
 
-All the critical functionality defined in the Initial Project Overview and further in requirement analysis have been implemented. Furthermore, additional functionality has been added to ALIAS to improve the system. Additional tasks for complete, preferred and stable semantics have been implemented and web user interface created. This allows users to view and interact with argumentation frameworks through graphical interface by using graphs.
+All the critical functionality defined in the Initial Project Overview and further in requirement analysis have been implemented. Furthermore, additional functionality has been added to ALIAS to improve the overall system. Additional tasks for complete, preferred and stable semantics have been implemented and web user interface created. This allows users to view and interact with argumentation frameworks through graphical interface by accessing exposed ALIAS API.
 
-\subsection{Compliance with non-functional requirements}
+\section{Compliance with non-functional requirements}
 Non-functional requirements are mainly concerned with overall performance and scalability of ALIAS. Solver should be able to handle argumentation frameworks of all sizes: from small ones with few arguments, to large ones with few thousands of arguments and attacks. 
 
-Throughout the project, four different implementations of solver have been implemented. This allowed to test and evaluate different approaches and data structures. However, the final solution is not able to handle large frameworks and might have problems computing semantics for complex medium sized frameworks in reasonable time. Although the system does not scale properly, the SAT based approach has a lot of room for improvement to increase the performance. 
+Throughout the project, four different implementations of solver have been implemented. This allowed to test and evaluate different approaches and data structures. However, the final solution is not able to handle large frameworks and might have problems computing semantics for complex frameworks in reasonable time. Although the system does not scale properly, the SAT based approach has a lot of room for improvement to increase the performance. 
+
+In comparison to the high performance solvers, ALIAS is unable to compute semantics for larger argumentation framework. However, as can be seen in the charts for results of ICCMA 2017 competition (figure \ref{fig:coTrack} to \ref{fig:prTrack}), there are solvers either with large number of negative points like gg-sts, or with long execution times like ArgTools. Although those solvers were unavailable for comparison, the testing results indicate ALIAS will outperform them.
+
+One of the main features of ALIAS is the ease of use of the application. Since ALIAS has been implemented in Python programming language and all dependencies can be imported during the install of the module through PyPi package manager. Once ALIAS is installed, it is ready to be used without any other setup needs. Additionally, the web interface can be run locally with Python Flask server allowing user to instantly work with ALIAS.  
+
+\section{Future of ALIAS}
+Altough this project has been successful in delivering working Python library for computing abstract argumentation semantics, ALIAS is not a finished system. Section \ref{section:futureWork} discusses just a number of possible extensions and future project that can be implemented to improve ALIAS. One of them is to improve CNF encodings of abstract argumentation semantics for SAT solver. By adding more rigorous clauses for possible solutions, the search space can be greatly reduced and performance improved.
+
+For the nearest future, ALIAS will be submitted to the International Competition on Computational Models of Argumentation 2019 \cite{ICCMA2019}. Although the developed system will not win, the competition will help to further benchmark ALIAS.  

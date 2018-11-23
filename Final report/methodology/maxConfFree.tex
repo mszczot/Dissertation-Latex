@@ -1,4 +1,4 @@
-\subsection{Maximal Conflict Free Sets} \label{section:maxConflictFreeSet}
+\section{Maximal Conflict Free Sets} \label{section:maxConflictFreeSet}
 According to the definitions \ref{def:preferredExtension} and \ref{def:stableExtension}, Preferred and Stable extensions are based on the maximal sets. Preferred extensions are the maximal element with respect to the set from all the admissible sets, and Stable extensions are the maximal conflict free sets that attack every argument outside those sets. Furthermore, since each admissible set is also a conflict free set, both extensions can be build from the maximal conflict free set. Hence, this property has been used in exploring possible solutions for computing Preferred and Stable extensions.
 
 Let \textit{args} be a collection of arguments in a given argumentation framework \textit{AF}. Then \textit{args} can be represented as $args=arg_1, arg_2,...,arg_n$ where \textit{n} is the total number of arguments in \textit{AF}. 
@@ -49,7 +49,7 @@ This approach allows to split create maximal conflict free sets from the set of 
 	\label{alg:mcf}
 \end{algorithm}
 
-\subsubsection{Sets}
+\subsection{Sets}
 
 The algorithm \ref{alg:mcf} is the representation of calculation of the Maximal Conflict Free sets. Depending on the size of argumentation framework and its complexity, this approach will depend on the creation of large number of combinations of sets. 
 
@@ -89,7 +89,7 @@ Although the \textit{set} data structure is superior to list in terms of perform
 
 % add some results from alias
 
-\subsubsection{PyTable}
+\subsection{PyTable}
 In order to resolve the memory issue caused by the large \textit{set} of \textit{frozensets}, attempt has been made to implement the solution for Maximal Conflict Free sets using PyTables. PyTables is a python module for "managing hierarchical datasets and designed to efficiently and easily cope with extremely large amounts of data" \citep{pytables}. It is using HDF5, which is a "data model, library and file format for storing and managing data" \citep{hdf5}. 
 
 Using PyTables for storage of all generated sets will release the huge amount of memory required for using hashed collections. The algorithm used with PyTables is slightly modified version of the algorithm \ref{alg:mcf}. The difference is that the PyTables is storing data in tables. Thus, to maximize the performance while using PyTables, three tables have been created:
@@ -108,7 +108,7 @@ This approach replaced the need for storing all generated collections in RAM and
 
 All conflict free sets are generated dynamically. With large number of arguments, retrieving, updating and saving them requires constant read and write operations to hard drive. This in turn is very time consuming and reduces the performance.
 
-\subsubsection{Dictionaries}\label{sec:dicts}
+\subsection{Dictionaries}\label{sec:dicts}
 Last approach to implement the maximal conflict free set algorithm is to use dictionary data structure called 'defaultdict'. 'Defaultdict' class provides a new dictionary-like object, where the first argument in the constructor specifies default factory attribute. It is a subclass of a standard 'dict' class in Python and majority of the methods are the same between 'defaultdict' and 'dict' classes \citep{defaultdict}.
 
 The implementation uses two 'defaultdict' objects with sets as its default factory attribute. One of the dictionaries is used to store all the arguments from the argumentation framework as the keys and a set of references to the conflict free sets as a value. Second dictionary is used to store the conflict free sets, where the key is just the identifier that gets incremented with every new record and the value is a set of the argument names in that particular conflict free set. Table \ref{table:dictsRepresentation} shows an example of the dictionaries being used to compute the maximal conflict free sets based on the argumentation framework \ref{fig:argumentationFrameworkFigure} from section \ref{abstractArgumentation}.

@@ -1,8 +1,8 @@
-\subsection{Extensions}
+\section{Extensions}
 ALIAS has been implemented to provide all admissible sets from the SAT solver. Those sets are then verified if they are part of the requested extension. 
 
 
-\subsubsection{Stable Extension} \label{section:stableExtension}
+\subsection{Stable Extension} \label{section:stableExtension}
 Based on the definition \ref{def:stableExtension}, Stable Extension is the conflict-free set that attacks all arguments not included in the set. This makes verifying the Stable Extension a straight forward process using just a set theory: attacks of the set to be verified has to be equal to the set of arguments not included in the set to be checked. If those are equal, then the set in question is a stable extension, since there are no other arguments that are neither attacked by this set nor included in it. Hence, ALIAS verifies all the solutions provided from the SAT solver using above property of the extension. This can be represented as: 
 
 \begin{equation}
@@ -11,7 +11,7 @@ R^+(S) = args \oplus S
 
 where $S$ is the set of arguments to be verified, $R^+(S)$ represents the arguments attacked by the set $S$, and $\oplus$ indicates the symmetric difference. If the above equation evaluates to \textit{true}, the set being checked is added to the list of extensions, otherwise it is ignored. Once all the sets have been checked, the generated list is returned.
 
-\subsubsection{Matrices}
+\subsection{Matrices}
 Matrix in mathematics is an 2 dimensional array with predefined number \textit{n} of rows and \textit{m} of columns: \textit{n x m} matrix \citep{matrices}, where each individual cell within the matrix stores information. Matrix with equal number of rows and columns is called a square matrix. 
 
 As it was shown in the definition \ref{AFdef}, abstract argumentation is a collection of finite arguments and relations between those arguments. Hence, argumentation frameworks can be easily represented in the form of matrices, where both rows and columns represent the arguments within the framework and their relations are marked in each individual cells. 
@@ -48,7 +48,7 @@ By using sub-blocks of the matrix for different parts of the argumentation frame
 
 This approach has been used in ALIAS to verify complete and preferred extensions.
 
-\subsubsection{Complete Extension}
+\subsection{Complete Extension}
 The implementation for verifying if the given set is a Complete Extension is based on the approach presented by \citet{matrix2}. By dividing the matrix into certain sub-blocks, they found a dependency between column and row vectors that allow to confirm if the set is in fact a complete extension.
 
 Lets consider an example presented by \citet{matrix2}: given the argumentation framework $AF = (Args, attacks)$, where $Args = \{1,2,3,4,5\}$ and $attacks = \{(2,5), (3,4), (4,3), (5,1), (5,3)\}$, it can be represented in a graph as shown in figure \ref{fig:exampleAF}.
@@ -143,7 +143,7 @@ Once all the column sums have been checked the application can move to the secon
 
 After checking all elements from C and S sub-blocks, the dictionary storing results of the second conditions is checked. If any of the elements of the dictionary is set to false, the method returns false and the set is not considered as part of the complete extension. 
 
-\subsubsection{Preferred Extension} \label{section:preferredExtension}
+\subsection{Preferred Extension} \label{section:preferredExtension}
 Preferred extensions are checked in similar way to the Complete Extensions above. By definition \ref{def:preferredExtension}, Preferred Extension is the maximal, with respect to set inclusion, admissible set of arguments. Hence, the only checks we have to do is to verify if the given set is admissible and if it is maximal with respect to set inclusion.
 
 Similarly to the complete extension, SciPy matrix representations have been used for the argumentation frameworks. Once the solver generates possible solution, the fetch of arguments to be checked is performed. However, in case of the Preferred extension, the application only fetches the arguments not included in the proposed solution and not attacked by the solution. Hence, the required matrix is a c sub-block without the attacked set $R^+(S)$.

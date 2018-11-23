@@ -1,4 +1,4 @@
-\subsection{Approaches to computing argumentation semantics} \label{approaches}
+\section{Approaches to computing argumentation semantics} \label{approaches}
 
 \begin{figure}[h]
 	\centering
@@ -155,7 +155,7 @@ The idea of reduction approach is to utilize existing technologies and algorithm
 
 In contrast to reduction, direct approach does not exploit any existing technologies. Instead, each solution has been developed from scratch. The advantage of direct approach is the ability to shape and tailor the algorithms specifically to the argumentation frameworks.
 
-\subsubsection{ICCMA Introduction}
+\subsection{ICCMA Introduction}
 
 International Competition on Computational Models of Argumentation is held every 2 years, where different solvers compete on reasoning tasks in abstract argumentation frameworks. The main goals of the competition is to compare and measure progress of the state of the art in argumentation framework solving approaches. Different solving techniques can be studied and evaluated based on their results in competition. Finally, the competition allows for creation and continuous improvement of the benchmark suite with meaningful argumentation frameworks \citep{results_sildes}.
 
@@ -201,7 +201,7 @@ Each above task consists of 350 benchmark sets divided into 5 categories of hard
 	\label{table:iccmaResultsbySolver}
 \end{table}
 
-\paragraph{Submissions}
+\subsubsection{Submissions}
 For the competition in 2017, there were a total of 16 solvers submitted to participate. Each one of them has been implemented using different techniques and algorithms, which makes ICCMA is a good starting place to compare and evaluate the approaches used by the solvers.
 
 Figure \ref{fig:approachesBarChart} shows the number of solvers using specific approaches. As it can be seen, the use of SAT solver is most preferred way for computing argumentation semantics. Over third of all the solvers submitted to ICCMA were based on boolean satisfiability problem. Constraint Set Programming seems to be the second most popular choice for reduction algorithms with quarter of solvers using it. Less than twenty percent of submitted solvers used direct approach - labeling. With ASP and other approaches being less popular.
@@ -221,7 +221,7 @@ Figure \ref{fig:approachesBarChart} shows the number of solvers using specific a
 	\label{fig:approachesBarChart}
 \end{figure}
 
-\subsubsection{SAT Solvers}
+\subsection{SAT Solvers}
 As could be seen in table \ref{table:iccmaResultsbySolver}, Boolean Satisfiability Solvers are preferred way of computing abstract argumentation semantics in the existing solvers. However, efficiency of the solver will greatly depend on the implementation and the way of encoding argumentation semantics. Interestingly, seven out of eight winning solvers of ICCMA 2017 were implemented using SAT based approach, indicating that currently it might be the most efficient way to compute the semantics of abstract argumentation framework.
 
 Boolean Satisfiability problem, also known as SAT is a NP-Complete problem. Due to its significance in theoretical research and practical applications it is one of the most studied problems. The SAT problem asks for the an assignment of variables, so the provided Boolean formula will evaluate to true, or determination that such an assignment does not exist \citep{satSolver1}. For most of the SAT solvers, the Boolean formula has to be specified in the conjunctive normal form (CNF) \citep{SatSolver2}. \citet{cnfDefinition} perfectly describes CNF as "a single conjunction of disjunctions of (possibly negated) literals". 
@@ -244,12 +244,12 @@ The above equation checks whether the proposed arguments are an admissible set a
 
 There are number of ways the argumentation frameworks semantics can be encoded and different implementations of solvers taking advantage of Boolean Satisfiability Solvers to compute the abstract argumentation framework extensions. 
 
-\paragraph{Pyglaf} \label{section:pyglaf}
+\subsubsection{Pyglaf} \label{section:pyglaf}
 Pyglaf, winner of three tracks, takes advantage of circumscription, a form of non-monotonic reasoning augmenting ordinary first order logic created by \citet{circumpscription}, to formalize the "common sense" assumptions, and to solve computational problems of abstract argumentation frameworks.  Circumscriptino, main solver of Pyglaf, is written in C/C++, and is a circumscription solver extending the SAT solver Glucose \citep{glucose}. On the other hand, Python programming language is used to build the encodings for each semantic and to orchestrate calls to the external solver \citep{pyglaf}. 
 
 As shown in table \ref{table:iccmaResultsbySolver}, Pyglaf won 3 tracks in ICCMA 2017: complete, stable and ideal extension tracks. As can be seen in figures \ref{fig:coTrack}, \ref{fig:idTrack}, \ref{fig:stTrack}, Pyglaf not only scored the most points for each of them, but also had one of the shortest execution times while delivering correct solutions.
 
-\paragraph{argmat-sat}
+\subsubsection{argmat-sat}
 Argmat-sat developed by \citet{argmatSat} along with argmat-dvisat: division based algorithm framework \citep{argmatDvisat} and argmat-mpg: geocode based solver is another solver submitted to ICCMA 2017 competition. As can be seen in figures \ref{fig:ssTrack} and \ref{fig:stTrack}, Argmat-sat won semi-stable and stage extension tracks significantly outperforming it rivals. It was not only the highest scoring solver for those tracks, but also the fastest. Although argmat-sat won only two tracks, it still was in top 3 solvers for the remaining tracks.
 
 Argmat-sat is implemented purely in C++, using CryptoMiniSAT5 \citep{CryptoMiniSat} as its SAT engine. Similarly to pyglaf \citep{pyglaf}, argmat-sat provides a command line interface that allows to compute all 7 semantics plus Dung Triathlon, to conform to ICCMA 2017 competition requirements. It uses three different CNF encodings: stable extensions, admissible sets and complete extensions, where stable extensions encoding is purely used for computing stable extensions. Admissible sets and complete extensions encodings can be used for searching admissible, complete, preferred, grounded and ideal extensions \citep{argmatSat}. 
@@ -257,7 +257,7 @@ Argmat-sat is implemented purely in C++, using CryptoMiniSAT5 \citep{CryptoMiniS
 In order to compute preferred extension, argmat-sat introduced the 'assumption space' to SAT solvers. Used as a temporary clause base it aids the SAT solver with searching for the maximal extension. Once it is found, the assumption space is cleared to allow for new maximal extension to be searched for. Furthermore, the assumption space is used for computing the semi-stable and stage semantics \citep{argmatSat}.
 
 
-\subsubsection{Constraint Satisfaction Problems}
+\subsection{Constraint Satisfaction Problems}
 Constraint Satisfaction Problem "involves finding a value for each one of a set of problem variables where constraints specify that some subsets of values cannot be used together" \citep{csp1}. In simplified form it can be represented by a triple $(X, D, C)$, where:
 \begin{itemize}
 	\item $X = \{x_1, \ldots, x_n\} $ is the set of variables,
@@ -283,12 +283,12 @@ c_adm = \{(a \implies \bigwedge\limits_{ b : (b,a) \in R } \neg  b) \lor (a \imp
 
 The above equation can be split into two parts: the first part ensures that the set is conflict-free, and the second part encodes the defense of arguments \citep{csp2}. 
 
-\paragraph{CoQuiAAS}
+\subsubsection{CoQuiAAS}
 CoQuiAAS is the solver developed by \citet{coquiaas} and written in C++ programming language. Although CoQuiAAS is a stand alone system, after adapting the code, it can be used as a library instead \citep{coquiaas}.
 
 CoQuiAAS took part in both ICCMA competitions: 2015 and 2017. Although it only won the stage extension track in the most recent one, CoQuiAAS was an overall winner of the 2015 competition \citep{iccma2015}. Due to the efficient unit propagation technique used, the system performed incredibly well on the Grounded semantic. However, it failed short, being far behind the competitors, on the most computationally expensive semantics: preferred and stable. This can be seen in figure \ref{fig:prTrack} and \ref{fig:stTrack}.
 
-\subsubsection{Answer Set Programming}
+\subsection{Answer Set Programming}
 As described by \citet{asp}, Answer Set Programming is a "form of declarative programming oriented towards difficult search problems". ASP has been greatly improved over the last decade to support a rich language and solve hard problem efficiently. Additionally, declarative approach of ASP helps to produce readable and maintainable code in comparison to more complex languages like C \citep{solvingMethods}.
 
 ASP uses similar syntax to Prolog programming language for denoting logical variables and constants, defining atoms, predicates and literals. It generally uses rules which are constructed as:
@@ -306,12 +306,12 @@ Hence, a disjunctive rule \textit{r} can be constructed as shown below:
 In the equation above, $ a_1, \ldots, a_n, b_1, \ldots, b_m$ are literals and $ n \geq , m \geq k \geq 0$. The \textit{head} of the rule is $ a_1 \lor \ldots \lor a_n $, while the body is defined as conjunction $ b_1, \ldots, b_k, not b_{k+1}, \ldots, not b_m $ \citep{bonattiASP}.
 
 
-\paragraph{ASPrMin}
+\subsubsection{ASPrMin}
 ASPrMin has been implemented by \citet{asprmin} and is one of the two solvers using ASP based approach submitted to ICCMA 2017 competition. It uses \textit{clingo}, a well known ASP solver written in C++ programming language and published under GNU General Public License \citep{clingo}. It uses well defined approach for encoding admissible extensions as shown in \citet{asp3} and exploits domain heuristics in the ASP solver \textit{clasp} \citep{asprmin}.
 
 ASPrMin is only able to compute all preferred extensions of given argumentation framework. Thus, being able to compete in only a single task of a single track put this solver at disadvantage. ASPrMin scored a total of 285 points for preferred extension track. Since each task allows a maximum of 350 points to be accumulated, it can be concluded that ASPrMin managed to compute the preferred extensions for over 80\% of argumentation frameworks used for benchmark testing.
 
-\subsubsection{Labeling approach}
+\subsection{Labeling approach}
 Labeling approach is one of the direct approaches used for enumerating semantics of abstract argumentation frameworks. It is based on the concept of argument labellings, with three valued system: \textit{in}, \textit{out}, \textit{undec} being most famous due to \citet{caminadaLabeling}. The labels can be described as follow \citep{caminada2008gentle}:
 
 \begin{itemize}
@@ -324,14 +324,14 @@ The idea behind the labeling approach is to label all arguments with one of the 
 
 As can be seen in table \ref{table:iccmaResultsbySolver}, there were three labeling based solvers submitted to ICCMA 2017 competition. 
 
-\paragraph{ArgTools}
+\subsubsection{ArgTools}
 ArgTools has been developed by \citet{argtools}. It is using the DPLL (Davis-Putnam-Logemann-Loveland) backtracking algorithm from SAT solving \citep{bierehandbook} to traverse an abstract binary tree created from the definition of the argumentation framework, and label arguments accordingly. 
  
 ArgTools is implemented purely in C++ and requires at least C++11 in order to be compiled \citep{argtools}. In terms of functionality, the solver adheres to the requirements of the ICCMA competition and can solve all the tasks for complete, stable, preferred, stage, semi-stable, grounded and ideal extensions including computing all or some extensions and also verifying if given argument can be credulously or skeptically accepted for all extensions.
 
 In terms of its performance, ArgTools managed to score on average half the available points for complete, ideal, stable and preferred extensions. Furthermore, the solver performed badly for semi stable and stage extensions, scoring only 268 and 67 points respectively. Furthermore, it can be noticed in figures \ref{fig:coTrack} to \ref{fig:prTrack}, that ArgTools on average required more time to complete the computation in comparison to the most efficient solvers.
 
-\paragraph{ALIAS}  \label{section:alias}
+\subsubsection{ALIAS}  \label{section:alias}
 
 "ALIAS is a Python library for constructing, manipulating, storing, visualising, and converting argumentation structues" \citep{alias}. It allows to compute the three extensions: complete, preferred and stable, and to build the labellings for complete, grounded, preferred, stable and semi-stable semantics. Since ALIAS is implemented purely in Python, it can be used as a stand alone tool or a programming library. 
 

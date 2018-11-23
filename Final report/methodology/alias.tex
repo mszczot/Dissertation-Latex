@@ -1,4 +1,4 @@
-\subsection{ALIAS - existing implementation}
+\section{ALIAS - existing implementation}
 As shown in section \ref{section:alias}, ALIAS \citep{alias} is the pure Python implementation of abstract argumentation semantics solver. It is using a direct approach for solving the semantics by enumerating all possible sets from the given argumentation framework and verifying them individually for complete, preferred and stable extensions. Although this approach can guarantee to produce the correct output, given the verification process is correct, it is highly inefficient and resource intensive. 
 
 ALIAS can also produce the labellings for complete, grounded, preferred, stable and semi-stable semantics, by iterating through the whole argumentation framework and label the arguments accordingly. Once the solution is created it breaks out of the loop and outputs the labellings. Hence, although ALIAS has a lot of functionality in terms of computing abstract argumentation semantics, the implementation method used for the solver makes it inefficient and difficult to work on the larger frameworks. 
@@ -25,7 +25,7 @@ Although current implementation of ALIAS don't have any mandatory dependencies, 
 
 Those dependencies can be easily installed through setup script if required. 
 
-\subsubsection{ALIAS Structure}
+\subsection{ALIAS Structure}
 Currently ALIAS is made of 3 modules: 
 
 \begin{itemize}
@@ -52,7 +52,7 @@ This structure and the relations between them can be seen in figure \ref{fig:ali
 	\end{figure}
 \end{landscape}
 
-\subsubsection{Performance}
+\subsection{Performance}
 As mentioned above, current implementation of ALIAS generates a power set from all arguments within the argumentation framework and checks each of them to create the solution. As can be seen in figure \ref{fig:aliasPerResults}, the time required to compute Stable extensions grows exponentially with the size of the argumentation framework. 
 
 \begin{figure}[h]

@@ -3,64 +3,172 @@
 %
 \begin{landscape}
 	
-\section{Stable Extension Testing Results}
-
+\chapter{Testing Results}
 \label{appendix:stableResults}
 \begin{longtabu} {|l|l|l|l|l|l|l|l|}
+	\caption{Stable Extension Testing Results} \\
 \toprule
 Args & Att & Sets     & PyTables & Parallel Dicts & SAT      & pyglaf      & argsem-sat  \\ \midrule
 \endhead
 
-2         & 1       & 0.000453 & 0.00279  & 0.000326395    & 0.009292 & 0.065012217 & 0.025399447 \\
-6         & 10      & 0.000871 & 0.024364 & 0.000370264    & 0.000291 & 0.06543088  & 0.007328749 \\
-13        & 17      & 0.006193 & 19.4888  & 0.001136303    & 0.003224 & 0.064931393 & 0.006547213 \\
-15        & 5       & 0.001764 & 0.174153 & 0.000958681    & 0.000108 & 0.065138578 & 0.006511688 \\
-15        & 2       & 0.000605 & 0.012517 & 0.000642538    & 8.42E-05 & 0.065627575 & 0.005755186 \\
-34        & 58      & 27.70923 & Time out & 6.216353655    & Time out & 0.071168423 & 0.098623753 \\
-41        & 73      & 12.69499 & Time out & 0.093905449    & Time out & 0.078179121 & 0.016719103 \\
-41        & 53      & 9.555216 & Time out & 0.324863195    & Time out & 0.064435959 & 0.010287523 \\
-41        & 65      & 2.930374 & Time out & 0.01935029     & Time out & 0.067563057 & 0.010713577 \\
-41        & 216     & 0.028529 & Time out & 0.003152132    & 0.001259 & 0.066415548 & 0.006392717 \\
-60        & 460     & 5.29241  & Time out & 0.00635314     & Time out & 0.068720818 & 0.009454727 \\
-74        & 3427    & 40.53372 & Time out & 0.052899837    & 0.008584 & 0.085255146 & 0.055872917 \\
-101       & 2489    & Time out & Time out & 369.106797     & 888.5523 & 0.104641676 & 0.036447287 \\
-101       & 955     & Time out & Time out & Time out       & Time out & 0.074910879 & 0.017008066 \\
-101       & 121     & Time out & Time out & Time out       & Time out & 0.068510771 & 0.036782265 \\
-121       & 145     & Time out & Time out & Time out       & Time out & 0.069716692 & 0.03000617  \\
-138       & 1391    & Time out & Time out & Time out       & Time out & 0.081300974 & 0.018036366 \\
-156       & 409     & Time out & Time out & Time out       & Time out & 0.069542408 & 0.009888887 \\
-160       & 279     & Time out & Time out & Time out       & Time out & 0.068692446 & 0.031356812 \\
-161       & 1400    & Time out & Time out & Time out       & Time out & 0.080003738 & 0.02195406  \\
-199       & 442     & Time out & Time out & Time out       & Time out & 0.069525242 & 0.012038708 \\
-200       & 1400    & Time out & Time out & Time out       & Time out & 0.080610275 & 0.015025139 \\
-239       & 432     & Time out & Time out & Time out       & Time out & 0.072205782 & 0.021214247 \\
-245       & 649     & Time out & Time out & Time out       & Time out & 0.071638107 & 0.010595083 \\
-276       & 500     & Time out & Time out & Time out       & Time out & 0.069832802 & 0.027677298 \\
-302       & 45305   & Time out & Time out & 1.278002739    & 0.184559 & 4.159725905 & 1.220250845 \\
-359       & 2657    & Time out & Time out & Time out       & Time out & 0.081829548 & 0.017944336 \\
-373       & 647     & Time out & Time out & Time out       & Time out & 0.078984261 & 0.136862278 \\
-384       & 133973  & Time out & Time out & 1.474908352    & 1.644092 & 0.965767145 & 7.981366396 \\
-400       & 1600    & Time out & Time out & Time out       & Time out & 0.083271503 & 0.014073849 \\
-400       & 1600    & Time out & Time out & Time out       & Time out & 0.079077721 & 0.014715433 \\
-400       & 1600    & Time out & Time out & Time out       & Time out & 0.093198299 & 0.034980297 \\
-402       & 80398   & Time out & Time out & 2.609353781    & 0.364464 & 12.10009837 & 2.795321226 \\
-402       & 80386   & Time out & Time out & 2.742642164    & 0.364939 & 12.14501143 & 2.850753784 \\
-411       & 5165    & Time out & Time out & Time out       & Time out & 0.101779223 & 0.043988705 \\
-500       & 2000    & Time out & Time out & Time out       & Time out & 0.089668989 & 0.019552231 \\
-600       & 40600   & Time out & Time out & 3.640912294    & Time out & 1.352958679 & 1.048346758 \\
-669       & 20208   & Time out & Time out & Time out       & Time out & 0.228774309 & 0.173240423 \\
-754       & 1336    & Time out & Time out & Time out       & Time out & 0.089713812 & 0.121773958 \\
-874       & 28768   & Time out & Time out & Time out       & Time out & 0.268687725 & 0.282220125 \\
-900       & 90900   & Time out & Time out & 14.70816398    & Time out & 6.464350939 & 3.204070091 \\
-930       & 2577    & Time out & Time out & Time out       & Time out & 0.088249922 & 0.020265579 \\
-1000      & 1498    & Time out & Time out & Time out       & Time out & 0.083356857 & 0.021613836 \\
-1200      & 161200  & Time out & Time out & 42.30723596    & Time out & 16.23498964 & 7.5222013   \\
-1892      & 17773   & Time out & Time out & Time out       & Time out & 0.230313778 & 0.133599758 \\
-1948      & 94841   & Time out & Time out & Time out       & Time out & 1.47881341  & 1.372130632 \\
-2000      & 2998    & Time out & Time out & Time out       & Time out & 0.110507488 & 0.038184404 \\
-2188      & 3028    & Time out & Time out & Time out       & Time out & 0.107483864 & 0.030617476 \\
-3018      & 137019  & Time out & Time out & Time out       & Time out & 2.199171305 & 2.013922215 \\
-20000     & 29998   & Time out & Time out & Time out       & Time out & 0.539016247 & 0.395638228 \\
-50000     & 74998   & Time out & Time out & Time out       & Time out & 1.365074396 & 0.93032527  \\ \bottomrule
+2         & 1       & 0.000453 & 0.00279  & 0.000326395    & 0.009292 & 0.065012217 & 0.025399447 \\ \hline
+6         & 10      & 0.000871 & 0.024364 & 0.000370264    & 0.000291 & 0.06543088  & 0.007328749 \\ \hline
+13        & 17      & 0.006193 & 19.4888  & 0.001136303    & 0.003224 & 0.064931393 & 0.006547213 \\ \hline
+15        & 5       & 0.001764 & 0.174153 & 0.000958681    & 0.000108 & 0.065138578 & 0.006511688 \\ \hline
+15        & 2       & 0.000605 & 0.012517 & 0.000642538    & 8.42E-05 & 0.065627575 & 0.005755186 \\ \hline
+34        & 58      & 27.70923 & Time out & 6.216353655    & Time out & 0.071168423 & 0.098623753 \\ \hline
+41        & 73      & 12.69499 & Time out & 0.093905449    & Time out & 0.078179121 & 0.016719103 \\ \hline
+41        & 53      & 9.555216 & Time out & 0.324863195    & Time out & 0.064435959 & 0.010287523 \\ \hline
+41        & 65      & 2.930374 & Time out & 0.01935029     & Time out & 0.067563057 & 0.010713577 \\ \hline
+41        & 216     & 0.028529 & Time out & 0.003152132    & 0.001259 & 0.066415548 & 0.006392717 \\ \hline
+60        & 460     & 5.29241  & Time out & 0.00635314     & Time out & 0.068720818 & 0.009454727 \\ \hline
+74        & 3427    & 40.53372 & Time out & 0.052899837    & 0.008584 & 0.085255146 & 0.055872917 \\ \hline
+101       & 2489    & Time out & Time out & 369.106797     & 888.5523 & 0.104641676 & 0.036447287 \\ \hline
+101       & 955     & Time out & Time out & Time out       & Time out & 0.074910879 & 0.017008066 \\ \hline
+101       & 121     & Time out & Time out & Time out       & Time out & 0.068510771 & 0.036782265 \\ \hline
+121       & 145     & Time out & Time out & Time out       & Time out & 0.069716692 & 0.03000617  \\ \hline
+138       & 1391    & Time out & Time out & Time out       & Time out & 0.081300974 & 0.018036366 \\ \hline
+156       & 409     & Time out & Time out & Time out       & Time out & 0.069542408 & 0.009888887 \\ \hline
+160       & 279     & Time out & Time out & Time out       & Time out & 0.068692446 & 0.031356812 \\ \hline
+161       & 1400    & Time out & Time out & Time out       & Time out & 0.080003738 & 0.02195406  \\ \hline
+199       & 442     & Time out & Time out & Time out       & Time out & 0.069525242 & 0.012038708 \\ \hline
+200       & 1400    & Time out & Time out & Time out       & Time out & 0.080610275 & 0.015025139 \\ \hline
+239       & 432     & Time out & Time out & Time out       & Time out & 0.072205782 & 0.021214247 \\ \hline
+245       & 649     & Time out & Time out & Time out       & Time out & 0.071638107 & 0.010595083 \\ \hline
+276       & 500     & Time out & Time out & Time out       & Time out & 0.069832802 & 0.027677298 \\ \hline
+302       & 45305   & Time out & Time out & 1.278002739    & 0.184559 & 4.159725905 & 1.220250845 \\ \hline
+359       & 2657    & Time out & Time out & Time out       & Time out & 0.081829548 & 0.017944336 \\ \hline
+373       & 647     & Time out & Time out & Time out       & Time out & 0.078984261 & 0.136862278 \\ \hline
+384       & 133973  & Time out & Time out & 1.474908352    & 1.644092 & 0.965767145 & 7.981366396 \\ \hline
+400       & 1600    & Time out & Time out & Time out       & Time out & 0.083271503 & 0.014073849 \\ \hline
+400       & 1600    & Time out & Time out & Time out       & Time out & 0.079077721 & 0.014715433 \\ \hline
+400       & 1600    & Time out & Time out & Time out       & Time out & 0.093198299 & 0.034980297 \\ \hline
+402       & 80398   & Time out & Time out & 2.609353781    & 0.364464 & 12.10009837 & 2.795321226 \\ \hline
+402       & 80386   & Time out & Time out & 2.742642164    & 0.364939 & 12.14501143 & 2.850753784 \\ \hline
+411       & 5165    & Time out & Time out & Time out       & Time out & 0.101779223 & 0.043988705 \\ \hline
+500       & 2000    & Time out & Time out & Time out       & Time out & 0.089668989 & 0.019552231 \\ \hline
+600       & 40600   & Time out & Time out & 3.640912294    & Time out & 1.352958679 & 1.048346758 \\ \hline
+669       & 20208   & Time out & Time out & Time out       & Time out & 0.228774309 & 0.173240423 \\ \hline
+754       & 1336    & Time out & Time out & Time out       & Time out & 0.089713812 & 0.121773958 \\ \hline
+874       & 28768   & Time out & Time out & Time out       & Time out & 0.268687725 & 0.282220125 \\ \hline
+900       & 90900   & Time out & Time out & 14.70816398    & Time out & 6.464350939 & 3.204070091 \\ \hline
+930       & 2577    & Time out & Time out & Time out       & Time out & 0.088249922 & 0.020265579 \\ \hline
+1000      & 1498    & Time out & Time out & Time out       & Time out & 0.083356857 & 0.021613836 \\ \hline
+1200      & 161200  & Time out & Time out & 42.30723596    & Time out & 16.23498964 & 7.5222013   \\ \hline
+1892      & 17773   & Time out & Time out & Time out       & Time out & 0.230313778 & 0.133599758 \\ \hline
+1948      & 94841   & Time out & Time out & Time out       & Time out & 1.47881341  & 1.372130632 \\ \hline
+2000      & 2998    & Time out & Time out & Time out       & Time out & 0.110507488 & 0.038184404 \\ \hline
+2188      & 3028    & Time out & Time out & Time out       & Time out & 0.107483864 & 0.030617476 \\ \hline
+3018      & 137019  & Time out & Time out & Time out       & Time out & 2.199171305 & 2.013922215 \\ \hline
+20000     & 29998   & Time out & Time out & Time out       & Time out & 0.539016247 & 0.395638228 \\ \hline
+50000     & 74998   & Time out & Time out & Time out       & Time out & 1.365074396 & 0.93032527  \\ \hline \bottomrule
+\end{longtabu}
+
+\label{appendix:preferredResultsOverall}
+\begin{longtabu}{|l|l|l|l|l|l|l|l|} 
+	\caption{Preferred Extension Testing Results} \\
+	\hline
+	Args & Attacks & Sets        & PyTables   & Dicts      & SAT        & Pyglaf   & ArgSem-SAT  \endfirsthead 
+	\hline
+	3    & 2       & 0.000061750 & 0.00424909 & 0.00021458 & 0.03994846 & 0.069992 & 0.008425    \\ 
+	\hline
+	7    & 7       & 0.000620604 & 0.10281968 & 0.00025511 & 0.00446844 & 0.063811 & 0.008704    \\ 
+	\hline
+	12   & 18      & 0.003145695 & 45.705221  & 0.00171638 & 0.07845306 & 0.065005 & 0.009555    \\ 
+	\hline
+	15   & 1       & 0.000072718 & 0.00586534 & 0.00025392 & 0.00985456 & 0.064492 & 0.007425    \\ 
+	\hline
+	16   & 30      & 0.007373333 & Time out   & 0.00143242 & 0.3648839  & 0.065439 & 0.007224    \\ 
+	\hline
+	19   & 37      & 0.115447044 & Time out   & 0.04000592 & 3.28261209 & 0.066557 & 0.096566    \\ 
+	\hline
+	26   & 90      & 0.058764935 & Time out   & 0.00144243 & 5.26480365 & 0.065503 & 0.006454    \\ 
+	\hline
+	30   & 85      & 0.071286678 & Time out   & 0.00263548 & 6.38443136 & 0.065097 & 0.007319    \\ 
+	\hline
+	41   & 543     & 0.571213007 & Time out   & 0.00949287 & 891.726692 & 0.068377 & 0.010122    \\ 
+	\hline
+	41   & 73      & 2.411902189 & Time out   & 0.03798127 & Time out   & 0.070326 & 0.772006    \\ 
+	\hline
+	50   & 1478    & 2.683082342 & Time out   & 0.01343989 & 4.13111353 & 0.078238 & 0.21184     \\ 
+	\hline
+	60   & 460     & 14.96227622 & Time out   & 0.00473666 & Time out   & 0.069238 & 0.074947    \\ 
+	\hline
+	61   & 102     & Time out    & Time out   & 27.2856734 & Time out   & 0.113854 & 12.14933    \\ 
+	\hline
+	86   & 136     & Time out    & Time out   & Time out   & Time out   & 0.081206 & 0.240803    \\ 
+	\hline
+	100  & 300     & Time out    & Time out   & Time out   & Time out   & 0.069996 & 0.012863    \\ 
+	\hline
+	100  & 900     & Time out    & Time out   & Time out   & Time out   & 0.075821 & 0.031308    \\ 
+	\hline
+	100  & 600     & Time out    & Time out   & Time out   & Time out   & 0.070534 & 0.011883    \\ 
+	\hline
+	100  & 600     & Time out    & Time out   & Time out   & Time out   & 0.071957 & 0.011995    \\ 
+	\hline
+	101  & 2489    & Time out    & Time out   & 359.70265  & 502.51917  & 0.107538 & 0.049612    \\ 
+	\hline
+	101  & 4556    & Time out    & Time out   & 0.16447425 & 3.96018219 & 0.128764 & 0.039901    \\ 
+	\hline
+	102  & 5094    & Time out    & Time out   & 0.04809093 & 4.94861007 & 0.144499 & 0.046907    \\ 
+	\hline
+	121  & 157     & Time out    & Time out   & Time out   & Time out   & 0.073898 & 2.932582    \\ 
+	\hline
+	135  & 220     & Time out    & Time out   & Time out   & Time out   & 0.115832 & 2.978649    \\ 
+	\hline
+	150  & 2650    & Time out    & Time out   & 0.05374956 & Time out   & 0.103372 & 0.650862    \\ 
+	\hline
+	181  & 199     & Time out    & Time out   & Time out   & Time out   & 0.072599 & 0.04204     \\ 
+	\hline
+	190  & 821     & Time out    & Time out   & Time out   & Time out   & 0.076767 & 0.029183    \\ 
+	\hline
+	196  & 2384    & Time out    & Time out   & Time out   & Time out   & 0.092463 & 0.048444    \\ 
+	\hline
+	201  & 221     & Time out    & Time out   & Time out   & Time out   & 0.069169 & 0.095954    \\ 
+	\hline
+	201  & 14053   & Time out    & Time out   & 254.301659 & 189.447748 & 0.545091 & 0.233907    \\ 
+	\hline
+	205  & 334     & Time out    & Time out   & Time out   & Time out   & 0.074797 & 0.068088    \\ 
+	\hline
+	273  & 507     & Time out    & Time out   & Time out   & Time out   & 0.085137 & 0.083994    \\ 
+	\hline
+	291  & 3361    & Time out    & Time out   & Time out   & Time out   & 3.877619 & 2.011797    \\ 
+	\hline
+	302  & 45313   & Time out    & Time out   & 0.993608   & 976.684387 & 3.237771 & 0.331534    \\ 
+	\hline
+	341  & 2715    & Time out    & Time out   & Time out   & Time out   & 0.094984 & 0.035164    \\ 
+	\hline
+	389  & 1652    & Time out    & Time out   & Time out   & Time out   & 0.103899 & 0.081803    \\ 
+	\hline
+	418  & 1747    & Time out    & Time out   & Time out   & Time out   & 0.083077 & 0.033276    \\ 
+	\hline
+	437  & 1539    & Time out    & Time out   & Time out   & Time out   & 0.087816 & 0.054781    \\ 
+	\hline
+	489  & 5944    & Time out    & Time out   & Time out   & Time out   & 0.118713 & 0.061818    \\ 
+	\hline
+	500  & 4000    & Time out    & Time out   & Time out   & Time out   & 0.977421 & 0.361788    \\ 
+	\hline
+	528  & 1012    & Time out    & Time out   & Time out   & Time out   & 0.095788 & 0.352174    \\ 
+	\hline
+	845  & 11331   & Time out    & Time out   & Time out   & Time out   & 0.154974 & 0.104706    \\ 
+	\hline
+	989  & 42499   & Time out    & Time out   & Time out   & Time out   & 0.40601  & 0.313028    \\ 
+	\hline
+	1000 & 1498    & Time out    & Time out   & Time out   & Time out   & 0.085323 & 0.045789    \\ 
+	\hline
+	1109 & 33830   & Time out    & Time out   & Time out   & Time out   & 0.365364 & 0.396026    \\ 
+	\hline
+	1439 & 63081   & Time out    & Time out   & Time out   & Time out   & 0.797241 & 0.817031    \\ 
+	\hline
+	1790 & 64086   & Time out    & Time out   & Time out   & Time out   & 0.837638 & 0.610475    \\ 
+	\hline
+	2000 & 2998    & Time out    & Time out   & Time out   & Time out   & 0.107111 & 0.072344    \\ 
+	\hline
+	2065 & 21185   & Time out    & Time out   & Time out   & Time out   & 0.259852 & 0.226843    \\ 
+	\hline
+	4000 & 5998    & Time out    & Time out   & Time out   & Time out   & 0.175733 & 0.145932    \\ 
+	\hline
+	6000 & 8998    & Time out    & Time out   & Time out   & Time out   & 0.265027 & 0.214113    \\
+	\hline
 \end{longtabu}
 \end{landscape}

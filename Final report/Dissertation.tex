@@ -3,7 +3,7 @@
 
 %for the finer points LaTeX see https://en.wikibooks.org/wiki/LaTeX or http://tex.stackexchange.com/
 
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,a4paper]{report}
 \usepackage{titlesec} %these are how we import packages, one helps set up footers and title layout
 \usepackage{fancyhdr}
 
@@ -73,27 +73,7 @@
 \fancyfoot[C]{\thepage}
 
 %set better section layout
-\makeatletter
-\renewcommand\subsection{\@startsection {subsection}{1}{2mm} % name, level, indent
-                               {3pt plus 2pt minus 1pt} % before skip
-                               {3pt plus 0pt} % after skip
-                               {\normalfont\bfseries}}
-\renewcommand\subsubsection{\@startsection {subsubsection}{2}{4mm} % name, level, indent
-                               {3pt plus 2pt minus 1pt} % before skip
-                               {3pt plus 0pt} % after skip
-                               {\normalfont\bfseries}}
-\makeatother
-\makeatletter
-\renewcommand\section{\@startsection {section}{1}{0mm} % name, level, indent
-                               {4pt plus 2pt minus 1pt} % before skip
-                               {4pt plus 0pt} % after skip
-                               {\bfseries}}
-                            
-\renewcommand\paragraph{\@startsection {paragraph}{3}{6mm} % name, level, indent
-                     	{3pt plus 2pt minus 1pt} % before skip
-                     	{3pt plus 0pt} % after skip
-                     	{\bfseries}}
-\makeatother
+
 
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
@@ -238,6 +218,8 @@ Other&1\\
 \definecolor{green}{RGB}{127,255,0}
 \definecolor{red}{RGB}{255,0,0}
 
+\titleformat{\section}[hang]{\bfseries}{\thesection.}{0pt}{}
+
 %this starts the document
 \begin{document}
 
@@ -274,31 +256,31 @@ Insert acknowledgements here
 %-------------------------------------------------------------------------------
 % Main content 
 %-------------------------------------------------------------------------------
-\section{Introduction} \label{section:introduction}
+\chapter{Introduction} \label{section:introduction}
 \input{./introduction.tex}
 
-\section{Literature \& Technical Review} \label{section:literatureReview}
+\chapter{Literature \& Technical Review} \label{section:literatureReview}
 \input{./literatureReview.tex} 
 
-\section{Analysis} \label{section:analysis}
+\chapter{Analysis} \label{section:analysis}
 \input{./analysis.tex}
  
-\section{Design} \label{section:design}
+\chapter{Design} \label{section:design}
 \input{./design.tex}
 
-\section{Implementation} \label{section:implementation}
+\chapter{Implementation} \label{section:implementation}
 \input{./methodology.tex}
 
-\section{Testing} \label{section:testing}
+\chapter{Testing} \label{section:testing}
 \input{./testing.tex}
 
-\section{Evaluation} \label{section:evaluation}
+\chapter{Evaluation} \label{section:evaluation}
 \input{./evaluation.tex}
 
-\section{Future Work} \label{section:futureWork}
+\chapter{Future Work} \label{section:futureWork}
 \input{./futureWork.tex}
 
-\section{Conclusion} \label{section:conclusion}
+\chapter{Conclusion} \label{section:conclusion}
 \input{./conclusion.tex}
 
 %-------------------------------------------------------------------------------
@@ -314,7 +296,7 @@ Insert acknowledgements here
 %you can crate this on a extra tex document just like the title or any other part of the document.
 \newpage
 \begin{appendices}
-\section{Initial Project Overview}
+\chapter{Initial Project Overview}
 \label{appendix:IPO}
 \input{./appendices/IPO.tex}
 
@@ -326,19 +308,19 @@ Insert acknowledgements here
 %\label{appendix:projectSchedule}
 %\input{./appendices/projectSchedule.tex}
 
-\section{Meetings diaries}
+\chapter{Meetings diaries}
 \label{appendix:diaries}
 \input{./appendices/diaries.tex}
 
-\section{ICCMA 2017 Submissions}
+\chapter{ICCMA 2017 Submissions}
 \label{appendix:ICCMASubmissions}
 \input{./appendices/ICCMASubmissions.tex}
 
-\section{Argumentation Framework Graph}
+\chapter{Argumentation Framework Graph}
 \label{appendix:aficcma}
 \input{./appendices/aficcma.tex}
 
-\section{Benchmark Files}
+\chapter{Benchmark Files}
 \label{appendix:benchmarkFiles}
 \input{./appendices/benchmarkFiles.tex}
 

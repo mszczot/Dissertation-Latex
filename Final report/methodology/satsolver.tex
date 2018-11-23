@@ -1,7 +1,7 @@
-\subsection{Boolean Satisfiability Solver} \label{section:satSolver}
+\section{Boolean Satisfiability Solver} \label{section:satSolver}
 In order to improve the performance and based on the results of analysis of existing solvers an attempt has been made to reduce the problem into boolean satisfiability problem. 
 
-\subsubsection{PicoSAT and PycoSAT} \label{section:pycosat}
+\subsection{PicoSAT and PycoSAT} \label{section:pycosat}
 PicoSAT is a Boolean Satisfiability Solver for boolean variables in boolean expressions written by Armin Bierre \citep{picosatMan}. Implemented in C and optimized with compact data structures for watching literals provides a high performance solver capabilities with low memory usage \citep{picosat}.
 
 PycoSAT is a Python package that provides direct translation for interacting with PicoSAT \citep{pycoSat}. The advantage of PycoSAT is that it imports the PicoSAT binaries directly, which removes the hassle of manually building the solver. PycoSAT provides only two functions \citep{pycosatPyPi}: 
@@ -70,7 +70,7 @@ The output presented in figure \ref{fig:pycosatOutput}, is the list of all possi
 
 
 
-\subsubsection{CNF Encodings}
+\subsection{CNF Encodings}
 In order to use any SAT solver to solve the extensions of argumentation frameworks, the boolean formula needs to be encoded into CNF. The conflict free sets can easily be encoded using the list of all the attacks in the argumentation framework. From the definition of the conflict free sets we know that it is a set of arguments with no attacks between any of its elements. Hence, for each attack in the argumentation framework, the conflict free set will contain either the attacker, or the attack. In no case both of the arguments will be a part of the same conflict free set. This can be shown in CNF as:
 
 \begin{equation}

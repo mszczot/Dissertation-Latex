@@ -1,6 +1,6 @@
-\subsection{Solver Evaluation}
+\section{Solver Evaluation}
 
-\subsubsection{Functionality Evaluation}
+\subsection{Functionality Evaluation}
 Although original implementation of ALIAS provided a lot of functionality, the core of the application has been reimplemented to explore different approaches for computing abstract argumentation semantics. 
 
 In terms of semantic based functionalities, ALIAS can compute following main extensions: complete, preferred and stable. Furthermore, additional functionality in terms of available tasks per each extensions has been implemented. User can perform following tasks:
@@ -40,9 +40,9 @@ In terms of functionality not related to semantics, all critical requirements ha
 \end{longtable}% 
 
 
-\subsubsection{Performance Evaluation}
+\subsection{Performance Evaluation}
 
-\paragraph{Approaches} 
+\subsubsection{Approaches} 
 Two different approaches for computing abstract argumentation semantics have been tried throughout this project: direct and SAT based approach. Furthermore, the direct approach of computing Maximal Conflict Free Sets have been implemented using three different data structures. This has been done to try to improve the proposed solution. 
 
 Based on the results from section \ref{section:stableExtensionResults} and \ref{section:preferredExtensionResults}, it can be seen that the least successful approach was a direct approach using PyTables. Solver only managed to compute extension for the smallest and easiest argumentation frameworks within the specified 20 minutes time limit. However, the idea of PyTables is to use the hard drive for a data store. All benchmark testing has been performed using hard disk drive, thus it will have impact on the overall performance. Solver could have performed better if latest generation of solid state drive would have been used. 
@@ -53,7 +53,7 @@ SAT based approach tends to outperform other solutions for frameworks it managed
 
 However, as shown in the section \ref{section:satSolver}, SAT based approach has been implemented using a simple encodings for the admissible sets. This increases the possibilities of improving ALIAS. Introducing more complex CNF encoding to reduce the search space will help to improve the performance. On the other hand, the only changes to direct approach of computing maximal conflict free sets can be done to optimize and fine tune the algorithm. Hence, the SAT based approach seems to be the most promising solution for ALIAS>
 
-\paragraph{Other Solvers Comparison}
+\subsubsection{Other Solvers Comparison}
 Table \ref{table:tasksSupportedBySolvers} shows the comparison of ALIAS functionality to existing solvers submitted to ICCMA 2017 competition. Only half of the submitted solvers offer full functionality in terms of the possible extensions. Other half implements only selection of extensions. For example argmat-clpb can only compute all tasks from complete, stable and grounded extension, while ASPrMin solver can only do all preferred extensions. Furthermore, it can be seen that from the solvers implementing only some of the extensions, complete, preferred and stable extensions are the most common one. This also correlates to available extensions in ALIAS.
 
 \begin{sidewaystable}
@@ -90,7 +90,7 @@ In terms of performance and scalability, at the moment ALIAS cannot match the be
 
 On the other hand, Pyglaf and ArgSem-SAT are rather mature solvers, developed by teams specializing in argumentation theory. Both of them are using complex proposition to encode the semantics directly into SAT solver. ALIAS on the hand uses only simple encodings for admissible sets. 
 
-\subsubsection{Ease of Use}
+\subsection{Ease of Use}
 Although the SAT solver used by ALIAS is implemented in C, ALIAS itself has been implemented using pure Python programming language. Responsibility for compiling and building PicoSAT solver has been moved to the Python wrapper package - PycoSAT. Hence, once the setup script is run and all dependencies installed automatically, user can start working with ALIAS by simply importing the module to Python environment.
 
 Current implementation of ALIAS is ready to be packaged and published on PyPi \citep{pypi}. This would further improve the usability, as user would be able to install ALIAS and all its dependencies through pip command.
