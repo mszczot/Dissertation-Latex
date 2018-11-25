@@ -2,13 +2,13 @@
 Number of functional and non-functional requirements have been identified and prioritized using MoSCoW approach during the design stage. 
 
 \subsection{MoSCoW method}
-Large number of requirements have been identified for ALIAS. However, due to the time limitation of the project, not all of them will delivered. The final software deliverable will be a minimum viable product: a product with enough features that can be delivered in the specified time line. Furthermore, the selected features should be critical to the system, introducing important functionality into the application \citep{mvp}.
+A large number of requirements have been identified for ALIAS. However, due to the time limitation of the project, not all of them will be delivered. The final software deliverable will be a minimum viable product: a product with enough features that can be delivered in the specified timeline. Furthermore, the selected features should be critical to the system, introducing important functionality into the application \citep{mvp}.
 
 Thus, in order to select the minimum viable product for this project, all the requirements have been prioritized using MoSCoW approach. The approach originated from DSDM methodology (Dynamic Software Development Method) and uses four levels to define the priority \citep{moscow}:
 
 \begin{enumerate}
 	\item \textbf{M}ust Have - features that must be included in the application by the end of the project. It defines the minimum usable subset of functionalities 
-	\item \textbf{S}hould Have - defines non-critical functionality that is not necessarily required in the final product, but is of high value
+	\item \textbf{S}hould Have - defines non-critical functionality that is not necessarily required in the final product but is of high value
 	\item \textbf{C}ould Have - any features that could improve the final product and could potentially be included in the scope of the project without incurring too much effort or cost.
 	\item \textbf{W}on't Have - any features that have been identified in the requirements analysis, but will be excluded from the scope of this project. Those features can be revisited and added in future work.
 \end{enumerate}
@@ -19,7 +19,7 @@ Hence, any features categorized as \textit{Must Haves} are critical to the proje
 
 \subsubsection{Solver}
 
-Most of functional requirements have been created based on solver requirements for International Competition on Computational Models of Argumentation 2017. Furthermore, those requirements can be characterized based on their functionality:
+Most of the functional requirements have been created based on solver requirements for International Competition on Computational Models of Argumentation 2017. Furthermore, those requirements can be characterized based on their functionality:
 \begin{itemize}
 	\item Computational functionality - those include all different types of semantics and individual tasks related to them. For example, a requirement will exist for the solver to compute the stable extensions of the given argumentation framework. However, this could be further split up into separate tasks: compute all extensions, some extensions, evaluate if the given argument is skeptically or credulously accepted.
 	\item Solver functionality - those include additional requirements that the solver should have. They might include requirements like solver should be able to read \textit{tgf} file and parse the argumentation framework from them, etc.
@@ -27,7 +27,7 @@ Most of functional requirements have been created based on solver requirements f
 
 In terms of the computational functionality, ALIAS is required to solve all semantics identified in section \ref{sec:argumentationSemantics}, which are as follow: complete, stable, preferred and grounded extensions \citep{dung1995}, stage \citep{verheij1996two}, ideal \citep{dung2007computing}, and semi-stable \citep{caminada2006semi} semantics. Although seven individual semantics have been identified as the requirements for the solver, only three of them: complete, stable and preferred, have been classified as \textit{Mush Have} in terms of MoSCoW approach. The proposed semantics are part of the original group of extensions introduced by \citet{dung1995} in his paper. 
 
-Furthermore, as mentioned above, there are number of tasks that the solver should be able to perform for each semantic and as seen in the section \ref{approaches}, those are as follow:
+Furthermore, as mentioned above, there is a number of tasks that the solver should be able to perform for each semantic and as seen in section \ref{approaches}, those are as follow:
 \begin{enumerate}
 	\item Given an abstract argumentation framework compute some of the extensions
 	\item Given an abstract argumentation framework compute all extensions
@@ -35,7 +35,7 @@ Furthermore, as mentioned above, there are number of tasks that the solver shoul
 	\item Given an abstract argumentation framework and some argument, decide whether the given argument is skeptically accepted
 \end{enumerate}
 
-Above tasks are relevant to all semantics with exception to grounded and ideal extensions, where only tasks 1 and 3 can be performed. Hence, it brings up the overall number of tasks for all semantics to 24 separate tasks. Thus, to deliver solution with the most value, for the extensions categorized as \textit{Must Have}, only tasks to compute all extensions have been categorized as \textit{Must Haves}. The remaining tasks for each of them have been classified as \textit{Should Have}. Furthermore, computing all Semi-Stable and Stage extensions have been categorized as \textit{Could Have}, with all the remaining tasks and extensions as \textit{Won't Have}. This can be seen in table \ref{table:moscowSemanticRequirements}.
+Above tasks are relevant to all semantics with exception to grounded and ideal extensions, where only tasks 1 and 3 can be performed. Hence, it brings up the overall number of tasks for all semantics to 24 separate tasks. Thus, to deliver a solution with the most value, for the extensions categorized as \textit{Must Have}, only tasks to compute all extensions have been categorized as \textit{Must Haves}. The remaining tasks for each of them have been classified as \textit{Should Have}. Furthermore, computing all Semi-Stable and Stage extensions have been categorized as \textit{Could Have}, with all the remaining tasks and extensions as \textit{Won't Have}. This can be seen in table \ref{table:moscowSemanticRequirements}.
 
 
 % Please add the following required packages to your document preamble:
@@ -73,7 +73,7 @@ Above tasks are relevant to all semantics with exception to grounded and ideal e
 
 The above classification is only concerned with the argumentation semantics and its tasks. Other requirements have been identified and although they are not concerned with solving the abstract argumentation semantics, they are needed for the solver. As an example, ALIAS should be able to read and parse the argumentation framework from the provided file, like \textit{tgf} or \textit{apx}, or from dot graph or even the database. Furthermore, the user should be able to save created argumentation framework in different formats for future use. 
 
-Although original implementation of ALIAS provides a certain aspects of those requirements, during the development of the new version, the architecture of the system and its implementation will have to be reviewed and modified to allow for the changes to the main solver. Thus, the functional requirements concerned with the solver can be seen in table \ref{table:functReqFunctionality}.
+Although original implementation of ALIAS provides certain aspects of those requirements, during the development of the new version, the architecture of the system and its implementation will have to be reviewed and modified to allow for the changes to the main solver. Thus, the functional requirements concerned with the solver can be seen in table \ref{table:functReqFunctionality}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
@@ -102,7 +102,7 @@ Although original implementation of ALIAS provides a certain aspects of those re
 	\end{longtable}%
 
 \subsubsection{Web User Interface} \label{section:WebUIRequirements}
-Apart from the requirements for the solver itself, there are number of functional requirements for the Web UI. The User Interface does not introduce any new functionality in terms of the solver abilities, however it provides a facade that can be used to work with, and modify argumentation frameworks in ALIAS and request certain extensions to be computed. 
+Apart from the requirements for the solver itself, there are a number of functional requirements for the Web UI. The User Interface does not introduce any new functionality in terms of the solver abilities, however, it provides a facade that can be used to work with, and modify argumentation frameworks in ALIAS and request certain extensions to be computed. 
 
 % Please add the following required packages to your document preamble:
 % \usepackage{longtable}
@@ -149,23 +149,23 @@ Apart from the requirements for the solver itself, there are number of functiona
 	31 & User should be able to remove an attack from argumentation framework & Won't Have \\ \hline
 \end{longtable}
 
-As can be seen in table \ref{table:webUiRequirements}, the requirements for the Web User Interface extend those of the main solver. However, since the Web UI will be build on top of ALIAS, it is critical to treat it separately in terms of requirements. 
+As can be seen in table \ref{table:webUiRequirements}, the requirements for the Web User Interface extend those of the main solver. However, since the Web UI will be built on top of ALIAS, it is critical to treat it separately in terms of requirements. 
 
 \subsection{Non-Functional Requirements}
-Apart from all functional requirements, number of non-functional requirements have also been identified. Those are mostly concerned with the performance and scalability of the proposed solution. Although those do not bring any tangible value to the finished system, those requirements are critical to produce the high performance and scalable system that could match existing solvers in terms of computation time. Hence, the non-functional requirements can be classified as follow:
+Apart from all functional requirements, a number of non-functional requirements have also been identified. Those are mostly concerned with the performance and scalability of the proposed solution. Although those do not bring any tangible value to the finished system, those requirements are critical to producing the high performance and scalable system that could match existing solvers in terms of computation time. Hence, the non-functional requirements can be classified as follow:
 
 \begin{enumerate}
 	\item Performance - the overall performance of the application when performing certain tasks, especially computing extensions of given Argumentation Framework
 	\item Scalability - ability to scale appropriately for larger Argumentation Frameworks
-	\item Ease of Use - the ease of setup and use of the application 
+	\item Ease of Use - the ease of set up and use of the application 
 	\item Design - concerned with the design of the Web User Interface
 \end{enumerate}
 
-Performance, scalability and ease of use requirements are applied not only to the ALIAS application, but also to the Web User Interface. 
+Performance, scalability and ease of use requirements are applied not only to the ALIAS application but also to the Web User Interface. 
 
 \subsubsection{Performance and Scalability}
 
-In terms of performance and scalability, the requirement for ALIAS is to be able to cope with argumentation frameworks of any size. User should be confident that the application will be able to provide the correct results at all times, no matter the size of provided framework. Although, it is difficult to convert it into tangible requirements, the attempt has been made to specify brackets for different sizes of argumentation frameworks: 
+In terms of performance and scalability, the requirement for ALIAS is to be able to cope with argumentation frameworks of any size. A user should be confident that the application will be able to provide the correct results at all times, no matter the size of the provided framework. Although it is difficult to convert it into tangible requirements, the attempt has been made to specify brackets for different sizes of argumentation frameworks: 
 
 \begin{enumerate}
 	\item Small - up to 20 arguments and relations
@@ -173,7 +173,7 @@ In terms of performance and scalability, the requirement for ALIAS is to be able
 	\item Large - above 100 arguments 
 \end{enumerate}
 
-However, the above classification is only concerned with the size of graph generated from the argumentation framework. Although this can usually correspond to the complexity of the framework, it is not always the case. For example, argumentation framework shown in figure \ref{fig:mediumAF} consist of only 41 arguments and 73 attacks. However, the testing of proposed solutions showed that although the argumentation framework is of medium size, the complexity of relations between the arguments proved to be challenging due to many arguments defending themselves. Thus, the above classification will only be used for establishing basic requirements for the application to be able to handle all types of argumentation frameworks. 
+However, the above classification is only concerned with the size of a graph generated from the argumentation framework. Although this can usually correspond to the complexity of the framework, it is not always the case. For example, the argumentation framework shown in figure \ref{fig:mediumAF} consists of only 41 arguments and 73 attacks. However, the testing of proposed solutions showed that although the argumentation framework is of medium size, the complexity of relations between the arguments proved to be challenging due to many arguments defending themselves. Thus, the above classification will only be used for establishing basic requirements for the application to be able to handle all types of argumentation frameworks. 
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{medium}
@@ -181,7 +181,7 @@ However, the above classification is only concerned with the size of graph gener
 	\label{fig:mediumAF}
 \end{figure}
 
-In terms of ALIAS Web Extension, the performance and scalability requirements are mostly concerned with the time required to load and render any given Argumentation Framework. User should be able to display and work on large graphs in the UI. On the other hand, the performance of any operation on the given Argumentation Framework will be highly dependent on the performance of ALIAS.
+In terms of ALIAS Web Extension, the performance and scalability requirements are mostly concerned with the time required to load and render any given Argumentation Framework. A user should be able to display and work on large graphs in the UI. On the other hand, the performance of any operation on the given Argumentation Framework will be highly dependent on the performance of ALIAS.
 
 \subsubsection{Ease of Use}
 

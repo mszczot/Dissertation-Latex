@@ -1,9 +1,9 @@
 \section{Solver Design}
-Throughout this project the structure of ALIAS will be changed to accommodate for changes required for new implementation. As can be seen in figure \ref{fig:aliasUml2}, the 'semantics' module has been complete removed. Although it did not contain any classes, it had a collection of static methods for computing labellings and extensions of given abstract argumentation framework. Since semantics are based on the given argumentation frameworks, the responsibility for their creation has been moved to ArgumentationFramework class instead. 
+Throughout this project, the structure of ALIAS will be changed to accommodate for changes required for new implementation. As can be seen in figure \ref{fig:aliasUml2}, the 'semantics' module has been completely removed. Although it did not contain any classes, it had a collection of static methods for computing labellings and extensions of given abstract argumentation framework. Since semantics are based on the given argumentation frameworks, the responsibility for their creation has been moved to ArgumentationFramework class instead. 
 
 Furthermore, the Argument class will be changed as the labellings will no longer be supported. New class Matrix will be created for storing and manipulation of the matrix representation of the Argumentation Framework. Finally, the custom exceptions will be removed as those are not required.
 
-Inout module will be left unchanged, with the exception of modification to allow for new structure of ArgumentationFramework class. Thus, the existing external dependencies will still be applicable. Furthermore, depending on the implementation of solution, there might be additional dependencies required for ALIAS.
+Inout module will be left unchanged, with the exception of a modification to allow for a new structure of ArgumentationFramework class. Thus, the existing external dependencies will still be applicable. Furthermore, depending on the implementation of the solution, there might be additional dependencies required for ALIAS.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{aliasv2_uml}
@@ -28,23 +28,23 @@ The Web Interface will consist of a single page, with menu options at the top of
 
 
 \subsection{Usability}
-The design of User Interface should be done with usability in mind. Thus, the following criteria will be addressed during design and implementation stages:
+The design of User Interface should be done with usability in mind. Thus, the following criteria will be addressed during the design and implementation stages:
 \begin{itemize}
-	\item Number of pages - website will consist of a single page, where the requests to ALIAS will be made through AJAX calls
-	\item Easy to follow layout - website will consist of three main elements: toolbar, list of possible solutions and graph area. Furthermore, graph area needs to take majority of the space
-	\item Clear functionality - the available functionality will be clear to user as all the buttons and navigation links will be clearly labeled and additional information provided in the modal windows
-	\item Feedback - website should provide feedback to user, especially when certain operations take long time to complete
+	\item Number of pages - the website will consist of a single page, where the requests to ALIAS will be made through AJAX calls
+	\item Easy to follow layout - the website will consist of three main elements: toolbar, list of possible solutions and graph area. Furthermore, the graph area needs to take the majority of the space
+	\item Clear functionality - the available functionality will be clear to the user as all the buttons and navigation links will be clearly labelled and additional information provided in the modal windows
+	\item Feedback - the website should provide feedback to the user, especially when certain operations take a long time to complete
 \end{itemize}
 
 \subsection{RESTful Design}
-RESTful API will be implemented in order to allow user to interact with ALIAS application through web interface. The web extension will be divided into 2 tiers: front-end and back-end. 
+RESTful API will be implemented in order to allow the user to interact with ALIAS application through web interface. The web extension will be divided into 2 tiers: front-end and back-end. 
 
-Front-end will be implemented using HTML5 with Bootstrap framework and cytoscape.js \citep{cytoscapejs} for rendering argumentation frameworks as graphs. Furthermoe, JQuery will be used on the client side in order to send request to web server using AJAX calls.
+Front-end will be implemented using HTML5 with the Bootstrap framework and cytoscape.js \citep{cytoscapejs} for rendering argumentation frameworks as graphs. Furthermore, JQuery will be used on the client side in order to send a request to the web server using AJAX calls.
 
 Back-end will be implemented using Python Flask \citep{flaskDocs} micro-framework. One of the major factors for selecting Flask as the framework for the web interface is the Python language. Since ALIAS is implemented purely in Python programming language, extensions of ALIAS should follow the same criteria. 
 
 \subsubsection{Exposed API Routes} 
-In order for the user to interact with ALIAS through web interface, certain methods and behaviours of ALIAS will have to be exposed through API routes. The list of required routes is shown in table \ref{table:apiRoutes}. Those represents the main functionality of ALIAS, where user can create new Argumentation Framework, add arguments and attacks, or load and parse tgf file.
+In order for the user to interact with ALIAS through the web interface, certain methods and behaviours of ALIAS will have to be exposed through API routes. The list of required routes is shown in table \ref{table:apiRoutes}. Those represent the main functionality of ALIAS, where the user can create new Argumentation Framework, add arguments and attacks, or load and parse tgf file.
 
 
 \begin{table}[]
@@ -65,9 +65,9 @@ In order for the user to interact with ALIAS through web interface, certain meth
 \end{table}
 
 \section{Project Structure}
-The structure of ALIAS will have to be changed in order to allow for the changes required for the new implementation. As mentioned previously the semantics module will be removed from alias package. Furthermore, any existing tests will be removed and replaced by Tests structure that will address functionality tests for ArgumentationFramework class. Short performance tests using predefined frameworks will also be introduced in order to quickly evaluate the performance issues after any change has been made.
+The structure of ALIAS will have to be changed in order to allow for the changes required for the new implementation. As mentioned previously the semantics module will be removed from the ALIAS package. Furthermore, any existing tests will be removed and replaced by Tests structure that will address functionality tests for ArgumentationFramework class. Short performance tests using predefined frameworks will also be introduced in order to quickly evaluate the performance issues after any change has been made.
 
-Another addition to the project files is the web\_interface folder. It will be added to store artifacts required for ALIAS web interface extension. It will consist of \textit{static} folder, which in turn will contain css and js files in their corresponding locations, folder for storing uploaded files, Flask config file and app.py, which contains logic for API routing.
+Another addition to the project files is the web\_interface folder. It will be added to store artifacts required for ALIAS web interface extension. It will consist of \textit{static} folder, which in turn will contain CSS and JavaScript files in their corresponding locations, a folder for storing uploaded files, Flask config file and app.py, which contains logic for API routing.
 
 \begin{figure}[!ht]
 	\dirtree{%

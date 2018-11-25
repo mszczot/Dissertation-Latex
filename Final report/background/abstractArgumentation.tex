@@ -1,5 +1,5 @@
 \section{Abstract Argumentation} \label{abstractArgumentation}
-Argumentation framework has been introduced by \citet{dung1995} and is central to the theory of abstract argumentation \citep{baroni2011introduction}. It is defined as a pair of a set of arguments, and a binary relation representing the attack relationship between arguments \citep{dung1995}. 
+Abstract argumentation is a way to formalise arguments, which "in the logician's sense, is any group of propositions of which one is claimed to follow from the others, which are regarded as providing support or grounds for the truth of that one" \citep{argument}. In computing, the definition of argument matches the one from the real world - a sets of premises that support a conclusion which are used to resolve conflict. Computational argument tries to build systems that have similar conflict resolution properties for use on data, in software,and between machines. In order for these ideas about how to resolve conflicts to be usable by machines, the ideas need to be formalised. One approach to formalising argumentation is in the form of Abstract Argumentation. A particularly influential approach to abstract argumentation is that of Dung \citep{dung1995} and is central to the theory of abstract argumentation \citep{baroni2011introduction}. It is defined as a pair of a set of arguments, and a binary relation representing the attack relationship between arguments \citep{dung1995}. 
 
 \theoremstyle{definition}
 \begin{definition}{Argumentation Framework}
@@ -45,6 +45,8 @@ If we assume it is Sunday, Mother's day and a leap year, then three arguments ca
 \end{enumerate}
 In this example argument \textit{B} attacks argument \textit{A} and argument \textit{C} attacks argument \textit{B}. Since argument \textit{C} can be justified, as it is not attacked, then \textit{B} is defeated and does no longer form a reason against \textit{A}. We can say that argument \textit{C} reinstates argument \textit{A} \citep{caminada2004sake}.
 
+
+Abstract argumentation frameworks are used to define and represent any type of conflicting data not necessarily related to argumentation theory. For example, they can be used to represent and identify any conflicting records when merging two databases. Each argument or node in the graph will represent each individual record in the database, while the attack or the edge in the graph will represent the conflict between the merged records. 
 
 Dung in his paper \citep{dung1995} has also defined notions of \textit{acceptable} and \textit{admissible} arguments, which are as follow:
 

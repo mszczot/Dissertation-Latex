@@ -1,8 +1,8 @@
 \section{Boolean Satisfiability Solver} \label{section:satSolver}
-In order to improve the performance and based on the results of analysis of existing solvers an attempt has been made to reduce the problem into boolean satisfiability problem. 
+In order to improve the performance and based on the results of the analysis of existing solvers an attempt has been made to reduce the problem into the boolean satisfiability problem. 
 
 \subsection{PicoSAT and PycoSAT} \label{section:pycosat}
-PicoSAT is a Boolean Satisfiability Solver for boolean variables in boolean expressions written by Armin Bierre \citep{picosatMan}. Implemented in C and optimized with compact data structures for watching literals provides a high performance solver capabilities with low memory usage \citep{picosat}.
+PicoSAT is a Boolean Satisfiability Solver for boolean variables in boolean expressions written by Armin Bierre \citep{picosatMan}. Implemented in C and optimized with compact data structures for watching literals provides high-performance solver capabilities with low memory usage \citep{picosat}.
 
 PycoSAT is a Python package that provides direct translation for interacting with PicoSAT \citep{pycoSat}. The advantage of PycoSAT is that it imports the PicoSAT binaries directly, which removes the hassle of manually building the solver. PycoSAT provides only two functions \citep{pycosatPyPi}: 
 \begin{enumerate}
@@ -10,7 +10,7 @@ PycoSAT is a Python package that provides direct translation for interacting wit
 	\item \textit{itersolve} - returns iterator over solutions
 \end{enumerate}
 
-The advantage of PycoSAT is the ability to easily create clauses in form of boolean conjunctions of disjunctions. Hence, encoding the conflict-free, admissible sets and extensions can be easily achieved. PycoSAT clauses are defined in terms of list of lists. In order to show the encodings let consider the example from PycoSAT documentation \citep{pycosatGithub}. 
+The advantage of PycoSAT is the ability to easily create clauses in form of boolean conjunctions of disjunctions. Hence, encoding the conflict-free, admissible sets and extensions can be easily achieved. PycoSAT clauses are defined in terms of the list of lists. In order to show the encodings let consider the example from PycoSAT documentation \citep{pycosatGithub}. 
 
 \begin{figure}
 \begin{tcolorbox}
@@ -39,7 +39,7 @@ The following 3 lines are representing individual clauses. Each number represent
 \label{fig:pycosatUsage}
 \end{figure}
 
-Example from figure \ref{fig:pycosat1} can be translated into list of lists and used with PycoSAT as shown in figure \ref{fig:pycosatUsage}. The clauses encodings are passed into itersolve method of PycoSAT, which in turn returns iterator. The example above will produce following output:
+Example from figure \ref{fig:pycosat1} can be translated into list of lists and used with PycoSAT as shown in figure \ref{fig:pycosatUsage}. The clauses encodings are passed into the \textit{itersolve} method of PycoSAT, which in turn returns an iterator. The example above will produce the following output:
 
 \begin{figure}
 	\begin{minted}{python}
@@ -66,18 +66,18 @@ Example from figure \ref{fig:pycosat1} can be translated into list of lists and 
 	\label{fig:pycosatOutput}
 \end{figure}
 
-The output presented in figure \ref{fig:pycosatOutput}, is the list of all possible combination of 5 variables that satisfy the clauses from figure \ref{fig:pycosat1}. With appropriate mapping, the values from output can easily be replaced with variables to create individual solutions. 
+The output presented in figure \ref{fig:pycosatOutput} is the list of all possible combination of 5 variables that satisfy the clauses from figure \ref{fig:pycosat1}. With appropriate mapping, the values from output can easily be replaced with variables to create individual solutions. 
 
 
 
 \subsection{CNF Encodings}
-In order to use any SAT solver to solve the extensions of argumentation frameworks, the boolean formula needs to be encoded into CNF. The conflict free sets can easily be encoded using the list of all the attacks in the argumentation framework. From the definition of the conflict free sets we know that it is a set of arguments with no attacks between any of its elements. Hence, for each attack in the argumentation framework, the conflict free set will contain either the attacker, or the attack. In no case both of the arguments will be a part of the same conflict free set. This can be shown in CNF as:
+In order to use any SAT solver to solve the extensions of argumentation frameworks, the boolean formula needs to be encoded into CNF. The conflict-free sets can easily be encoded using the list of all the attacks in the argumentation framework. From the definition of the conflict-free sets we know that it is a set of arguments with no attacks between any of its elements. Hence, for each attack in the argumentation framework, the conflict-free set will contain either the attacker or the attack. In no case, both of the arguments will be a part of the same conflict-free set. This can be shown in CNF as:
 
 \begin{equation}
 	  \forall (a,b) \in attacks \implies (\neg a \lor \neg b)
 \end{equation}
 
-The above equation will provide all of the possible solution based on the arguments provided for the conflict free sets. This can be extended further to include the defending arguments of the set. This in turn will help to define the admissible sets, as based on the definition \ref{admissibleArgument}, the admissible set contains conflict free arguments and all arguments within the set that are defended by the set itself.
+The above equation will provide all of the possible solution based on the arguments provided for the conflict-free sets. This can be extended further to include the defending arguments of the set. This, in turn, will help to define the admissible sets, as based on the definition \ref{admissibleArgument}, the admissible set contains conflict-free arguments and all arguments within the set that are defended by the set itself.
 
 \begin{equation}
 \forall a \in AF | (a,b) \in attacks \land \exists c \in E | (c,a) \in attacks \implies (c \lor \neg b)

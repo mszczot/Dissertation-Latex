@@ -3,9 +3,9 @@ As shown in section \ref{section:alias}, ALIAS \citep{alias} is the pure Python 
 
 ALIAS can also produce the labellings for complete, grounded, preferred, stable and semi-stable semantics, by iterating through the whole argumentation framework and label the arguments accordingly. Once the solution is created it breaks out of the loop and outputs the labellings. Hence, although ALIAS has a lot of functionality in terms of computing abstract argumentation semantics, the implementation method used for the solver makes it inefficient and difficult to work on the larger frameworks. 
 
-The benefit of ALIAS is its ability to read and parse argumentation frameworks from multiple input formats. In the existing implementation, Apart from standard input of tgf (Trivial Graph Format) and apx (Ability Photopaint Studio Image) files, ALIAS also support input from JSON, DOT graph, networkx and databases SQLLite, mySql and Neo4j. Furthermore, it is possible ot output the argumentation framework into those formats as well.
+The benefit of ALIAS is its ability to read and parse argumentation frameworks from multiple input formats. In the existing implementation, Apart from standard input of tgf (Trivial Graph Format) and apx (Ability Photopaint Studio Image) files, ALIAS also support input from JSON, DOT graph, networkx and databases SQLLite, MySql and Neo4j. Furthermore, it is possible to output the argumentation framework into those formats as well.
 
-Although current implementation of ALIAS don't have any mandatory dependencies, additional dependencies are required to allow for additional functionality:
+Although current implementation of ALIAS does not have any mandatory dependencies, additional dependencies are required to allow for additional functionality:
 \begin{itemize}
 	\item Input/Output
 	\begin{itemize}
@@ -29,12 +29,12 @@ Those dependencies can be easily installed through setup script if required.
 Currently ALIAS is made of 3 modules: 
 
 \begin{itemize}
-	\item classes - consist of classes representing argumentation framework, arguments and labelling
+	\item classes - consist of classes representing the argumentation framework, arguments and labelling
 	\item inout - module responsible for input and output from and to different file formats
-	\item semantics - collection of static methods used for computing extensions and labellings of given argumentation framework.
+	\item semantics - a collection of static methods used for computing extensions and labellings of given argumentation framework.
 \end{itemize}
 
-This structure and the relations between them can be seen in figure \ref{fig:aliasUml1}. Inout and semantics modules requires framework class from classes module. Otherwise, there are no connections between each individual package.
+This structure and the relations between them can be seen in figure \ref{fig:aliasUml1}. Inout and semantics modules require framework class from classes module. Otherwise, there are no connections between each individual package.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{alias_current_uml}
@@ -53,7 +53,7 @@ This structure and the relations between them can be seen in figure \ref{fig:ali
 \end{landscape}
 
 \subsection{Performance}
-As mentioned above, current implementation of ALIAS generates a power set from all arguments within the argumentation framework and checks each of them to create the solution. As can be seen in figure \ref{fig:aliasPerResults}, the time required to compute Stable extensions grows exponentially with the size of the argumentation framework. 
+As mentioned above, the current implementation of ALIAS generates a power set from all arguments within the argumentation framework and checks each of them to create the solution. As can be seen in figure \ref{fig:aliasPerResults}, the time required to compute Stable extensions grows exponentially with the size of the argumentation framework. 
 
 \begin{figure}[h]
 	\centering
